@@ -2,7 +2,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import { Services, Stats, WhyUs, Process } from "./components/Sections";
 import { Projects, Testimonials } from "./components/Work";
-import { Audit, Faq, Cta } from "./components/Contact";
+import { ContactForm, Cta } from "./components/Contact";
 import Footer from "./components/Footer";
 
 export default function App() {
@@ -17,9 +17,8 @@ export default function App() {
         <Process />
         <Projects />
         <Testimonials />
+        <ContactForm />
        
-        <Audit />
-        <Faq />
         <Cta />
       </main>
       <Footer />
