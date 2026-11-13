@@ -1,11 +1,12 @@
 import { brand, footerLinks } from "../data";
 import { container } from "../ui";
+import Reveal from "./Reveal";
 
 export default function Footer() {
   return (
     <footer className="bg-navy-deep pt-16 text-[#b9d3e6]">
       <div className={`${container} grid gap-9 pb-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr]`}>
-        <div>
+        <Reveal>
           <a href="#home" className="mb-3.5 inline-flex items-center gap-2.5 text-lg font-extrabold text-white">
             <img src={brand.logo} alt="" width="38" height="38" />
             <span>{brand.name}</span>
@@ -15,9 +16,9 @@ export default function Footer() {
             to full-scale marketing, we deliver results for clients around the
             world.
           </p>
-        </div>
+        </Reveal>
 
-        <div>
+        <Reveal delay={100}>
           <h4 className="mb-3.5 text-[0.95rem] font-bold text-white">Quick Links</h4>
           <ul>
             {footerLinks.quick.map((l) => (
@@ -28,9 +29,9 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
 
-        <div>
+        <Reveal delay={200}>
           <h4 className="mb-3.5 text-[0.95rem] font-bold text-white">Services</h4>
           <ul>
             {footerLinks.services.map((s) => (
@@ -41,9 +42,9 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
 
-        <div>
+        <Reveal delay={300}>
           <h4 className="mb-3.5 text-[0.95rem] font-bold text-white">Contact</h4>
           <ul>
             <li className="mb-2 text-[0.9rem]">
@@ -52,7 +53,7 @@ export default function Footer() {
               </a>
             </li>
           </ul>
-        </div>
+        </Reveal>
       </div>
 
       <div className={`${container} flex flex-wrap justify-between gap-2.5 border-t border-white/10 py-[22px] text-[0.82rem]`}>

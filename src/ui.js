@@ -18,6 +18,6 @@ export const btn = (variant = "primary", large = false) =>
   } ${variants[variant]}`;
 
 export const card =
-  "rounded-[18px] border border-line bg-white p-7 shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#b9def0] hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]";
+  "h-full rounded-[18px] border border-line bg-white p-7 shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#b9def0] hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]";
 
 export const sectionPad = "py-16 sm:py-[90px]";

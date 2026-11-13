@@ -2,6 +2,7 @@ import { useState } from "react";
 import { projectFilters, projects, testimonials } from "../data";
 import { container, card, gradBg, sectionPad } from "../ui";
 import Icon from "./Icon";
+import Reveal from "./Reveal";
 import { SectionHead } from "./Sections";
 
 export function Projects() {
@@ -21,7 +22,11 @@ export function Projects() {
           </a>
         </div>
 
-        <div className="mb-8 flex flex-wrap justify-center gap-2.5" role="tablist" aria-label="Project categories">
+        <Reveal
+          className="mb-8 flex flex-wrap justify-center gap-2.5"
+          role="tablist"
+          aria-label="Project categories"
+        >
           {projectFilters.map((f) => (
             <button
               key={f}
@@ -37,28 +42,27 @@ export function Projects() {
               {f}
             </button>
           ))}
-        </div>
+        </Reveal>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {visible.map((p) => (
-            <article
-              key={p.title}
-              className="overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]"
-            >
-              <div
-                aria-hidden="true"
-                className="relative grid h-[190px] place-items-center bg-linear-to-br from-[#d6effa] via-[#8fd3ee] to-[#3aa7da]"
-              >
-                <img src="/logo.png" alt="" className="w-[70px] opacity-90" />
-                <span className="absolute left-3.5 top-3.5 rounded-full bg-white px-3 py-[3px] text-[0.72rem] font-bold text-brand">
-                  {p.category}
-                </span>
-              </div>
-              <div className="px-[22px] pb-6 pt-5">
-                <h3 className="mb-1.5 text-[1.05rem] font-bold text-navy">{p.title}</h3>
-                <p className="text-[0.9rem] text-muted">{p.text}</p>
-              </div>
-            </article>
+          {visible.map((p, i) => (
+            <Reveal key={p.title} from="zoom" delay={(i % 3) * 110} className="h-full">
+              <article className="h-full overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]">
+                <div
+                  aria-hidden="true"
+                  className="relative grid h-[190px] place-items-center bg-linear-to-br from-[#d6effa] via-[#8fd3ee] to-[#3aa7da]"
+                >
+                  <img src="/logo.png" alt="" className="w-[70px] animate-float opacity-90" />
+                  <span className="absolute left-3.5 top-3.5 rounded-full bg-white px-3 py-[3px] text-[0.72rem] font-bold text-brand">
+                    {p.category}
+                  </span>
+                </div>
+                <div className="px-[22px] pb-6 pt-5">
+                  <h3 className="mb-1.5 text-[1.05rem] font-bold text-navy">{p.title}</h3>
+                  <p className="text-[0.9rem] text-muted">{p.text}</p>
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -78,23 +82,25 @@ export function Testimonials() {
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((t, i) => (
-            <figure key={i} className={card}>
-              <div className="mb-3.5 flex gap-[3px] text-[#f5b301] [&_svg]:fill-current" aria-hidden="true">
-                {[...Array(5)].map((_, k) => (
-                  <Icon key={k} name="star" size={16} />
-                ))}
-              </div>
-              <blockquote className="mb-[22px] text-[0.98rem] text-ink">{t.quote}</blockquote>
-              <figcaption className="flex items-center gap-3">
-                <span className={`${gradBg} grid size-[42px] place-items-center rounded-full font-bold text-white`}>
-                  {t.name.charAt(0)}
-                </span>
-                <span>
-                  <strong className="block text-[0.92rem] text-navy">{t.name}</strong>
-                  <small className="text-[0.8rem] text-muted">{t.role}</small>
-                </span>
-              </figcaption>
-            </figure>
+            <Reveal key={i} delay={(i % 3) * 120} className="h-full">
+              <figure className={card}>
+                <div className="mb-3.5 flex gap-[3px] text-[#f5b301] [&_svg]:fill-current" aria-hidden="true">
+                  {[...Array(5)].map((_, k) => (
+                    <Icon key={k} name="star" size={16} />
+                  ))}
+                </div>
+                <blockquote className="mb-[22px] text-[0.98rem] text-ink">{t.quote}</blockquote>
+                <figcaption className="flex items-center gap-3">
+                  <span className={`${gradBg} grid size-[42px] place-items-center rounded-full font-bold text-white`}>
+                    {t.name.charAt(0)}
+                  </span>
+                  <span>
+                    <strong className="block text-[0.92rem] text-navy">{t.name}</strong>
+                    <small className="text-[0.8rem] text-muted">{t.role}</small>
+                  </span>
+                </figcaption>
+              </figure>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -12,6 +12,29 @@
   --color-line: #d9ebf5;
   --color-ink: #0f2a44;
   --color-muted: #55708a;
+
+  /* animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-drift: drift 16s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.8s ease-out both;
+  --animate-pop-in: pop-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(34px, -28px) scale(1.08); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes pop-in {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: none; }
+  }
 }
 
 html {
@@ -21,4 +44,12 @@ html {
 
 body {
   @apply bg-white font-sans leading-relaxed text-ink antialiased;
+}
+
+/* People who turn off animations in their system settings get a calm page */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
 }

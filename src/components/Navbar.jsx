@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { brand, navLinks } from "../data";
-import { container, btn } from "../ui";
+import { btn } from "../ui";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -21,7 +21,7 @@ export default function Navbar() {
           : "border-transparent bg-white/80"
       }`}
     >
-      <div className={`${container} flex h-[70px] items-center justify-between gap-6`}>
+     <div className="mx-auto flex h-[70px] w-full max-w-[1760px] items-center justify-between gap-6 px-6 sm:px-10 lg:px-16">
         <a
           href="#home"
           className="inline-flex items-center gap-2.5 text-lg font-extrabold text-navy"

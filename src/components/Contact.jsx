@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { brand, faqs, services } from "../data";
+import { brand, services } from "../data";
 import { container, btn, gradBg, sectionPad } from "../ui";
 import Icon from "./Icon";
-import { SectionHead } from "./Sections";
+import Reveal from "./Reveal";
 
 const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 
@@ -97,7 +97,7 @@ export function ContactForm() {
   return (
     <section id="contact" className={sectionPad}>
       <div className={container}>
-        <div className="grid overflow-hidden rounded-[28px] border border-line shadow-[0_18px_45px_rgba(7,48,90,0.14)] lg:grid-cols-[0.9fr_1.1fr]">
+        <Reveal className="grid overflow-hidden rounded-[28px] border border-line shadow-[0_18px_45px_rgba(7,48,90,0.14)] lg:grid-cols-[0.9fr_1.1fr]">
           {/* left: pitch */}
           <div className={`${gradBg} p-8 text-white sm:p-12`}>
             <span className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.16em] text-[#bfe9f8]">
@@ -152,7 +152,7 @@ export function ContactForm() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={submit} className="grid gap-5">
+              <form onSubmit={submit} className="grid gap-5" noValidate={false}>
                 {/* honeypot */}
                 <input
                   type="checkbox"
@@ -236,52 +236,7 @@ export function ContactForm() {
               </form>
             )}
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Faq() {
-  const [open, setOpen] = useState(0);
-
-  return (
-    <section className={`${sectionPad} bg-sky-faint`}>
-      <div className="mx-auto w-full max-w-[820px] px-5">
-        <SectionHead eyebrow="FAQ" title="Frequently Asked" accent="Questions" />
-        <div className="grid gap-3">
-          {faqs.map((f, i) => {
-            const isOpen = open === i;
-            return (
-              <div
-                key={f.q}
-                className={`overflow-hidden rounded-[14px] border bg-white ${
-                  isOpen
-                    ? "border-aqua shadow-[0_10px_30px_rgba(7,48,90,0.08)]"
-                    : "border-line"
-                }`}
-              >
-                <button
-                  className="flex w-full items-center justify-between gap-4 px-[22px] py-[18px] text-left font-semibold text-navy"
-                  aria-expanded={isOpen}
-                  onClick={() => setOpen(isOpen ? -1 : i)}
-                >
-                  {f.q}
-                  <span
-                    className={`shrink-0 text-brand transition-transform duration-200 ${
-                      isOpen ? "rotate-45" : ""
-                    }`}
-                  >
-                    <Icon name="plus" size={18} />
-                  </span>
-                </button>
-                {isOpen && (
-                  <p className="px-[22px] pb-5 text-[0.95rem] text-muted">{f.a}</p>
-                )}
-              </div>
-            );
-          })}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -289,8 +244,10 @@ export function Faq() {
 
 export function Cta() {
   return (
-    <section className="bg-linear-to-br from-navy-deep via-navy to-[#0a6fae] py-[84px] text-center text-white">
-      <div className={container}>
+    <section className="relative overflow-hidden bg-linear-to-br from-navy-deep via-navy to-[#0a6fae] py-[84px] text-center text-white">
+      <div aria-hidden="true" className="pointer-events-none absolute -left-20 top-0 size-72 animate-drift rounded-full bg-aqua/20 blur-3xl" />
+      <div aria-hidden="true" className="pointer-events-none absolute -right-16 bottom-0 size-80 animate-drift rounded-full bg-brand/30 blur-3xl [animation-delay:-8s]" />
+      <Reveal className={`${container} relative`}>
         <h2 className="mb-3.5 text-[length:clamp(1.8rem,3.6vw,2.6rem)] font-bold">
           Ready to Grow Your Business?
         </h2>
@@ -301,7 +258,7 @@ export function Cta() {
         <a href="#contact" className={btn("white", true)}>
           Book a Free Strategy Call
         </a>
-      </div>
+      </Reveal>
     </section>
   );
 }
