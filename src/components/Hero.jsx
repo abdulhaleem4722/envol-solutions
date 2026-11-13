@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-[linear-gradient(to_bottom,#bfe8f8_0%,#d3effb_60%,#ffffff_100%)] pb-[80px] pt-[50px] sm:pt-[70px] lg:pt-[80px]"
+      className="relative overflow-hidden bg-[linear-gradient(to_bottom,#bfe8f8_0%,#d3effb_60%,#ffffff_100%)] pb-[60px] pt-[20px] sm:pt-[28px] lg:pt-[20px]"
     >
       <div
         aria-hidden="true"
@@ -24,10 +24,10 @@ export default function Hero() {
       <div className="relative mx-auto grid w-full max-w-[1760px] items-center gap-10 px-6 sm:px-10 lg:grid-cols-2 lg:gap-8 lg:px-16">
         {/* text */}
         <div className="text-center lg:text-left">
-          <span className="mb-6 inline-block animate-fade-up rounded-full border border-line bg-white px-4 py-1.5 text-[0.82rem] font-semibold text-brand">
+          <span className="mb-5 inline-block animate-fade-up rounded-full border border-line bg-white px-4 py-1.5 text-[0.82rem] font-semibold text-brand">
             Global Digital Agency
           </span>
-          <h1 className="animate-fade-up text-[length:clamp(2.3rem,4.4vw,4.4rem)] font-extrabold leading-[1.1] tracking-tight text-navy [animation-delay:120ms]">
+          <h1 className="animate-fade-up text-[length:clamp(2.6rem,5.2vw,5.2rem)] font-extrabold leading-[1.1] tracking-tight text-navy [animation-delay:120ms]">
             We Build Digital Products <span className={gradText}>That Drive Revenue</span>
           </h1>
           <p className="mx-auto mt-[22px] max-w-[620px] animate-fade-up text-[1.12rem] text-muted [animation-delay:240ms] lg:mx-0">
