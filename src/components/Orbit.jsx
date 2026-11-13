@@ -42,7 +42,7 @@ const items = [
 
 // Where an item sits at time t (seconds), in drawing units.
 // near: 0 = far side of the orbit, 1 = near side.
-function place(item, t) {
+function place(item, t) {  // t = this ring's own clock
   const r = rings[item.ring];
   const a = (item.phase + (r.dir * t) / r.dur) * Math.PI * 2;
   const x0 = r.rx * Math.cos(a);
@@ -65,8 +65,9 @@ export default function Orbit() {
     const lastZ = [];
     const glow = items.map(() => 0); // 0..1 hover amount per icon, eased
     let scale = el.clientWidth / W;
-    let clock = 0; // orbit time in seconds (stops advancing while hovering)
-    let speed = 1; // 1 = normal, 0 = paused, eased
+    // each icon has its own clock and speed, so hovering pauses only that icon
+    const clock = items.map(() => 0);
+    const speed = items.map(() => 1); // 1 = normal, 0 = paused, eased
     let last = performance.now();
     let frame;
 
@@ -76,7 +77,7 @@ export default function Orbit() {
         if (!node) return;
         glow[i] += ((hover.current === i ? 1 : 0) - glow[i]) * (1 - Math.exp(-dt * 12));
         const g = glow[i];
-        const p = place(item, clock);
+        const p = place(item, clock[i]);
         const s = (0.76 + 0.3 * p.near) * (1 + 0.2 * g);
         const o = 0.55 + 0.45 * p.near;
         node.style.transform = `translate3d(${(p.x * scale).toFixed(2)}px, ${(p.y * scale).toFixed(2)}px, 0) translate(-50%, -50%) scale(${s.toFixed(3)})`;
@@ -101,9 +102,11 @@ export default function Orbit() {
       const tick = (now) => {
         const dt = Math.min((now - last) / 1000, 0.1);
         last = now;
-        const target = hover.current >= 0 ? 0 : 1;
-        speed += (target - speed) * (1 - Math.exp(-dt * 7));
-        clock += dt * speed;
+        items.forEach((_, i) => {
+          const target = hover.current === i ? 0 : 1;
+          speed[i] += (target - speed[i]) * (1 - Math.exp(-dt * 7));
+          clock[i] += dt * speed[i];
+        });
         draw(dt);
         frame = requestAnimationFrame(tick);
       };
