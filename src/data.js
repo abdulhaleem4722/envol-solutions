@@ -11,11 +11,11 @@ export const brand = {
 };
 
 export const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#why" },
-  { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/#services" },
+  { label: "Portfolio", href: "/#projects" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const heroStats = [
@@ -200,7 +200,61 @@ export const faqs = [
   },
 ];
 
+// ---------- About page (all PLACEHOLDER: replace with real company details) ----------
+export const aboutStats = [
+  { value: "200+", label: "Projects" },
+  { value: "25+", label: "Countries" },
+  { value: "50+", label: "Team members" },
+  { value: "2", label: "Continents" },
+];
+
+export const timeline = [
+  { year: "2018", text: "Founded in Clarksville, TN with a vision to make premium digital services accessible." },
+  { year: "2019", text: "Expanded to 10+ team members and launched our first enterprise project." },
+  { year: "2020", text: "Opened our Pakistan office in Karachi, scaling our development capacity." },
+  { year: "2021", text: "Reached 100+ projects milestone and launched our marketing division." },
+  { year: "2022", text: "Surpassed 200+ projects with clients in 25+ countries worldwide." },
+  { year: "2023", text: "Launched our marketing division and expanded service offerings." },
+  { year: "2024", text: "Grew to 50+ team members across 2 continents." },
+];
+
+export const values = [
+  { icon: "bolt", title: "Innovation", text: "We push boundaries and embrace emerging technologies to deliver cutting-edge solutions." },
+  { icon: "search", title: "Transparency", text: "No hidden fees, no surprises. Clear communication and honest timelines every step of the way." },
+  { icon: "shield", title: "Quality", text: "Every pixel, every line of code is crafted with precision and attention to detail." },
+  { icon: "globe", title: "Global Mindset", text: "We think globally and act locally, understanding diverse markets and cultures." },
+];
+
+export const principles = [
+  { title: "Senior people only", text: "No juniors learning on your project and no hand-offs to strangers. Every line of code and every screen comes from someone who has shipped production work before." },
+  { title: "One team, end to end", text: "Discovery, design, development, hosting and support under one roof, so nothing gets lost between a design agency, a dev shop and a hosting company." },
+  { title: "A written scope before any code", text: "Fixed scopes for defined builds, honest ranges for everything else, and a weekly check-in so the budget never surprises you at the end." },
+  { title: "A stack your next hire will thank you for", text: "Mainstream, well-documented tools like React, Next.js and Laravel. No exotic frameworks, so any good developer can pick your project up later." },
+  { title: "Fast and accessible by default", text: "Quick load times, clean markup and mobile-first layouts are part of every build, not an upgrade you pay extra for." },
+  { title: "You own everything", text: "Your code, your designs, your accounts. When the project is done it is handed over in full, with no lock-in." },
+];
+
 export const footerLinks = {
   quick: navLinks,
   services: ["Web Development", "App Development", "Digital Marketing", "Branding & Design"],
 };
+
+// Contact form: get a free access key at https://web3forms.com
+// (it is emailed to the address where you want enquiries delivered).
+export const formAccessKey = "YOUR_ACCESS_KEY_HERE";
+
+export const serviceOptions = [
+  "Web Design & Development",
+  "Mobile App Development",
+  "Digital Marketing & SEO",
+  "Branding & Graphic Design",
+  "Something else",
+];
+
+export const budgetOptions = [
+  "Under $1,000",
+  "$1,000 - $5,000",
+  "$5,000 - $10,000",
+  "$10,000+",
+  "Not sure yet",
+];

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { brand, services } from "../data";
 import { container, btn, gradBg, sectionPad } from "../ui";
 import Icon from "./Icon";
@@ -255,9 +256,9 @@ export function Cta() {
           Let us talk about how we can help you build digital products that
           deliver real results. Book a free strategy call today.
         </p>
-        <a href="#contact" className={btn("white", true)}>
+        <Link to="/#contact" className={btn("white", true)}>
           Book a Free Strategy Call
-        </a>
+        </Link>
       </Reveal>
     </section>
   );

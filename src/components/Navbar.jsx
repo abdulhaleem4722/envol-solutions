@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { brand, navLinks } from "../data";
 import { btn } from "../ui";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -21,15 +23,15 @@ export default function Navbar() {
           : "border-transparent bg-white/80"
       }`}
     >
-     <div className="mx-auto flex h-[70px] w-full max-w-[1760px] items-center justify-between gap-6 px-6 sm:px-10 lg:px-16">
-        <a
-          href="#home"
+      <div className="mx-auto w-full max-w-[1760px] px-6 sm:px-10 lg:px-16 flex h-[70px] items-center justify-between gap-6">
+        <Link
+          to="/"
           className="inline-flex items-center gap-2.5 text-lg font-extrabold text-navy"
           onClick={() => setOpen(false)}
         >
           <img src={brand.logo} alt="" width="38" height="38" />
           <span>{brand.name}</span>
-        </a>
+        </Link>
 
         <nav
           className={`${
@@ -37,27 +39,31 @@ export default function Navbar() {
           } absolute left-0 right-0 top-[70px] flex-col border-b border-line bg-white px-5 pb-5 pt-2 text-[0.95rem] font-medium text-muted md:static md:flex md:flex-row md:gap-8 md:border-0 md:bg-transparent md:p-0`}
         >
           {navLinks.map((l) => (
-            <a
+            <Link
               key={l.href}
-              href={l.href}
-              className="py-3 hover:text-brand md:py-0"
+              to={l.href}
+              className={`py-3 hover:text-brand md:py-0 ${
+                l.href === pathname + hash || (l.href === "/" && pathname === "/" && !hash)
+                  ? "text-brand"
+                  : ""
+              }`}
               onClick={() => setOpen(false)}
             >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#contact"
+          <Link
+            to="/#contact"
             className={`${btn("primary")} mt-2.5 md:hidden`}
             onClick={() => setOpen(false)}
           >
             Book a Free Call
-          </a>
+          </Link>
         </nav>
 
-        <a href="#contact" className={`${btn("primary")} max-md:hidden`}>
+        <Link to="/#contact" className={`${btn("primary")} max-md:hidden`}>
           Book a Free Call
-        </a>
+        </Link>
 
         <button
           className="flex size-10 flex-col items-center justify-center gap-[5px] md:hidden"

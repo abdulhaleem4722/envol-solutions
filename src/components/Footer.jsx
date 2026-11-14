@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { brand, footerLinks } from "../data";
 import { container } from "../ui";
 import Reveal from "./Reveal";
@@ -7,10 +8,10 @@ export default function Footer() {
     <footer className="bg-navy-deep pt-16 text-[#b9d3e6]">
       <div className={`${container} grid gap-9 pb-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.2fr]`}>
         <Reveal>
-          <a href="#home" className="mb-3.5 inline-flex items-center gap-2.5 text-lg font-extrabold text-white">
+          <Link to="/" className="mb-3.5 inline-flex items-center gap-2.5 text-lg font-extrabold text-white">
             <img src={brand.logo} alt="" width="38" height="38" />
             <span>{brand.name}</span>
-          </a>
+          </Link>
           <p className="max-w-[320px] text-[0.9rem]">
             We build digital products that drive revenue. From websites to apps
             to full-scale marketing, we deliver results for clients around the
@@ -23,9 +24,9 @@ export default function Footer() {
           <ul>
             {footerLinks.quick.map((l) => (
               <li key={l.href} className="mb-2 text-[0.9rem]">
-                <a href={l.href} className="hover:text-aqua">
+                <Link to={l.href} className="hover:text-aqua">
                   {l.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -36,9 +37,9 @@ export default function Footer() {
           <ul>
             {footerLinks.services.map((s) => (
               <li key={s} className="mb-2 text-[0.9rem]">
-                <a href="#services" className="hover:text-aqua">
+                <Link to="/#services" className="hover:text-aqua">
                   {s}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -61,8 +62,8 @@ export default function Footer() {
           © {new Date().getFullYear()} {brand.name}. All rights reserved.
         </span>
         <span>
-          <a href="#home" className="hover:text-aqua">Privacy Policy</a> ·{" "}
-          <a href="#home" className="hover:text-aqua">Terms of Service</a>
+          <Link to="/" className="hover:text-aqua">Privacy Policy</Link> ·{" "}
+          <Link to="/" className="hover:text-aqua">Terms of Service</Link>
         </span>
       </div>
     </footer>
