@@ -31,10 +31,7 @@ export function Services() {
           {services.map((s, i) => (
             <Reveal key={s.title} delay={(i % 2) * 120} className="h-full">
               <article className={card}>
-                <div
-                  className="mb-[18px] grid size-[52px] animate-float place-items-center rounded-[14px] bg-sky-soft text-brand"
-                  style={{ animationDelay: `${i * -1.2}s` }}
-                >
+                <div className="mb-[18px] grid size-[52px] place-items-center rounded-[14px] bg-sky-soft text-brand">
                   <Icon name={s.icon} />
                 </div>
                 <h3 className="mb-2 text-[1.15rem] font-bold text-navy">{s.title}</h3>
@@ -97,10 +94,7 @@ export function WhyUs() {
           {reasons.map((r, i) => (
             <Reveal key={r.title} delay={(i % 3) * 120} className="h-full">
               <article className={card}>
-                <div
-                  className="mb-[18px] grid size-11 animate-float place-items-center rounded-xl bg-sky-soft text-brand"
-                  style={{ animationDelay: `${i * -0.9}s` }}
-                >
+                <div className="mb-[18px] grid size-11 place-items-center rounded-xl bg-sky-soft text-brand">
                   <Icon name={r.icon} size={20} />
                 </div>
                 <h3 className="mb-2 text-[1.15rem] font-bold text-navy">{r.title}</h3>

@@ -258,3 +258,29 @@ export const budgetOptions = [
   "$10,000+",
   "Not sure yet",
 ];
+
+
+
+
+
+// ---------- Home page story section (PLACEHOLDER copy: replace with the client's own wording) ----------
+export const pitch = {
+  heading: "Why is getting a good website so complicated?",
+  bubble: "Your cousin says he knows a guy who builds sites cheap.",
+  bubbleTime: "8:21",
+  userMessage: "Your friend says why not just do it yourself with a template?",
+  reply: "Goood luck with that",
+  replyTime: "Just now",
+  slideTitle: "Agency proposal",
+  slide: [
+    "The last time you hired an agency, you got a 40-page proposal and three different contacts.",
+    "Suddenly you're managing a project on top of running your business.",
+  ],
+  note: ["And the worst part is, you never know what you're getting until the very end."],
+  solutionHeading: "That's where we come in.",
+  paragraphs: [
+    "We design and develop websites that look great, load fast and make your brand feel alive the second someone lands on it.",
+    "We handle it all in one place: strategy, design, development, launch and ongoing support, so you can focus on running your business.",
+    "Your website will feel clear, be built right and stay easy to maintain once it is live.",
+  ],
+};

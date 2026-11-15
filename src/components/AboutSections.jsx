@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { aboutStats, timeline, values, principles } from "../data";
 import { container, card, gradText, sectionPad } from "../ui";
 import Icon from "./Icon";
@@ -8,7 +8,7 @@ import { SectionHead } from "./Sections";
 /* ---------- top banner ---------- */
 export function AboutHero() {
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(to_bottom,#bfe8f8_0%,#d3effb_60%,#ffffff_100%)] pb-16 pt-16 text-center sm:pt-24">
+    <section className="relative overflow-hidden bg-[linear-gradient(to_bottom,#bfe8f8_0%,#d3effb_60%,#ffffff_100%)] pb-16 pt-[134px] text-center sm:pt-[166px]">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 -top-[150px] h-[700px] bg-[radial-gradient(ellipse_at_center,rgba(0,180,224,0.30),transparent_65%)]"
@@ -38,47 +38,12 @@ export function AboutHero() {
   );
 }
 
-/* ---------- our story: stats + year timeline ---------- */
-const NAV_H = 70;
-const STEP_VH = 55; // how much scrolling each year takes (in screen heights)
-
+/* ---------- our story: stats + year timeline (click a year to see its story) ---------- */
 export function Story() {
   const [active, setActive] = useState(0);
-  const wrap = useRef(null);
-  const n = timeline.length;
-
-  // On large screens the timeline stays pinned while scrolling and the year advances.
-  useEffect(() => {
-    const onScroll = () => {
-      if (window.innerWidth < 1024 || !wrap.current) return;
-      const r = wrap.current.getBoundingClientRect();
-      const total = r.height - (window.innerHeight - NAV_H);
-      if (total <= 0) return;
-      const p = Math.min(1, Math.max(0, (NAV_H - r.top) / total));
-      setActive(Math.min(n - 1, Math.floor(p * n)));
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [n]);
-
-  const pick = (i) => {
-    if (window.innerWidth >= 1024 && wrap.current) {
-      // jump to the matching scroll position; the scroll handler then updates the year
-      const rect = wrap.current.getBoundingClientRect();
-      const total = rect.height - (window.innerHeight - NAV_H);
-      const y = window.scrollY + rect.top - NAV_H + ((i + 0.5) / n) * total;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
-    setActive(i);
-  };
 
   return (
-    <section id="story" className={`${sectionPad} pb-0 sm:pb-0`}>
+    <section id="story" className={sectionPad}>
       <div className={container}>
         <SectionHead eyebrow="Our Journey" title="Our" accent="Story" />
 
@@ -95,63 +60,51 @@ export function Story() {
           ))}
         </ul>
 
-        <hr className="mb-2 mt-12 border-line" />
+        <hr className="my-12 border-line" />
 
-        <div
-          ref={wrap}
-          className="lg:h-[var(--story-h)]"
-          style={{ "--story-h": `calc(100vh - ${NAV_H}px + ${n * STEP_VH}vh)` }}
-        >
-          <div className="py-10 lg:sticky lg:top-[70px] lg:flex lg:h-[calc(100vh-70px)] lg:items-center lg:py-0">
-            <div className="grid w-full items-center gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
-              {/* big year */}
-              <div className="text-center lg:text-left">
-                <div
-                  key={timeline[active].year}
-                  className={`${gradText} animate-fade-up text-[length:clamp(4.5rem,11vw,9.5rem)] font-extrabold leading-none tracking-tight`}
-                  aria-live="polite"
-                >
-                  {timeline[active].year}
-                </div>
-                <div className="mx-auto mt-4 h-1 w-24 rounded bg-linear-to-r from-brand to-aqua lg:mx-0" />
-              </div>
-
-              {/* year list */}
-              <ol>
-                {timeline.map((t, i) => {
-                  const on = i === active;
-                  return (
-                    <li key={t.year}>
-                      <button
-                        type="button"
-                        onClick={() => pick(i)}
-                        aria-current={on}
-                        className={`block w-full border-l-[3px] px-6 py-3.5 text-left transition-colors duration-300 ${
-                          on
-                            ? "border-brand bg-sky-soft"
-                            : "border-line text-muted hover:border-aqua hover:text-navy"
-                        }`}
-                      >
-                        <span className={`block font-bold ${on ? "text-brand" : ""}`}>
-                          {t.year}
-                        </span>
-                        {on && (
-                          <span className="mt-1 block animate-fade-up text-[1.02rem] text-ink">
-                            {t.text}
-                          </span>
-                        )}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ol>
+        <Reveal className="grid items-center gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
+          {/* big year */}
+          <div className="text-center lg:text-left">
+            <div
+              key={timeline[active].year}
+              className={`${gradText} animate-fade-up text-[length:clamp(4.5rem,11vw,9.5rem)] font-extrabold leading-none tracking-tight`}
+              aria-live="polite"
+            >
+              {timeline[active].year}
             </div>
+            <div className="mx-auto mt-4 h-1 w-24 rounded bg-linear-to-r from-brand to-aqua lg:mx-0" />
           </div>
-        </div>
 
-        <p className="pb-14 text-center text-sm text-muted">
-          Click a year, or just keep scrolling.
-        </p>
+          {/* year list */}
+          <ol>
+            {timeline.map((t, i) => {
+              const on = i === active;
+              return (
+                <li key={t.year}>
+                  <button
+                    type="button"
+                    onClick={() => setActive(i)}
+                    aria-current={on}
+                    className={`block w-full border-l-[3px] px-6 py-3.5 text-left transition-colors duration-300 ${
+                      on
+                        ? "border-brand bg-sky-soft"
+                        : "border-line text-muted hover:border-aqua hover:text-navy"
+                    }`}
+                  >
+                    <span className={`block font-bold ${on ? "text-brand" : ""}`}>{t.year}</span>
+                    {on && (
+                      <span className="mt-1 block animate-fade-up text-[1.02rem] text-ink">
+                        {t.text}
+                      </span>
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+        </Reveal>
+
+        <p className="mt-8 text-center text-sm text-muted">Click a year to see what happened.</p>
       </div>
     </section>
   );
