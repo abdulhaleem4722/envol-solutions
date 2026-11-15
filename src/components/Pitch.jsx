@@ -145,6 +145,7 @@ export default function Pitch() {
   const cards = useRef([]);
   const paras = useRef([]);
   const fit = useRef(null);
+  const stage = useRef(null);
 
   useLayoutEffect(() => {
     let width = window.innerWidth;
@@ -165,27 +166,26 @@ export default function Pitch() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // shrink the question + cards a little on short screens so they always fit
+  // Shrink the question + cards a little on short screens so they always fit.
+  // The room is measured from the pinned stage (100svh = a stable height that does not
+  // jump when a phone's browser bar moves), and it never shrinks below 70%.
   useLayoutEffect(() => {
     if (simple) return;
     const apply = () => {
       const el = fit.current;
-      if (!el) return;
+      const st = stage.current;
+      if (!el || !st) return;
       el.style.transform = "";
-      const room = window.innerHeight - 110;
-      const s = Math.min(1, room / el.offsetHeight);
+      const room = st.clientHeight - 120;
+      const s = clamp(room / el.offsetHeight, 0.7, 1);
       el.style.transform = s < 1 ? `scale(${s.toFixed(3)})` : "";
     };
     apply();
-    let width = window.innerWidth;
-    const onResize = () => {
-      if (window.innerWidth !== width) {
-        width = window.innerWidth;
-        apply();
-      }
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    const ro = new ResizeObserver(apply);
+    ro.observe(stage.current);
+    ro.observe(fit.current);
+    document.fonts?.ready.then(apply);
+    return () => ro.disconnect();
   }, [simple]);
 
   useLayoutEffect(() => {
@@ -303,7 +303,7 @@ export default function Pitch() {
 
   return (
     <section ref={wrap} style={{ height: `calc(100svh + ${SCROLL_VH}svh)` }} className="relative">
-      <div className="sticky top-0 h-[100svh] overflow-hidden bg-white">
+      <div ref={stage} className="sticky top-0 h-[100svh] overflow-hidden bg-white">
         {/* problem */}
         <div
           ref={whiteLayer}
