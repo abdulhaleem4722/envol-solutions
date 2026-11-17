@@ -13,7 +13,7 @@ export const brand = {
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/#projects" },
   { label: "Contact", href: "/#contact" },
 ];
@@ -284,3 +284,618 @@ export const pitch = {
     "Your website will feel clear, be built right and stay easy to maintain once it is live.",
   ],
 };
+
+
+
+
+// ============================================================
+//  PASTE THIS AT THE BOTTOM OF src/data.js
+//  Also change ONE line near the top of data.js (navLinks):
+//    { label: "Services", href: "/#services" }
+//  becomes
+//    { label: "Services", href: "/services" }
+// ============================================================
+
+// ---------- Services pages ----------
+// slug = the page address (/services/<slug>). icon = a name from Icon.jsx.
+// Portfolio items, testimonials and the Web / App / Marketing packages are DUMMY data: replace them with real ones one by one.
+// The Branding & Graphic Design packages come from the client's package screenshots.
+export const servicePages = [
+  {
+    slug: "web",
+    icon: "globe",
+    title: "Web Design & Development",
+    short: "Web",
+    hero: { title: "Websites That", accent: "Turn Visitors Into Customers" },
+    text: "Custom websites, online stores and landing pages designed to look sharp, load fast and convert visitors into paying customers.",
+    intro:
+      "Your website is your hardest-working salesperson. We design and build fast, mobile-first websites that explain what you do in seconds and make it easy for people to contact or buy from you.",
+    tags: ["Custom Websites", "E-Commerce", "Landing Pages", "CMS Integration"],
+    highlights: [
+      "Mobile-first, responsive layouts",
+      "Fast load times and clean code",
+      "Online stores with secure checkout",
+      "Easy-to-edit CMS, no developer needed",
+    ],
+    offerings: [
+      { icon: "code", title: "Custom Websites", text: "Hand-built websites made around your brand and goals, not a recycled template." },
+      { icon: "tag", title: "E-Commerce Stores", text: "Shopify and custom stores with product pages, secure payments and order tracking." },
+      { icon: "rocket", title: "Landing Pages", text: "Focused single pages built to turn ad and email traffic into leads and sales." },
+      { icon: "pen", title: "CMS Integration", text: "WordPress and headless CMS setups so your team can update content on its own." },
+      { icon: "bolt", title: "Speed & Performance", text: "Optimised images, lean code and caching so pages open quickly on any device." },
+      { icon: "phone", title: "Responsive Design", text: "Every page looks and works well on phones, tablets and desktops." },
+    ],
+    portfolio: [
+      {
+        category: "Web",
+        title: "Northwind Furniture",
+        text: "E-commerce store for a home furniture brand with 500+ products and secure online checkout.",
+      },
+      {
+        category: "Web",
+        title: "BrightSmile Dental",
+        text: "Clinic website with service pages and online appointment booking.",
+      },
+      {
+        category: "Web",
+        title: "Apex Logistics",
+        text: "Corporate website with shipment tracking and a quote request system.",
+      },
+    ],
+    packages: [
+      {
+        name: "Landing Page",
+        price: "$149",
+        was: "$449",
+        features: [
+          "1 Custom Landing Page",
+          "Mobile Responsive Design",
+          "Contact Form",
+          "Basic SEO Setup",
+          "2 Revisions",
+          "3 - 5 Days Turn Around Time",
+        ],
+      },
+      {
+        name: "Starter",
+        price: "$299",
+        was: "$899",
+        features: [
+          "Up to 5 Pages",
+          "Custom Design",
+          "Mobile Responsive Design",
+          "Contact Form",
+          "Basic SEO Setup",
+          "Social Media Links",
+          "3 Revisions",
+          "5 - 7 Days Turn Around Time",
+        ],
+      },
+      {
+        name: "Business",
+        price: "$699",
+        was: "$1999",
+        features: [
+          "Up to 10 Pages",
+          "Custom UI/UX Design",
+          "CMS Integration (WordPress)",
+          "Advanced SEO Setup",
+          "Speed Optimisation",
+          "Google Analytics Setup",
+          "Unlimited Revisions",
+          "10 - 14 Days Turn Around Time",
+        ],
+      },
+      {
+        name: "E-Commerce",
+        price: "$999",
+        was: "$2999",
+        features: [
+          "Up to 50 Products",
+          "Shopify or WooCommerce",
+          "Secure Payment Gateway",
+          "Order & Inventory Management",
+          "Product Search & Filters",
+          "Mobile Responsive Design",
+          "Unlimited Revisions",
+          "14 - 21 Days Turn Around Time",
+        ],
+      },
+      {
+        name: "Corporate",
+        price: "$1299",
+        was: "$3499",
+        features: [
+          "Up to 20 Pages",
+          "Custom Design with Animations",
+          "Blog / News Section",
+          "Multi-language Ready",
+          "Third-party Integrations",
+          "Advanced SEO Setup",
+          "1 Month Free Support",
+          "Unlimited Revisions",
+        ],
+      },
+      {
+        name: "Premium",
+        price: "$1499",
+        was: "$3999",
+        features: [
+          "Unlimited Pages",
+          "Fully Custom Web App Features",
+          "Custom Admin Dashboard",
+          "Third-party API Integrations",
+          "Priority Support",
+          "100% Ownership Rights",
+          "Money Back Guarantee",
+          "Dedicated Account Manager",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "app",
+    icon: "phone",
+    title: "Mobile App Development",
+    short: "App",
+    hero: { title: "Mobile Apps People", accent: "Love To Use" },
+    text: "iOS and Android apps that feel smooth, scale with your users and are built around how people actually use them.",
+    intro:
+      "From the first sketch to the app store listing, we design and build mobile apps that are simple to use, reliable at scale and ready to grow with your business.",
+    tags: ["iOS Apps", "Android Apps", "Cross Platform", "UI/UX Design"],
+    highlights: [
+      "Native and cross-platform options",
+      "Clean, easy-to-learn interface design",
+      "Secure backend and APIs",
+      "App store launch and ongoing updates",
+    ],
+    offerings: [
+      { icon: "phone", title: "iOS Apps", text: "Polished iPhone and iPad apps that follow Apple's design guidelines." },
+      { icon: "phone", title: "Android Apps", text: "Fast, stable Android apps that work across devices and screen sizes." },
+      { icon: "code", title: "Cross-Platform Apps", text: "One codebase for both platforms with Flutter or React Native to save time and budget." },
+      { icon: "brush", title: "UI/UX Design", text: "Wireframes, prototypes and final screens tested with real users." },
+      { icon: "bolt", title: "Backend & APIs", text: "Secure servers, databases and integrations that keep your app quick and reliable." },
+      { icon: "headset", title: "Maintenance & Support", text: "Bug fixes, OS updates and new features after launch." },
+    ],
+    portfolio: [
+      {
+        category: "App",
+        title: "FitTrack",
+        text: "Fitness app with workout plans, progress charts and daily reminders.",
+      },
+      {
+        category: "App",
+        title: "QuickBite",
+        text: "Food ordering app for iOS and Android with live order tracking.",
+      },
+      {
+        category: "App",
+        title: "PayWise",
+        text: "Mobile wallet app with secure payments and instant transfers.",
+      },
+    ],
+    packages: [
+      {
+        name: "MVP Starter",
+        price: "$1499",
+        was: "$4499",
+        features: [
+          "Single Platform (iOS or Android)",
+          "Up to 5 Core Screens",
+          "Basic Backend & Database",
+          "UI Design Included",
+          "3 Revisions",
+          "3 - 4 Weeks Turn Around Time",
+        ],
+      },
+      {
+        name: "Android App",
+        price: "$2499",
+        was: "$6999",
+        features: [
+          "Native Android App",
+          "Up to 12 Screens",
+          "Custom Backend & API",
+          "Push Notifications",
+          "Google Play Submission",
+          "Unlimited Revisions",
+        ],
+      },
+      {
+        name: "iOS App",
+        price: "$2799",
+        was: "$7499",
+        features: [
+          "Native iOS App",
+          "Up to 12 Screens",
+          "Custom Backend & API",
+          "Push Notifications",
+          "App Store Submission",
+          "Unlimited Revisions",
+        ],
+      },
+      {
+        name: "Cross Platform",
+        price: "$3499",
+        was: "$9999",
+        features: [
+          "iOS and Android (Flutter / React Native)",
+          "Up to 20 Screens",
+          "Admin Panel",
+          "Push Notifications",
+          "In-App Payments",
+          "Both Store Submissions",
+          "1 Month Free Support",
+        ],
+      },
+      {
+        name: "Startup Suite",
+        price: "$4999",
+        was: "$13999",
+        features: [
+          "iOS and Android Apps",
+          "Up to 30 Screens",
+          "Custom Admin Dashboard",
+          "Third-party Integrations",
+          "User Analytics",
+          "3 Months Free Support",
+          "Dedicated Project Manager",
+        ],
+      },
+      {
+        name: "Enterprise",
+        price: "$7999",
+        was: "$19999",
+        features: [
+          "Unlimited Screens",
+          "Scalable Cloud Architecture",
+          "Advanced Security & Encryption",
+          "Role-based Access Control",
+          "Dedicated Development Team",
+          "6 Months Free Support",
+          "100% Ownership Rights",
+          "Dedicated Account Manager",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "marketing",
+    icon: "chart",
+    title: "Digital Marketing & SEO",
+    short: "Marketing",
+    hero: { title: "Marketing You Can", accent: "Measure and Grow" },
+    text: "Search, paid and social campaigns driven by data, so your traffic and leads grow in a way you can measure.",
+    intro:
+      "We plan, run and report on campaigns that bring the right people to your business. Every rupee or dollar you spend is tracked, so you always know what is working.",
+    tags: ["SEO", "PPC Campaigns", "Social Media", "Content Strategy"],
+    highlights: [
+      "Keyword research and on-page SEO",
+      "Google and social ad campaigns",
+      "Content that ranks and converts",
+      "Clear monthly reports, no jargon",
+    ],
+    offerings: [
+      { icon: "search", title: "SEO", text: "Technical fixes, keyword targeting and link building to rank higher on search." },
+      { icon: "chart", title: "PPC Campaigns", text: "Google Ads and social ads built around your budget and goals." },
+      { icon: "users", title: "Social Media", text: "Content calendars, posting and community management on the platforms your customers use." },
+      { icon: "pen", title: "Content Strategy", text: "Blog posts, landing page copy and guides that answer what your customers are searching for." },
+      { icon: "mail", title: "Email Marketing", text: "Campaigns and automations that keep customers coming back." },
+      { icon: "chart", title: "Analytics & Reporting", text: "Dashboards and monthly reports that show traffic, leads and return on spend." },
+    ],
+    portfolio: [
+      {
+        category: "Marketing",
+        title: "GreenLeaf Organics",
+        text: "SEO and content strategy that tripled organic traffic in 6 months.",
+      },
+      {
+        category: "Marketing",
+        title: "UrbanFit Gym",
+        text: "Social media and PPC campaigns that brought in 400+ new members.",
+      },
+      {
+        category: "Marketing",
+        title: "TechNova Solutions",
+        text: "Google Ads campaign that delivered 3x return on ad spend.",
+      },
+    ],
+    packages: [
+      {
+        name: "SEO Starter",
+        price: "$149",
+        period: "/mo",
+        was: "$399",
+        features: [
+          "Full SEO Audit",
+          "Keyword Research (15 Keywords)",
+          "On-Page Optimisation (5 Pages)",
+          "Google Business Profile Setup",
+          "Monthly Report",
+        ],
+      },
+      {
+        name: "SEO Growth",
+        price: "$299",
+        period: "/mo",
+        was: "$799",
+        features: [
+          "Everything in SEO Starter",
+          "30 Target Keywords",
+          "Technical SEO Fixes",
+          "4 Blog Posts Per Month",
+          "10 Quality Backlinks",
+          "Bi-weekly Reports",
+        ],
+      },
+      {
+        name: "Social Media",
+        price: "$249",
+        period: "/mo",
+        was: "$699",
+        features: [
+          "3 Social Platforms",
+          "12 Custom Post Designs",
+          "Content Calendar",
+          "Community Management",
+          "Hashtag Research",
+          "Monthly Report",
+        ],
+      },
+      {
+        name: "PPC Ads",
+        price: "$399",
+        period: "/mo",
+        was: "$999",
+        features: [
+          "Google Ads Setup & Management",
+          "Keyword & Audience Targeting",
+          "Ad Copy & Creatives",
+          "A/B Testing",
+          "Conversion Tracking",
+          "Weekly Reports",
+          "Ad Budget Paid Separately",
+        ],
+      },
+      {
+        name: "Growth Bundle",
+        price: "$699",
+        period: "/mo",
+        was: "$1899",
+        features: [
+          "SEO Growth Included",
+          "Social Media Included",
+          "Google Ads Management",
+          "8 Blog Posts Per Month",
+          "Email Marketing Setup",
+          "Bi-weekly Strategy Call",
+        ],
+      },
+      {
+        name: "Scale Pro",
+        price: "$1199",
+        period: "/mo",
+        was: "$3299",
+        features: [
+          "Full SEO, Social & PPC",
+          "Conversion Rate Optimisation",
+          "Email Marketing Campaigns",
+          "Advanced Analytics Dashboard",
+          "Weekly Reports",
+          "Dedicated Account Manager",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "branding",
+    icon: "brush",
+    title: "Branding & Graphic Design",
+    short: "Branding",
+    hero: { title: "Brands With a Story", accent: "People Remember" },
+    text: "Brand identities with a clear story and a consistent look across your website, packaging and print.",
+    intro:
+      "From a single logo to a full identity system, our designers create brands that look professional everywhere they appear: your website, social media, packaging and print.",
+    tags: ["Logo Design", "Brand Identity", "Print Design", "Style Guides"],
+    highlights: [
+      "Original concepts by dedicated designers",
+      "Logos, stationery and social media designs",
+      "Full file formats, ready for print and web",
+      "100% ownership rights on final work",
+    ],
+    offerings: [
+      { icon: "brush", title: "Logo Design", text: "Original logo concepts from designers who know your industry." },
+      { icon: "star", title: "Brand Identity", text: "Colors, typography and visual rules that keep your brand consistent." },
+      { icon: "pen", title: "Stationery & Print", text: "Business cards, letterheads, envelopes, brochures and banners ready for print." },
+      { icon: "shield", title: "Style Guides & Brand Book", text: "A clear guide so your team and partners always use your brand correctly." },
+      { icon: "users", title: "Social Media Designs", text: "Profile, cover and post designs for Facebook, Twitter and Instagram." },
+      { icon: "rocket", title: "Mascot & 3D Logos", text: "Hand-drawn mascots and fully rendered 3D logos with light effects." },
+    ],
+    portfolio: [
+      {
+        category: "Logo",
+        title: "Bloom Cafe",
+        text: "Logo, menu and packaging design for a neighbourhood cafe.",
+      },
+      {
+        category: "Logo",
+        title: "Summit Outdoors",
+        text: "Brand identity and stationery for an outdoor gear company.",
+      },
+      {
+        category: "Logo",
+        title: "Zenith Realty",
+        text: "Logo and brand book for a real estate agency.",
+      },
+    ],
+    // Real packages from the client's screenshots (Logo Infinite's first 4 features were cut off there, so they are filled in).
+    packages: [
+      {
+        name: "Logo Special",
+        price: "$59",
+        was: "$196.7",
+        features: [
+          "4 Original Logo Concepts",
+          "2 Dedicated Logo Designer",
+          "4 Revisions",
+          "With Grey Scale Format",
+          "Free Icon Design",
+          "Formats: JPEG Only",
+          "24 - 48 Hours Turn Around Time",
+        ],
+      },
+      {
+        name: "Logo Plus",
+        price: "$199",
+        was: "$663.3",
+        features: [
+          "12 Original Logo Concepts",
+          "4 Dedicated Logo Designer (Industry Specific)",
+          "Unlimited Revisions",
+          "Stationery Design (Business Card, Letterhead, Envelope)",
+          "Email Signature Design",
+          "With Grey Scale Format",
+          "Free Icon Design",
+          "Formats: JPEG, PSD, EPS, AI, PNG, TIFF, SVG",
+        ],
+      },
+      {
+        name: "Logo Infinite",
+        price: "$999",
+        was: "$1330",
+        features: [
+          "Unlimited Original Logo Concepts",
+          "12 Dedicated Logo Designer (Industry Specific)",
+          "Unlimited Revisions",
+          "Stationery Design (Business Card, Letterhead, Envelope)",
+          "Free Icon Design",
+          "Formats: JPEG, PSD, EPS, AI, PNG, TIFF, SVG",
+          "24 - 48 Hours Turn Around Time",
+          "100% Satisfaction",
+          "100% Ownership Rights",
+          "Money Back Guarantee",
+          "Dedicated Account Manager",
+        ],
+      },
+      {
+        name: "Logo Platinum",
+        price: "$399",
+        was: "$3330",
+        features: [
+          "Unlimited Original Logo Concepts",
+          "8 Dedicated Logo Designer (Industry Specific)",
+          "Unlimited Revisions",
+          "Stationery Design (Business Card, Letterhead, Envelope)",
+          "500 Business Cards",
+          "Email Signature Design",
+          "Social Media Designs (Facebook, Twitter, Instagram)",
+          "With Grey Scale Format",
+        ],
+      },
+      {
+        name: "Mascot Logo",
+        price: "$599",
+        was: "$1996.7",
+        features: [
+          "2 Mascot Logo Concepts",
+          "Unlimited Revisions",
+          "Hand drawn Sketch",
+          "Presentation on mockup",
+          "24 - 48 Hours Turn Around Time",
+          "File Formats: Ai, Eps, Png, Jpeg, pdf",
+          "100% Satisfaction",
+        ],
+      },
+      {
+        name: "The Boss",
+        price: "$599",
+        was: "$1996.67",
+        features: [
+          "3D/Mascot/Animated Logo",
+          "Unlimited Original Logo Concepts",
+          "8 Dedicated Logo Designer (Industry Specific)",
+          "Unlimited Revisions",
+          "Stationery Design (Business Card, Letterhead, Envelope)",
+          "500 Business Cards",
+          "Email Signature Design",
+          "With Grey Scale Format",
+        ],
+      },
+      {
+        name: "3D Logo",
+        price: "$699",
+        was: "$2330",
+        features: [
+          "3 Unique 3D Logo Concepts",
+          "Light Effects and VFX",
+          "Fully Rendered",
+          "Multiple 3D Angles",
+          "3 Dedicated Designers",
+          "72 hours Turn Around Time",
+          "UNLIMITED Revisions",
+        ],
+      },
+      {
+        name: "Logo Combo",
+        price: "$999",
+        was: "$3110",
+        features: [
+          "Unlimited Original Logo Concepts",
+          "12 Dedicated Logo Designer (Industry Specific)",
+          "Unlimited Revisions",
+          "7 Page Informative Website",
+          "Stationery Design (Business Card, Letterhead, Envelope)",
+          "Brand Book",
+          "500 Business Cards",
+          "500 Letterheads",
+        ],
+      },
+    ],
+  },
+];
+
+// ---------- Services page: "Trusted by" strip ----------
+// DUMMY names. Each name needs an icon in brandIcons inside ServiceMarquees.jsx.
+export const trustedBrands = ["Clutch", "Bark", "Behance", "Dribbble", "Yelp"];
+
+// ---------- Services page: numbers strip ----------
+// DUMMY numbers: replace with the client's real figures.
+export const servicesStats = [
+  { value: "200+", label: "Projects Delivered" },
+  { value: "15M+", label: "Revenue Generated for Clients" },
+  { value: "25+", label: "Countries Served" },
+  { value: "50+", label: "Team Members" },
+];
+
+// ---------- Services page: offices ----------
+// DUMMY addresses and phone numbers: replace with the client's real details.
+export const servicesOffices = [
+  {
+    code: "US",
+    city: "Clarksville, TN",
+    country: "United States",
+    address: "245 Franklin St, Clarksville, TN 37040",
+    phone: "+1 (931) 555-0142",
+    hours: "CST (GMT-6) • Mon-Fri 9AM-6PM",
+  },
+  {
+    code: "PK",
+    city: "Islamabad",
+    country: "Pakistan",
+    address: "Office 12, Blue Area, Islamabad 44000",
+    phone: "+92 51 234 5678",
+    hours: "PKT (UTC+5) • Mon-Fri 9AM-6PM",
+  },
+];
+
+// ---------- Services page: client testimonials (DUMMY: replace with real, permissioned quotes) ----------
+export const servicesTestimonials = [
+  { quote: "Our new website looks sharp and loads fast. Online orders went up 60% in the first two months.", name: "Sarah Johnson", role: "Owner, Northwind Furniture" },
+  { quote: "The team understood our idea quickly and delivered the app on time. Our users love how simple it is.", name: "David Miller", role: "Founder, FitTrack" },
+  { quote: "Organic traffic tripled in six months and we now rank on page one for our main keywords.", name: "Emma Williams", role: "Marketing Head, GreenLeaf Organics" },
+  { quote: "They gave us a logo and brand book we are proud of. Clear communication from start to finish.", name: "Michael Chen", role: "Director, Zenith Realty" },
+  { quote: "The booking system saved our front desk hours every day. Setup was smooth and support is quick.", name: "Dr. Ayesha Khan", role: "Founder, BrightSmile Dental" },
+  { quote: "Our Google Ads finally make money. The weekly reports are clear and show exactly where the budget goes.", name: "Lisa Thompson", role: "CEO, TechNova Solutions" },
+  { quote: "Fair pricing and no surprises. The quote matched the final invoice and the work was delivered early.", name: "James Okafor", role: "COO, Apex Logistics" },
+  { quote: "From the first sketch to the app store launch, they handled everything. Highly recommended.", name: "Priya Patel", role: "Product Lead, QuickBite" },
+];

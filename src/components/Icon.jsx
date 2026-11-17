@@ -91,6 +91,8 @@ const paths = {
       <path d="M12 7v5l3 2" />
     </>
   ),
+
+   chevron: <path d="M6 9l6 6 6-6" />
 };
 
 export default function Icon({ name, size = 22 }) {
