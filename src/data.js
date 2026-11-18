@@ -236,7 +236,7 @@ export const principles = [
 
 export const footerLinks = {
   quick: navLinks,
-  services: ["Web Development", "App Development", "Digital Marketing", "Branding & Design"],
+  services: ["Web Development", "App Development", "Digital Marketing", "Branding & Design", "AI Automation", "Hosting Services"],
 };
 
 // Contact form: get a free access key at https://web3forms.com
@@ -248,6 +248,8 @@ export const serviceOptions = [
   "Mobile App Development",
   "Digital Marketing & SEO",
   "Branding & Graphic Design",
+  "AI Automation",
+  "Hosting Services",
   "Something else",
 ];
 
@@ -850,6 +852,64 @@ export const servicePages = [
           "500 Letterheads",
         ],
       },
+    ],
+  },
+  {
+    slug: "ai",
+    icon: "bolt",
+    title: "AI Automation",
+    short: "AI Automation",
+    text: "Placeholder: Automate repetitive work with AI chatbots, workflows and smart integrations so your team can focus on growth.",
+    intro: "Placeholder: We design and build AI-powered automation that saves time, cuts costs and helps your business run smarter around the clock.",
+    hero: { title: "Automate Your Business With", accent: "AI Automation" },
+    highlights: ["Placeholder highlight one", "Placeholder highlight two", "Placeholder highlight three", "Placeholder highlight four"],
+    tags: ["AI Chatbots", "Workflow Automation", "Integrations", "Data Processing"],
+    offerings: [
+      { icon: "headset", title: "AI Chatbots", text: "Placeholder: Smart chatbots that answer customers 24/7." },
+      { icon: "bolt", title: "Workflow Automation", text: "Placeholder: Connect your tools and automate repetitive tasks." },
+      { icon: "code", title: "Custom AI Integrations", text: "Placeholder: Add AI features to your website or app." },
+      { icon: "chart", title: "Data & Reporting", text: "Placeholder: Automatic reports and insights from your data." },
+      { icon: "search", title: "Document Processing", text: "Placeholder: Extract and organise information automatically." },
+      { icon: "shield", title: "Secure & Reliable", text: "Placeholder: Built with privacy and uptime in mind." },
+    ],
+    portfolio: [
+      { category: "AI Automation", title: "Placeholder Project One", text: "Placeholder description of the project." },
+      { category: "AI Automation", title: "Placeholder Project Two", text: "Placeholder description of the project." },
+      { category: "AI Automation", title: "Placeholder Project Three", text: "Placeholder description of the project." },
+    ],
+    packages: [
+      { name: "Starter", price: "$000", was: "$000", features: ["Placeholder feature one", "Placeholder feature two", "Placeholder feature three"] },
+      { name: "Business", price: "$000", was: "$000", features: ["Placeholder feature one", "Placeholder feature two", "Placeholder feature three", "Placeholder feature four"] },
+      { name: "Enterprise", price: "$000", was: "$000", features: ["Placeholder feature one", "Placeholder feature two", "Placeholder feature three", "Placeholder feature four", "Placeholder feature five"] },
+    ],
+  },
+  {
+    slug: "hosting",
+    icon: "globe",
+    title: "Hosting Services",
+    short: "Hosting",
+    text: "Placeholder: Fast, secure and reliable hosting with expert support, so your website is always online.",
+    intro: "Placeholder: From shared hosting to dedicated servers, we keep your website fast, safe and online with 24/7 monitoring and support.",
+    hero: { title: "Fast & Reliable", accent: "Hosting Services" },
+    highlights: ["Placeholder highlight one", "Placeholder highlight two", "Placeholder highlight three", "Placeholder highlight four"],
+    tags: ["Web Hosting", "Cloud Servers", "SSL & Security", "24/7 Support"],
+    offerings: [
+      { icon: "rocket", title: "Fast Performance", text: "Placeholder: Quick load times on modern infrastructure." },
+      { icon: "shield", title: "SSL & Security", text: "Placeholder: Free SSL, firewall and malware protection." },
+      { icon: "clock", title: "99.9% Uptime", text: "Placeholder: Monitoring so your site stays online." },
+      { icon: "headset", title: "24/7 Support", text: "Placeholder: Help from real people whenever you need it." },
+      { icon: "globe", title: "Domains & Email", text: "Placeholder: Domain registration and business email." },
+      { icon: "check", title: "Daily Backups", text: "Placeholder: Automatic backups and easy restore." },
+    ],
+    portfolio: [
+      { category: "Hosting", title: "Placeholder Project One", text: "Placeholder description of the project." },
+      { category: "Hosting", title: "Placeholder Project Two", text: "Placeholder description of the project." },
+      { category: "Hosting", title: "Placeholder Project Three", text: "Placeholder description of the project." },
+    ],
+    packages: [
+      { name: "Basic", price: "$000", period: "/mo", was: "$000", features: ["Placeholder feature one", "Placeholder feature two", "Placeholder feature three"] },
+      { name: "Business", price: "$000", period: "/mo", was: "$000", features: ["Placeholder feature one", "Placeholder feature two", "Placeholder feature three", "Placeholder feature four"] },
+      { name: "Premium", price: "$000", period: "/mo", was: "$000", features: ["Placeholder feature one", "Placeholder feature two", "Placeholder feature three", "Placeholder feature four", "Placeholder feature five"] },
     ],
   },
 ];
