@@ -437,6 +437,7 @@ export const servicePages = [
   },
   {
     slug: "app",
+    customQuote: true, // no fixed packages: the page shows a "Custom Quote" block instead
     icon: "phone",
     title: "Mobile App Development",
     short: "App",
@@ -476,90 +477,7 @@ export const servicePages = [
         text: "Mobile wallet app with secure payments and instant transfers.",
       },
     ],
-    packages: [
-      {
-        name: "MVP Starter",
-        price: "$1499",
-        was: "$4499",
-        features: [
-          "Single Platform (iOS or Android)",
-          "Up to 5 Core Screens",
-          "Basic Backend & Database",
-          "UI Design Included",
-          "3 Revisions",
-          "3 - 4 Weeks Turn Around Time",
-        ],
-      },
-      {
-        name: "Android App",
-        price: "$2499",
-        was: "$6999",
-        features: [
-          "Native Android App",
-          "Up to 12 Screens",
-          "Custom Backend & API",
-          "Push Notifications",
-          "Google Play Submission",
-          "Unlimited Revisions",
-        ],
-      },
-      {
-        name: "iOS App",
-        price: "$2799",
-        was: "$7499",
-        features: [
-          "Native iOS App",
-          "Up to 12 Screens",
-          "Custom Backend & API",
-          "Push Notifications",
-          "App Store Submission",
-          "Unlimited Revisions",
-        ],
-      },
-      {
-        name: "Cross Platform",
-        price: "$3499",
-        was: "$9999",
-        features: [
-          "iOS and Android (Flutter / React Native)",
-          "Up to 20 Screens",
-          "Admin Panel",
-          "Push Notifications",
-          "In-App Payments",
-          "Both Store Submissions",
-          "1 Month Free Support",
-        ],
-      },
-      {
-        name: "Startup Suite",
-        price: "$4999",
-        was: "$13999",
-        features: [
-          "iOS and Android Apps",
-          "Up to 30 Screens",
-          "Custom Admin Dashboard",
-          "Third-party Integrations",
-          "User Analytics",
-          "3 Months Free Support",
-          "Dedicated Project Manager",
-        ],
-      },
-      {
-        name: "Enterprise",
-        price: "$7999",
-        was: "$19999",
-        features: [
-          "Unlimited Screens",
-          "Scalable Cloud Architecture",
-          "Advanced Security & Encryption",
-          "Role-based Access Control",
-          "Dedicated Development Team",
-          "6 Months Free Support",
-          "100% Ownership Rights",
-          "Dedicated Account Manager",
-        ],
-      },
-    ],
+    packages: [],
   },
   {
     slug: "marketing",
@@ -584,6 +502,44 @@ export const servicePages = [
       { icon: "pen", title: "Content Strategy", text: "Blog posts, landing page copy and guides that answer what your customers are searching for." },
       { icon: "mail", title: "Email Marketing", text: "Campaigns and automations that keep customers coming back." },
       { icon: "chart", title: "Analytics & Reporting", text: "Dashboards and monthly reports that show traffic, leads and return on spend." },
+    ],
+    // PLACEHOLDER case studies (shown instead of the portfolio, one at a time with arrow + dots).
+    // For each one: client name, tag (SEO / Social Media), a short client quote, 3 numbers,
+    // and optionally image: "/case1.png" (put the picture in the /public folder).
+    caseStudies: [
+      {
+        client: "Placeholder Client One",
+        tag: "SEO",
+        quote: "Placeholder: a short client testimonial about the SEO results, 2 to 3 lines long. Replace with the real client story.",
+        // image: "/case1.png",
+        metrics: [
+          { value: "0000", label: "3 months organic leads" },
+          { value: "00%", label: "Increase in total site traffic" },
+          { value: "00%", label: "Increase in return visits by customers" },
+        ],
+      },
+      {
+        client: "Placeholder Client Two",
+        tag: "Social Media",
+        quote: "Placeholder: a short client testimonial about the social media results, 2 to 3 lines long. Replace with the real client story.",
+        // image: "/case2.png",
+        metrics: [
+          { value: "0,000", label: "4 months new followers" },
+          { value: "00%", label: "Increase in engagement" },
+          { value: "00%", label: "Increase in return visits by customers" },
+        ],
+      },
+      {
+        client: "Placeholder Client Three",
+        tag: "SEO",
+        quote: "Placeholder: a short client testimonial about the campaign results, 2 to 3 lines long. Replace with the real client story.",
+        // image: "/case3.png",
+        metrics: [
+          { value: "0,000", label: "5 months sign ups" },
+          { value: "00%", label: "Increase in total site traffic" },
+          { value: "00%", label: "Increase in return visits by customers" },
+        ],
+      },
     ],
     portfolio: [
       {
