@@ -190,7 +190,7 @@ export function ServiceHero({ service }) {
         </ul>
 
         <div className="mt-8 flex animate-fade-up flex-wrap justify-center gap-3.5 [animation-delay:360ms]">
-          <Link to="/#contact" className={btn("primary", true)}>
+          <Link to="/contact" className={btn("primary", true)}>
             Get a Free Quote
           </Link>
           <a href="#packages" className={btn("ghost", true)}>
@@ -574,7 +574,7 @@ function PackageCard({ p }) {
         <p className="mb-3 h-4 text-[0.72rem] font-bold uppercase tracking-wider text-muted">
           {p.was ? "Final price for limited time" : ""}
         </p>
-        <Link to="/#contact" className={`${btn("primary")} w-full`}>
+        <Link to="/contact" className={`${btn("primary")} w-full`}>
           Order Now <Icon name="arrow" size={16} />
         </Link>
       </div>
@@ -597,7 +597,7 @@ function CustomQuote({ service }) {
               Tell us what you want to build and we will send a clear, fixed quote made for your idea, scope and timeline. No obligation.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3.5">
-              <Link to="/#contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-bold text-navy transition hover:-translate-y-0.5 hover:shadow-lg">
+              <Link to="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-bold text-navy transition hover:-translate-y-0.5 hover:shadow-lg">
                 Get a Custom Quote <Icon name="arrow" size={16} />
               </Link>
             </div>
