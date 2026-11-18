@@ -1,11 +1,10 @@
 import {
   ServicesHero,
-  TrustedBy,
   ServicesOverview,
   ServicesStats,
-  TestimonialsMarquee,
-  Offices,
-  Faq,
+  TechStack,
+  PortfolioPreview,
+  TestimonialsGrid,
 } from "../components/ServicesPage";
 import { WhyUs, Process } from "../components/Sections";
 import { Cta } from "../components/Contact";
@@ -14,14 +13,13 @@ export default function Services() {
   return (
     <>
       <ServicesHero />
-      <TrustedBy />
       <ServicesOverview />
       <ServicesStats />
       <WhyUs />
+      <TechStack />
       <Process />
-      <TestimonialsMarquee />
-      <Offices />
-      <Faq />
+      <PortfolioPreview />
+      <TestimonialsGrid />
       <Cta />
     </>
   );

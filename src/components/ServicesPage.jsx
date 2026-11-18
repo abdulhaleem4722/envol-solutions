@@ -1,8 +1,12 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { FiTarget, FiGlobe } from "react-icons/fi";
-import { SiBehance, SiDribbble, SiYelp } from "react-icons/si";
-import { faqs, servicePages, servicesOffices, servicesStats, servicesTestimonials, trustedBrands } from "../data";
+import {
+  SiWordpress, SiShopify, SiWix, SiWebflow, SiSquarespace, SiWoocommerce, SiBigcommerce, SiFigma,
+  SiAndroid, SiIos, SiFlutter, SiReact, SiSwift, SiKotlin,
+  SiHtml5, SiCss, SiJavascript, SiTypescript, SiNextdotjs, SiVuedotjs, SiAngular, SiNodedotjs,
+  SiPhp, SiLaravel, SiPython, SiDjango, SiOpenjdk, SiDotnet, SiGo, SiRuby, SiMysql, SiMongodb, SiFirebase,
+} from "react-icons/si";
+import { projects, servicePages, servicesStats, servicesTestimonials } from "../data";
 import { container, card, btn, gradBg, gradText, sectionPad } from "../ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
@@ -235,27 +239,11 @@ export function ServicePortfolio({ service }) {
         <SectionHead eyebrow="Our Work" title={`Recent ${service.short}`} accent="Projects" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {service.portfolio.map((p, i) => (
-            <Reveal key={p.title} from="zoom" delay={(i % 3) * 110} className="h-full">
-              <article className="h-full overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]">
-                <div
-                  aria-hidden="true"
-                  className="relative grid h-[190px] place-items-center bg-linear-to-br from-[#d6effa] via-[#8fd3ee] to-[#3aa7da]"
-                >
-                  <img src="/logo.png" alt="" className="w-[70px] animate-float opacity-90" />
-                  <span className="absolute left-3.5 top-3.5 rounded-full bg-white px-3 py-[3px] text-[0.72rem] font-bold text-brand">
-                    {p.category}
-                  </span>
-                </div>
-                <div className="px-[22px] pb-6 pt-5">
-                  <h3 className="mb-1.5 text-[1.05rem] font-bold text-navy">{p.title}</h3>
-                  <p className="text-[0.9rem] text-muted">{p.text}</p>
-                </div>
-              </article>
-            </Reveal>
+            <ProjectCard key={p.title} p={p} i={i} />
           ))}
         </div>
         <div className="mt-10 text-center">
-          <Link to="/#projects" className={btn("ghost")}>
+          <Link to={PORTFOLIO_LINK} className={btn("ghost")}>
             View All Projects <Icon name="arrow" size={16} />
           </Link>
         </div>
@@ -264,45 +252,145 @@ export function ServicePortfolio({ service }) {
   );
 }
 
-// brand name (from data.js) -> icon
-const brandIcons = {
-  Clutch: FiTarget,
-  Bark: FiGlobe,
-  Behance: SiBehance,
-  Dribbble: SiDribbble,
-  Yelp: SiYelp,
-};
-
-/* ---------- "Trusted by" logo strip, scrolls by itself ---------- */
-export function TrustedBy() {
+/* ---------- one project card (same look as the home page projects) ---------- */
+function ProjectCard({ p, i }) {
   return (
-    <section className="border-y border-line bg-white py-10">
-      <p className="mb-7 px-6 text-center text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-muted">
-        Trusted by innovative brands worldwide
-      </p>
-      <Marquee duration={30} repeat={2}>
-        {trustedBrands.map((name) => {
-          const Logo = brandIcons[name] ?? FiGlobe;
-          return (
-            <div
-              key={name}
-              className="grid h-[100px] w-[150px] shrink-0 place-items-center rounded-2xl border border-line bg-sky-faint text-navy"
-            >
-              <div className="grid place-items-center gap-2 text-center">
-                <Logo className="size-7 text-brand" aria-hidden="true" />
-                <span className="text-[0.82rem] font-semibold text-muted">{name}</span>
-              </div>
-            </div>
-          );
-        })}
-      </Marquee>
+    <Reveal from="zoom" delay={(i % 3) * 110} className="h-full">
+      <article className="h-full overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]">
+        <div
+          aria-hidden="true"
+          className="relative grid h-[190px] place-items-center bg-linear-to-br from-[#d6effa] via-[#8fd3ee] to-[#3aa7da]"
+        >
+          <img src="/logo.png" alt="" className="w-[70px] animate-float opacity-90" />
+          <span className="absolute left-3.5 top-3.5 rounded-full bg-white px-3 py-[3px] text-[0.72rem] font-bold text-brand">
+            {p.category}
+          </span>
+        </div>
+        <div className="px-[22px] pb-6 pt-5">
+          <h3 className="mb-1.5 text-[1.05rem] font-bold text-navy">{p.title}</h3>
+          <p className="text-[0.9rem] text-muted">{p.text}</p>
+        </div>
+      </article>
+    </Reveal>
+  );
+}
+
+// Where the "View Full Portfolio" button goes. Change to "/portfolio" once that page exists.
+const PORTFOLIO_LINK = "/#projects";
+// How many projects to show on the Services page.
+const PREVIEW_COUNT = 3;
+
+/* ---------- main services page: a few projects + button to the full portfolio ---------- */
+export function PortfolioPreview() {
+  return (
+    <section className={`${sectionPad} bg-sky-faint`}>
+      <div className={container}>
+        <SectionHead
+          eyebrow="Our Work"
+          title="Featured"
+          accent="Projects"
+          text="A small selection of the websites, apps and campaigns we have delivered."
+        />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.slice(0, PREVIEW_COUNT).map((p, i) => (
+            <ProjectCard key={p.title} p={p} i={i} />
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link to={PORTFOLIO_LINK} className={btn("primary", true)}>
+            View Full Portfolio <Icon name="arrow" size={16} />
+          </Link>
+        </div>
+      </div>
     </section>
   );
 }
 
+/* ---------- "We specialize in": platforms and languages, two strips scrolling by themselves ---------- */
+// To add or remove something, just edit these two lists: [name, icon].
+// Row 1: website platforms and mobile apps.
+const platforms = [
+  ["WordPress", SiWordpress],
+  ["Shopify", SiShopify],
+  ["Wix", SiWix],
+  ["Webflow", SiWebflow],
+  ["Squarespace", SiSquarespace],
+  ["WooCommerce", SiWoocommerce],
+  ["BigCommerce", SiBigcommerce],
+  ["Figma", SiFigma],
+  ["Android", SiAndroid],
+  ["iOS", SiIos],
+  ["Flutter", SiFlutter],
+  ["React Native", SiReact],
+  ["Swift", SiSwift],
+  ["Kotlin", SiKotlin],
+];
+// Row 2: languages and frameworks.
+const languages = [
+  ["HTML5", SiHtml5],
+  ["CSS", SiCss],
+  ["JavaScript", SiJavascript],
+  ["TypeScript", SiTypescript],
+  ["React", SiReact],
+  ["Next.js", SiNextdotjs],
+  ["Vue.js", SiVuedotjs],
+  ["Angular", SiAngular],
+  ["Node.js", SiNodedotjs],
+  ["PHP", SiPhp],
+  ["Laravel", SiLaravel],
+  ["Python", SiPython],
+  ["Django", SiDjango],
+  ["Java", SiOpenjdk],
+  [".NET", SiDotnet],
+  ["Go", SiGo],
+  ["Ruby", SiRuby],
+  ["MySQL", SiMysql],
+  ["MongoDB", SiMongodb],
+  ["Firebase", SiFirebase],
+];
+
+function TechPill({ name, Logo }) {
+  return (
+    <div className="flex shrink-0 items-center gap-3 rounded-2xl border border-line bg-sky-faint px-5 py-3.5 text-navy transition-colors duration-300 hover:border-brand hover:bg-white">
+      <Logo className="size-6 text-brand" aria-hidden="true" />
+      <span className="text-[0.92rem] font-semibold">{name}</span>
+    </div>
+  );
+}
+
+export function TechStack() {
+  return (
+    <section className="border-y border-line bg-white py-12">
+      <div className="mb-8 px-6 text-center">
+        <span className="mb-2.5 inline-block text-xs font-bold uppercase tracking-[0.16em] text-brand">
+          We specialize in
+        </span>
+        <h2 className="text-[length:clamp(1.5rem,3vw,2.1rem)] font-bold leading-tight tracking-tight text-navy">
+          Websites, Mobile Apps and <span className={gradText}>Every Major Language</span>
+        </h2>
+      </div>
+      <div className="grid gap-4">
+        <Marquee duration={50} repeat={2} gap="gap-4">
+          {platforms.map(([name, Logo]) => (
+            <TechPill key={name} name={name} Logo={Logo} />
+          ))}
+        </Marquee>
+        <Marquee reverse duration={60} repeat={2} gap="gap-4">
+          {languages.map(([name, Logo]) => (
+            <TechPill key={name} name={name} Logo={Logo} />
+          ))}
+        </Marquee>
+      </div>
+    </section>
+  );
+}
+
+// How many testimonials to show on the Services page.
+const TESTIMONIAL_COUNT = 6;
+
 function TestimonialCard({ t }) {
   return (
-    <figure className={`${card} w-[320px] shrink-0 sm:w-[380px]`}>
+    <figure className={card}>
       <div className="mb-3.5 flex gap-[3px] text-[#f5b301] [&_svg]:fill-current" aria-hidden="true">
         {[...Array(5)].map((_, k) => (
           <Icon key={k} name="star" size={16} />
@@ -322,10 +410,8 @@ function TestimonialCard({ t }) {
   );
 }
 
-/* ---------- "What our clients say": two rows scrolling in opposite directions ---------- */
-export function TestimonialsMarquee() {
-  const rowOne = servicesTestimonials.slice(0, 4);
-  const rowTwo = servicesTestimonials.slice(4);
+/* ---------- "What our clients say": a simple grid of cards ---------- */
+export function TestimonialsGrid() {
   return (
     <section className={`${sectionPad} bg-sky-faint`}>
       <div className={container}>
@@ -335,111 +421,12 @@ export function TestimonialsMarquee() {
           accent="Say"
           text="Hear from the teams who turned their ideas into reality with us."
         />
-      </div>
-      <Reveal className="grid gap-6">
-        <Marquee duration={60} repeat={2}>
-          {rowOne.map((t, i) => (
-            <TestimonialCard key={i} t={t} />
-          ))}
-        </Marquee>
-        <Marquee reverse duration={60} repeat={2}>
-          {rowTwo.map((t, i) => (
-            <TestimonialCard key={i} t={t} />
-          ))}
-        </Marquee>
-      </Reveal>
-    </section>
-  );
-}
-
-/* ---------- main services page: offices ---------- */
-export function Offices() {
-  return (
-    <section className={sectionPad}>
-      <div className={container}>
-        <SectionHead
-          eyebrow="Our Offices"
-          title="2 Offices,"
-          accent="One Global Team"
-          text="We work across time zones so your project never sleeps."
-        />
-        <div className="mx-auto grid max-w-[820px] gap-6 sm:grid-cols-2">
-          {servicesOffices.map((o, i) => (
-            <Reveal key={o.code} delay={i * 120} className="h-full">
-              <article className={`${card} text-center`}>
-                <p className={`${gradText} text-[2.2rem] font-extrabold leading-none`}>{o.code}</p>
-                <h3 className="mt-3 text-[1.15rem] font-bold text-navy">{o.city}</h3>
-                <p className="mb-5 text-[0.9rem] text-muted">{o.country}</p>
-                <ul className="grid gap-2.5 text-[0.9rem] text-ink">
-                  {[
-                    ["pin", o.address],
-                    ["call", o.phone],
-                    ["clock", o.hours],
-                  ].map(([icon, text]) => (
-                    <li key={icon} className="flex items-start justify-center gap-2.5">
-                      <span className="mt-0.5 shrink-0 text-brand">
-                        <Icon name={icon} size={16} />
-                      </span>
-                      {text}
-                    </li>
-                  ))}
-                </ul>
-              </article>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {servicesTestimonials.slice(0, TESTIMONIAL_COUNT).map((t, i) => (
+            <Reveal key={i} delay={(i % 3) * 120} className="h-full">
+              <TestimonialCard t={t} />
             </Reveal>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- main services page: FAQ accordion (one answer open at a time) ---------- */
-export function Faq() {
-  const [open, setOpen] = useState(0);
-
-  return (
-    <section className={`${sectionPad} bg-sky-faint`}>
-      <div className={container}>
-        <SectionHead eyebrow="FAQ" title="Frequently Asked" accent="Questions" />
-        <div className="mx-auto grid max-w-[820px] gap-3.5">
-          {faqs.map((f, i) => {
-            const on = i === open;
-            return (
-              <Reveal key={f.q} delay={i * 70}>
-                <div
-                  className={`rounded-2xl border bg-white transition-colors duration-300 ${
-                    on ? "border-brand shadow-[0_10px_30px_rgba(7,48,90,0.08)]" : "border-line"
-                  }`}
-                >
-                  <h3>
-                    <button
-                      type="button"
-                      id={`faq-button-${i}`}
-                      aria-expanded={on}
-                      aria-controls={`faq-panel-${i}`}
-                      onClick={() => setOpen(on ? -1 : i)}
-                      className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-navy"
-                    >
-                      {f.q}
-                      <span className={`shrink-0 text-brand transition-transform duration-300 ${on ? "rotate-180" : ""}`}>
-                        <Icon name="chevron" size={18} />
-                      </span>
-                    </button>
-                  </h3>
-                  <div
-                    id={`faq-panel-${i}`}
-                    role="region"
-                    aria-labelledby={`faq-button-${i}`}
-                    className={`grid transition-[grid-template-rows] duration-300 ${on ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="px-6 pb-5 text-[0.95rem] text-muted">{f.a}</p>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            );
-          })}
         </div>
       </div>
     </section>
