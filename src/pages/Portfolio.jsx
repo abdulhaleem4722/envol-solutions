@@ -159,8 +159,11 @@ export default function Portfolio() {
 
   return (
     <>
-      {/* title banner */}
-      <section className="bg-[#0b707c] pb-[80px] pt-[150px] text-center text-white">
+      {/* The footer is shared by the whole site; on this page it is recoloured to match the teal theme. */}
+      <style>{`footer { background: #063f48 !important; }`}</style>
+
+      {/* title banner: light teal at the top, getting darker towards the bottom */}
+      <section className="bg-linear-to-b from-[#2fb9c8] via-[#0f8e9d] to-[#08596a] pb-[80px] pt-[150px] text-center text-white">
         <div className={container}>
           <h1 className="text-[length:clamp(2.6rem,8vw,5.2rem)] font-medium uppercase leading-none tracking-wide">
             Portfolio
@@ -171,7 +174,7 @@ export default function Portfolio() {
       <PortfolioTabs onOpen={setOpen} />
 
       {/* call to action */}
-      <section className="bg-[#0b707c] py-[72px] text-center text-white">
+      <section className="bg-linear-to-b from-[#1aa3b3] via-[#0d7f8e] to-[#074f5c] py-[72px] text-center text-white">
         <Reveal className={container}>
           <p className="mb-2 text-[0.8rem] font-bold uppercase tracking-[0.16em] text-white/75">Make Your First Move</p>
           <h2 className="text-[length:clamp(1.8rem,3.6vw,2.6rem)] font-bold uppercase tracking-wide">Share Your Idea With Us</h2>
