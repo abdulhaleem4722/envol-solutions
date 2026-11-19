@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   SiWordpress, SiShopify, SiWix, SiWebflow, SiSquarespace, SiWoocommerce, SiBigcommerce, SiFigma,
@@ -364,7 +364,7 @@ function ProjectCard({ p, i }) {
 }
 
 // Where the "View Full Portfolio" button goes. Change to "/portfolio" once that page exists.
-const PORTFOLIO_LINK = "/#projects";
+const PORTFOLIO_LINK = "/portfolio";
 // How many projects to show on the Services page.
 const PREVIEW_COUNT = 3;
 
@@ -521,61 +521,65 @@ export function TestimonialsGrid() {
   );
 }
 
-/* ---------- inner page: pricing packages (slider) ---------- */
+/* ---------- inner page: pricing packages (compact cards, all visible; long feature lists scroll inside the card) ---------- */
 // Services without fixed packages (Mobile App) show a "Custom Quote" block instead of pricing.
 const isQuote = (service) => service.customQuote || service.slug === "app" || !service.packages?.length;
 const money = (v) => parseFloat(String(v ?? "").replace(/[^0-9.]/g, "")) || 0;
-// Show this many features, the rest open with "More features".
-const FEATURES_SHOWN = 6;
 
-// Every card has the same size. The feature list scrolls inside a fixed-height box.
-const FEATURES_VISIBLE = 7;
-
-function PackageCard({ p }) {
-  const save = money(p.was) - money(p.price);
-  const scrolls = p.features.length > FEATURES_VISIBLE;
+function ChatIcon() {
   return (
-    <article className="flex h-full w-full flex-col overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]">
-      <header className={`${gradBg} flex h-[150px] shrink-0 flex-col items-center justify-center px-6 text-center text-white`}>
-        <h3 className="text-[1.15rem] font-bold">{p.name}</h3>
-        <p className="mt-2 flex items-baseline justify-center gap-2">
-          <strong className="text-[2rem] font-extrabold leading-none">{p.price}</strong>
-          {p.period && <span className="text-[0.85rem] font-medium text-white/80">{p.period}</span>}
-          {p.was && <s className="text-[0.95rem] text-white/60">{p.was}</s>}
-        </p>
-        {save > 0 && (
-          <p className="mt-2 inline-block rounded-full bg-white/20 px-3 py-0.5 text-[0.75rem] font-bold tracking-wide">
-            YOU SAVE ${Math.round(save).toLocaleString()}
-          </p>
-        )}
-      </header>
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+      <path d="M12 3C6.8 3 3 6.4 3 10.6c0 2.3 1.2 4.3 3 5.7V21l4.2-2.4c.6.1 1.2.2 1.8.2 5.2 0 9-3.4 9-7.6S17.2 3 12 3Z" />
+    </svg>
+  );
+}
 
-      <div className="relative">
-        <ul
-          tabIndex={scrolls ? 0 : undefined}
-          aria-label={`${p.name} features`}
-          className="h-[340px] overflow-y-auto px-6 py-3 [scrollbar-color:#07305a_#dff1fa] [scrollbar-width:thin]"
-        >
-          {p.features.map((f) => (
-            <li
-              key={f}
-              className="flex items-start gap-2.5 border-b border-line py-2.5 text-[0.93rem] text-ink last:border-b-0"
-            >
-              <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-sky-soft text-brand">
-                <Icon name="check" size={12} />
-              </span>
-              {f}
-            </li>
-          ))}
-        </ul>
+// All packages are shown at once in a grid (like thecustomlogos.com/pricing).
+// Every card is the same size; the feature list scrolls inside the card when it is long.
+function PackageCard({ p }) {
+  const off = money(p.was) > money(p.price) ? Math.round((1 - money(p.price) / money(p.was)) * 100) : 0;
+  return (
+    <article className="flex h-full w-full flex-col rounded-[16px] border border-line bg-white p-5 shadow-[0_10px_30px_rgba(7,48,90,0.09)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.15)]">
+      <h3 className="text-[1.05rem] font-bold text-navy">{p.name}</h3>
+
+      <div className="mt-2 flex items-center justify-between gap-2 border-b border-line pb-3.5">
+        <p className="flex items-baseline gap-1 leading-none">
+          <strong className={`${gradText} text-[2rem] font-extrabold`}>{p.price}</strong>
+          {p.period && <span className="text-[0.8rem] font-semibold text-muted">{p.period}</span>}
+        </p>
+        {off > 0 && (
+          <div className="shrink-0 rounded-md bg-navy px-2.5 py-1.5 text-center leading-tight text-white">
+            <span className="block text-[0.62rem] font-bold tracking-wide">{off}% OFF</span>
+            <s className="text-[0.85rem] font-bold text-white/80">{p.was}</s>
+          </div>
+        )}
       </div>
 
-      <div className="mt-auto border-t border-line bg-sky-faint p-5 text-center">
-        <p className="mb-3 h-4 text-[0.72rem] font-bold uppercase tracking-wider text-muted">
-          {p.was ? "Final price for limited time" : ""}
-        </p>
-        <Link to="/contact" className={`${btn("primary")} w-full`}>
-          Order Now <Icon name="arrow" size={16} />
+      <ul
+        tabIndex={0}
+        aria-label={`${p.name} features`}
+        className="my-3 h-[250px] overflow-y-auto pr-2 [scrollbar-color:#07305a_#dff1fa] [scrollbar-width:thin]"
+      >
+        {p.features.map((f) => (
+          <li key={f} className="flex items-start gap-2 py-[7px] text-[0.86rem] leading-snug text-ink">
+            <span className="mt-[3px] shrink-0 text-brand">
+              <Icon name="check" size={13} />
+            </span>
+            {f}
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-4">
+        <Link
+          to="/contact"
+          className="rounded-full border-2 border-brand px-4 py-1.5 text-[0.76rem] font-bold uppercase tracking-wide text-brand transition hover:bg-brand hover:text-white"
+        >
+          Order Now
+        </Link>
+        <Link to="/contact" className="text-[0.68rem] leading-tight text-muted">
+          Click here to
+          <strong className="block text-[0.85rem] text-navy">Live Chat</strong>
         </Link>
       </div>
     </article>
@@ -610,45 +614,10 @@ function CustomQuote({ service }) {
 
 export function Packages({ service }) {
   if (isQuote(service)) return <CustomQuote service={service} />;
-  return <PackagesSlider service={service} />;
-}
-
-function PackagesSlider({ service }) {
-  const track = useRef(null);
-  const [page, setPage] = useState(0);
-  const [pages, setPages] = useState(1);
-
-  const measure = () => {
-    const el = track.current;
-    if (!el) return;
-    const total = Math.max(1, Math.round(el.scrollWidth / el.clientWidth));
-    setPages(total);
-    const max = el.scrollWidth - el.clientWidth;
-    setPage(max <= 0 ? 0 : Math.min(total - 1, Math.round((el.scrollLeft / max) * (total - 1))));
-  };
-
-  useEffect(() => {
-    measure();
-    const el = track.current;
-    if (!el) return;
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [service.packages.length]);
-
-  const go = (dir) => {
-    const el = track.current;
-    el.scrollBy({ left: dir * el.clientWidth, behavior: "smooth" });
-  };
-  const goTo = (i) => {
-    const el = track.current;
-    const max = el.scrollWidth - el.clientWidth;
-    el.scrollTo({ left: pages > 1 ? (max / (pages - 1)) * i : 0, behavior: "smooth" });
-  };
-
-  const arrow =
-    "grid size-11 place-items-center rounded-full border border-line bg-white text-brand shadow-[0_6px_18px_rgba(7,48,90,0.12)] transition hover:bg-brand hover:text-white disabled:pointer-events-none disabled:opacity-40";
-
+  // Cards per row on a laptop, chosen so every row has the same number of cards:
+  // 8 -> 4+4, 6 -> 3+3, 4 -> 4, 3 -> 3 (5 or 7 -> 3 per row, last row centred).
+  const count = service.packages.length;
+  const perRow = count === 4 || count % 4 === 0 ? 4 : 3;
   return (
     <section id="packages" className={sectionPad}>
       <div className={container}>
@@ -658,49 +627,17 @@ function PackagesSlider({ service }) {
           accent="Every Business"
           text={`Clear ${service.short.toLowerCase()} packages with upfront pricing, so you know what you are paying for before we start.`}
         />
-
-        <Reveal>
-          <div
-            ref={track}
-            onScroll={measure}
-            role="region"
-            aria-label={`${service.short} packages`}
-            tabIndex={0}
-            className="-my-4 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {service.packages.map((p) => (
-              <div
-                key={p.name}
-                className="flex w-full shrink-0 snap-start md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]"
-              >
-                <PackageCard p={p} />
-              </div>
-            ))}
-          </div>
-
-          {pages > 1 && (
-            <div className="mt-8 flex items-center justify-center gap-5">
-              <button type="button" aria-label="Previous packages" onClick={() => go(-1)} disabled={page === 0} className={arrow}>
-                <span className="rotate-180"><Icon name="arrow" size={18} /></span>
-              </button>
-              <div className="flex gap-2">
-                {Array.from({ length: pages }).map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    aria-label={`Go to packages page ${i + 1}`}
-                    aria-current={i === page}
-                    onClick={() => goTo(i)}
-                    className={`h-2.5 rounded-full transition-all ${i === page ? "w-7 bg-brand" : "w-2.5 bg-line hover:bg-brand/50"}`}
-                  />
-                ))}
-              </div>
-              <button type="button" aria-label="Next packages" onClick={() => go(1)} disabled={page === pages - 1} className={arrow}>
-                <Icon name="arrow" size={18} />
-              </button>
-            </div>
-          )}
-        </Reveal>
+        <div className="flex flex-wrap justify-center gap-6">
+          {service.packages.map((p, i) => (
+            <Reveal
+              key={p.name}
+              delay={(i % perRow) * 90}
+              className={`w-full sm:w-[calc((100%-1.5rem)/2)] ${perRow === 4 ? "lg:w-[calc((100%-4.5rem)/4)]" : "lg:w-[calc((100%-3rem)/3)]"}`}
+            >
+              <PackageCard p={p} />
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

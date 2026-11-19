@@ -16,7 +16,7 @@ const field =
   "w-full rounded-xl border border-line bg-white px-4 py-3 text-[0.95rem] text-ink outline-none transition placeholder:text-[#9db3c5] focus:border-brand focus:ring-4 focus:ring-brand/15";
 
 const panel =
-  "rounded-[22px] border border-line bg-white p-6 shadow-[0_14px_40px_rgba(7,48,90,0.09)] sm:p-8";
+  "h-full rounded-[22px] border border-line bg-white p-6 shadow-[0_14px_40px_rgba(7,48,90,0.09)] sm:p-8";
 
 function CalendarIcon({ size = 22 }) {
   return (

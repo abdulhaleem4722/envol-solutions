@@ -14,8 +14,8 @@ export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/#projects" },
- { label: "Contact", href: "/contact" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const heroStats = [
@@ -914,4 +914,30 @@ export const servicesTestimonials = [
   { quote: "Our Google Ads finally make money. The weekly reports are clear and show exactly where the budget goes.", name: "Lisa Thompson", role: "CEO, TechNova Solutions" },
   { quote: "Fair pricing and no surprises. The quote matched the final invoice and the work was delivered early.", name: "James Okafor", role: "COO, Apex Logistics" },
   { quote: "From the first sketch to the app store launch, they handled everything. Highly recommended.", name: "Priya Patel", role: "Product Lead, QuickBite" },
+];
+// ---------- Portfolio page ----------
+// Each picture: { sub, title, image }. `image` is optional: put the file in /public/portfolio/ and write
+// image: "/portfolio/logo-1.png". Without `image` a branded placeholder is shown.
+// PLACEHOLDER: replace these with the client's real work.
+const ph = (sub, n) => Array.from({ length: n }, (_, i) => ({ sub, title: `${sub} ${i + 1}` }));
+
+export const portfolioCategories = [
+  {
+    id: "web",
+    label: "Web Development",
+    subs: ["Business", "E-Commerce", "Web Portal", "Parallax"],
+    items: [...ph("Business", 3), ...ph("E-Commerce", 3), ...ph("Web Portal", 3), ...ph("Parallax", 3)],
+  },
+  {
+    id: "app",
+    label: "App Development",
+    subs: ["Apps"],
+    items: ph("Apps", 6),
+  },
+  {
+    id: "design",
+    label: "Creative Design",
+    subs: ["Iconic", "3D Animated", "2D", "Typographic", "Mascot"],
+    items: [...ph("Iconic", 3), ...ph("3D Animated", 3), ...ph("2D", 3), ...ph("Typographic", 3), ...ph("Mascot", 3)],
+  },
 ];
