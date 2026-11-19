@@ -119,6 +119,7 @@ function MessageForm() {
           from_name: `${brand.name} Website`,
           name: data.get("name"),
           email: data.get("email"),
+          replyto: data.get("email"), // so "Reply" in the inbox goes to the person who filled the form
           phone: data.get("phone"),
           service: data.get("service"),
           budget: data.get("budget"),

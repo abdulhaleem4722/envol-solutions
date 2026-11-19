@@ -7,7 +7,7 @@
 export const brand = {
   name: "Envol Solutions",
   logo: "/logo.png",
-  email: "hello@envolsolutions.com", // PLACEHOLDER
+  email: "info@envolsolutions.com",
 };
 
 export const navLinks = [
