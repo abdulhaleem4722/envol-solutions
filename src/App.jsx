@@ -8,6 +8,7 @@ import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
 import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";  
+import Pricing from "./pages/Pricing";
 // Scrolls to the top on a new page, or to the section when the link has a #hash.
 function ScrollManager() {
   const { pathname, hash } = useLocation();
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="*" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/pricing" element={<Pricing />} />
         </Routes>
       </main>
       <Footer />

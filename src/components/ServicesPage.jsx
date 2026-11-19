@@ -587,10 +587,8 @@ function PackageCard({ p }) {
 }
 
 /* ---------- inner page: "Custom Quote" block (replaces pricing when a service has no fixed packages) ---------- */
-function CustomQuote({ service }) {
-  return (
-    <section id="packages" className={sectionPad}>
-      <div className={container}>
+function CustomQuote({ service, bare = false }) {
+  const block = (
         <Reveal>
           <div className={`${gradBg} mx-auto max-w-[860px] rounded-[24px] px-6 py-12 text-center text-white shadow-[0_18px_45px_rgba(7,48,90,0.18)] sm:px-12`}>
             <p className="mb-3 text-[0.8rem] font-bold uppercase tracking-[0.14em] text-white/80">Pricing</p>
@@ -607,17 +605,39 @@ function CustomQuote({ service }) {
             </div>
           </div>
         </Reveal>
-      </div>
+  );
+  if (bare) return block;
+  return (
+    <section id="packages" className={sectionPad}>
+      <div className={container}>{block}</div>
     </section>
+  );
+}
+
+// The package cards only (no heading). Used by the service pages and by the Pricing page.
+export function PackageGrid({ service }) {
+  if (isQuote(service)) return <CustomQuote service={service} bare />;
+  // Cards per row on a laptop, chosen so every row has the same number of cards:
+  // 8 -> 4+4, 6 -> 3+3, 4 -> 4, 3 -> 3 (5 or 7 -> 3 per row, last row centred).
+  const count = service.packages.length;
+  const perRow = count === 4 || count % 4 === 0 ? 4 : 3;
+  return (
+    <div className="flex flex-wrap justify-center gap-6">
+      {service.packages.map((p, i) => (
+        <Reveal
+          key={p.name}
+          delay={(i % perRow) * 90}
+          className={`w-full sm:w-[calc((100%-1.5rem)/2)] ${perRow === 4 ? "lg:w-[calc((100%-4.5rem)/4)]" : "lg:w-[calc((100%-3rem)/3)]"}`}
+        >
+          <PackageCard p={p} />
+        </Reveal>
+      ))}
+    </div>
   );
 }
 
 export function Packages({ service }) {
   if (isQuote(service)) return <CustomQuote service={service} />;
-  // Cards per row on a laptop, chosen so every row has the same number of cards:
-  // 8 -> 4+4, 6 -> 3+3, 4 -> 4, 3 -> 3 (5 or 7 -> 3 per row, last row centred).
-  const count = service.packages.length;
-  const perRow = count === 4 || count % 4 === 0 ? 4 : 3;
   return (
     <section id="packages" className={sectionPad}>
       <div className={container}>
@@ -627,17 +647,7 @@ export function Packages({ service }) {
           accent="Every Business"
           text={`Clear ${service.short.toLowerCase()} packages with upfront pricing, so you know what you are paying for before we start.`}
         />
-        <div className="flex flex-wrap justify-center gap-6">
-          {service.packages.map((p, i) => (
-            <Reveal
-              key={p.name}
-              delay={(i % perRow) * 90}
-              className={`w-full sm:w-[calc((100%-1.5rem)/2)] ${perRow === 4 ? "lg:w-[calc((100%-4.5rem)/4)]" : "lg:w-[calc((100%-3rem)/3)]"}`}
-            >
-              <PackageCard p={p} />
-            </Reveal>
-          ))}
-        </div>
+        <PackageGrid service={service} />
       </div>
     </section>
   );

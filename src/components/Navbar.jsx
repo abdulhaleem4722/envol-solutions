@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { brand, navLinks, servicePages } from "../data";
 import { btn } from "../ui";
 import Icon from "./Icon";
+import TopMenu from "./TopMenu";
 
 const SCROLL_AT = 90; // px scrolled before the navigation bar appears
 const SERVICES_HREF = "/services"; // this link gets a drop-down with the service pages
@@ -61,20 +62,22 @@ export default function Navbar() {
   return (
     <header>
       {/* 1) At the very top: just the logo (left) and the call button (right) */}
-      <div
+          <div
         className={`fixed inset-x-0 top-0 z-50 transition duration-300 ${
           scrolled ? "pointer-events-none -translate-y-full opacity-0" : ""
         }`}
       >
         <div className="mx-auto flex h-[78px] w-full max-w-[1760px] items-center justify-between gap-4 px-6 sm:px-10 lg:px-16">
           {logo(38, "text-lg")}
-          <Link to="/#contact" className={`${btn("primary")} max-md:hidden`}>
-            Book a Free Call
-          </Link>
-          <Burger open={open} onClick={() => setOpen((o) => !o)} />
+          <div className="flex items-center gap-3">
+            <Link to="/#contact" className={`${btn("primary")} max-md:hidden`}>
+              Book a Free Call
+            </Link>
+            <TopMenu className="max-md:hidden" />
+            <Burger open={open} onClick={() => setOpen((o) => !o)} />
+          </div>
         </div>
       </div>
-
       {/* 2) After a little scrolling: a floating navigation bar with everything in it */}
       <div
         className={`fixed inset-x-0 top-3 z-50 flex justify-center px-3 transition duration-300 ${
