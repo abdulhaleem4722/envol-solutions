@@ -6,8 +6,8 @@ import { TestimonialCard } from "../components/ServicesPage";
 import { servicesTestimonials } from "../data";
 
 // The place shown on the map.
-const MAP_QUERY = "6594 South 35th Street Apt 101, Franklin, WI 53132, United States";
-const MAP_ADDRESS = "6594 South 35th Street, Apt 101, Franklin, WI 53132, United States";
+const MAP_QUERY = "6594 South 35th Street, Franklin, WI 53132, United States";
+const MAP_ADDRESS = "6594 South 35th Street, Franklin, WI 53132, United States";
 const MAP_HOURS = "Mon-Fri, 9AM-6PM"; // PLACEHOLDER: confirm the opening hours
 
 function ContactHero() {

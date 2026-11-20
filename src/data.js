@@ -8,7 +8,7 @@ export const brand = {
   name: "Envol Solutions",
   logo: "/logo.png",
   email: "info@envolsolutions.com",
-  address: "6594 South 35th Street, Apt 101, Franklin, WI 53132, United States",
+  address: "6594 South 35th Street, Franklin, WI 53132, United States",
   bookingUrl: "https://calendar.app.google/4muGtmoEKWetx6Pc9",
 };
 
