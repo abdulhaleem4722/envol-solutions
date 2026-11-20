@@ -476,7 +476,7 @@ export function TechStack() {
 // How many testimonials to show on the Services page.
 const TESTIMONIAL_COUNT = 6;
 
-function TestimonialCard({ t }) {
+export function TestimonialCard({ t }) {
   return (
     <figure className={card}>
       <div className="mb-3.5 flex gap-[3px] text-[#f5b301] [&_svg]:fill-current" aria-hidden="true">
