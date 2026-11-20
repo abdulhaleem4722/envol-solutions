@@ -920,17 +920,20 @@ export const servicesTestimonials = [
   { quote: "From the first sketch to the app store launch, they handled everything. Highly recommended.", name: "Priya Patel", role: "Product Lead, QuickBite" },
 ];
 // ---------- Portfolio page ----------
-// Each picture: { sub, title, image }. `image` is optional: put the file in /public/portfolio/ and write
-// image: "/portfolio/logo-1.png". Without `image` a branded placeholder is shown.
+// Each picture: { sub, title, image, url }.
+//   image: optional. Put the file in /public/portfolio/ and write image: "/portfolio/site-1.png"
+//          (without it a branded placeholder is shown).
+//   url:   WEBSITES ONLY. Adds a "Visit Website" button that opens the live site in a new tab.
 // PLACEHOLDER: replace these with the client's real work.
-const ph = (sub, n) => Array.from({ length: n }, (_, i) => ({ sub, title: `${sub} ${i + 1}` }));
+const ph = (sub, n, url) => Array.from({ length: n }, (_, i) => ({ sub, title: `${sub} ${i + 1}`, ...(url ? { url } : {}) }));
+const SITE = "https://example.com"; // PLACEHOLDER live link
 
 export const portfolioCategories = [
   {
     id: "web",
     label: "Web Development",
-    subs: ["Business", "E-Commerce", "Web Portal", "Parallax"],
-    items: [...ph("Business", 3), ...ph("E-Commerce", 3), ...ph("Web Portal", 3), ...ph("Parallax", 3)],
+    subs: ["Business", "E-Commerce", "Web Portal"],
+    items: [...ph("Business", 3, SITE), ...ph("E-Commerce", 3, SITE), ...ph("Web Portal", 3, SITE)],
   },
   {
     id: "app",
@@ -940,8 +943,65 @@ export const portfolioCategories = [
   },
   {
     id: "design",
-    label: "Creative Design",
-    subs: ["Iconic", "3D Animated", "2D", "Typographic", "Mascot"],
-    items: [...ph("Iconic", 3), ...ph("3D Animated", 3), ...ph("2D", 3), ...ph("Typographic", 3), ...ph("Mascot", 3)],
+    label: "Branding & Graphic Design",
+    subs: ["Iconic Logo", "3D Animated Logo", "2D Logo", "Typographic Logo", "Mascot Logo", "Stationary Designs", "Other Graphic Work"],
+    items: [
+
+      { sub: "Iconic Logo", title: "Brand Name 1", image: "/portfolio/iconic-1.png" },
+      { sub: "Iconic Logo", title: "Brand Name 2", image: "/portfolio/iconic-2.png" },
+      { sub: "Iconic Logo", title: "Brand Name 3", image: "/portfolio/iconic-3.png" },
+       { sub: "Iconic Logo", title: "Brand Name 1", image: "/portfolio/iconic-4.png" },
+      { sub: "Iconic Logo", title: "Brand Name 2", image: "/portfolio/iconic-5.png" },
+      { sub: "Iconic Logo", title: "Brand Name 3", image: "/portfolio/iconic-6.png" },
+       { sub: "Iconic Logo", title: "Brand Name 1", image: "/portfolio/iconic-7.png" },
+      { sub: "Iconic Logo", title: "Brand Name 2", image: "/portfolio/iconic-8.png" },
+ { sub: "3D Animated Logo", title: "Brand Name 1", image: "/portfolio/3d-1.gif" },
+{ sub: "3D Animated Logo", title: "Brand Name 2", image: "/portfolio/3d-2.gif" },
+{ sub: "3D Animated Logo", title: "Brand Name 3", image: "/portfolio/3d-3.gif" },
+{ sub: "3D Animated Logo", title: "Brand Name 4", image: "/portfolio/3d-4.gif" },
+{ sub: "3D Animated Logo", title: "Brand Name 5", image: "/portfolio/3d-5.gif" },
+{ sub: "3D Animated Logo", title: "Brand Name 6", image: "/portfolio/3d-6.gif" },
+{ sub: "3D Animated Logo", title: "Brand Name 7", image: "/portfolio/3d-7.gif" },
+{ sub: "3D Animated Logo", title: "Brand Name 8", image: "/portfolio/3d-8.gif" },
+{ sub: "3D Animated Logo", title: "Brand Name 9", image: "/portfolio/3d-9.gif" },
+{ sub: "3D Animated Logo", title: "Brand Name 10", image: "/portfolio/3d-10.gif" },
+{ sub: "3D Animated Logo", title: "Brand Name 11", image: "/portfolio/3d-11.gif" },
+{ sub: "3D Animated Logo", title: "Brand Name 12", image: "/portfolio/3d-12.gif" },
+
+
+ { sub: "2D Logo", title: "Brand Name 1", image: "/portfolio/2d-1.png" },
+{ sub: "2D Logo", title: "Brand Name 2", image: "/portfolio/2d-2.gif" },
+{ sub: "2D Logo", title: "Brand Name 3", image: "/portfolio/2d-3.gif" },
+{ sub: "2D Logo", title: "Brand Name 4", image: "/portfolio/2d-4.gif" },
+{ sub: "2D Logo", title: "Brand Name 5", image: "/portfolio/2d-5.gif" },
+{ sub: "2D Logo", title: "Brand Name 6", image: "/portfolio/2d-6.gif" },
+{ sub: "2D Logo", title: "Brand Name 7", image: "/portfolio/2d-7.gif" },
+{ sub: "2D Logo", title: "Brand Name 8", image: "/portfolio/2d-8.gif" },
+      { sub: "Typographic Logo", title: "Brand Name 1", image: "/portfolio/typo-1.png" },
+{ sub: "Typographic Logo", title: "Brand Name 2", image: "/portfolio/typo-2.png" },
+{ sub: "Typographic Logo", title: "Brand Name 3", image: "/portfolio/typo-3.png" },
+{ sub: "Typographic Logo", title: "Brand Name 4", image: "/portfolio/typo-4.png" },
+{ sub: "Typographic Logo", title: "Brand Name 5", image: "/portfolio/typo-5.png" },
+{ sub: "Typographic Logo", title: "Brand Name 6", image: "/portfolio/typo-6.png" },
+{ sub: "Typographic Logo", title: "Brand Name 7", image: "/portfolio/typo-7.png" },
+{ sub: "Typographic Logo", title: "Brand Name 8", image: "/portfolio/typo-8.png" },
+{ sub: "Typographic Logo", title: "Brand Name 9", image: "/portfolio/typo-9.png" },
+{ sub: "Typographic Logo", title: "Brand Name 10", image: "/portfolio/typo-10.png" },
+{ sub: "Typographic Logo", title: "Brand Name 11", image: "/portfolio/typo-11.png" },
+{ sub: "Typographic Logo", title: "Brand Name 12", image: "/portfolio/typo-12.png" },
+{ sub: "Typographic Logo", title: "Brand Name 13", image: "/portfolio/typo-13.png" },
+{ sub: "Typographic Logo", title: "Brand Name 14", image: "/portfolio/typo-14.png" },
+{ sub: "Typographic Logo", title: "Brand Name 15", image: "/portfolio/typo-15.png" },
+     
+
+{ sub: "Mascot Logo", title: "Brand Name 1", image: "/portfolio/mascot-1.png" },
+{ sub: "Mascot Logo", title: "Brand Name 2", image: "/portfolio/mascot-2.png" },
+{ sub: "Mascot Logo", title: "Brand Name 3", image: "/portfolio/mascot-3.png" },
+{ sub: "Mascot Logo", title: "Brand Name 4", image: "/portfolio/mascot-4.png" },
+{ sub: "Mascot Logo", title: "Brand Name 5", image: "/portfolio/mascot-5.png" },
+{ sub: "Mascot Logo", title: "Brand Name 6", image: "/portfolio/mascot-6.png" },
+
+      ...ph("Other Graphic Work", 3),
+    ],
   },
 ];
