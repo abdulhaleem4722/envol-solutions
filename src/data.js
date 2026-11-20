@@ -8,6 +8,7 @@ export const brand = {
   name: "Envol Solutions",
   logo: "/logo.png",
   email: "info@envolsolutions.com",
+  phone: "+1 (456) 456-4567", // PLACEHOLDER number
   address: "6594 South 35th Street, Franklin, WI 53132, United States",
   bookingUrl: "https://calendar.app.google/4muGtmoEKWetx6Pc9",
 };
@@ -17,7 +18,7 @@ export const navLinks = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
    { label: "Pricing", href: "/pricing" },
-  { label: "Portfolio", href: "/portfolio" },
+  { label: "Portfolio", href: "/projects" },
   { label: "Contact", href: "/contact" },
 ];
 

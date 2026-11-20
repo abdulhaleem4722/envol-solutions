@@ -83,6 +83,17 @@ function BookCall() {
       <ul className="mt-6 grid gap-4 border-t border-white/20 pt-6 text-[0.95rem]">
         <li className="flex items-start gap-3">
           <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-full bg-white/15 text-[#7fdcf5]">
+            <Icon name="phone" size={18} />
+          </span>
+          <span>
+            <span className="block text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-[#9fd3ea]">Phone</span>
+            <a href={`tel:${brand.phone.replace(/[^+\d]/g, "")}`} className="font-semibold text-white hover:underline">
+              {brand.phone}
+            </a>
+          </span>
+        </li>
+        <li className="flex items-start gap-3">
+          <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-full bg-white/15 text-[#7fdcf5]">
             <Icon name="mail" size={18} />
           </span>
           <span>
