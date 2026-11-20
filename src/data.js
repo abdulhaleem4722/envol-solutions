@@ -944,7 +944,7 @@ export const portfolioCategories = [
   {
     id: "design",
     label: "Branding & Graphic Design",
-    subs: ["Iconic Logo", "3D Animated Logo", "2D Logo", "Typographic Logo", "Mascot Logo", "Stationary Designs", "Other Graphic Work"],
+    subs: ["Iconic Logo", "3D Animated Logo", "2D Logo", "Typographic Logo", "Mascot Logo", "Stationary Designs", "Other Graphic Design"],
     items: [
 
       { sub: "Iconic Logo", title: "Brand Name 1", image: "/portfolio/iconic-1.png" },
@@ -1001,7 +1001,7 @@ export const portfolioCategories = [
 { sub: "Mascot Logo", title: "Brand Name 5", image: "/portfolio/mascot-5.png" },
 { sub: "Mascot Logo", title: "Brand Name 6", image: "/portfolio/mascot-6.png" },
 
-      ...ph("Other Graphic Work", 3),
+      ...ph("Other Graphic Design", 3),
     ],
   },
 ];
