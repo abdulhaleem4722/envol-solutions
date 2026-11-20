@@ -47,13 +47,19 @@ export default function Footer() {
 
         <Reveal delay={300}>
           <h4 className="mb-3.5 text-[0.95rem] font-bold text-white">Contact</h4>
-          <ul>
-            <li className="mb-2 text-[0.9rem]">
-              <a href={`mailto:${brand.email}`} className="hover:text-aqua">
-                {brand.email}
-              </a>
-            </li>
-          </ul>
+        <ul>
+  <li className="mb-2 text-[0.9rem]">
+    <a href={`tel:${brand.phone.replace(/[^+\d]/g, "")}`} className="hover:text-aqua">
+      {brand.phone}
+    </a>
+  </li>
+  <li className="mb-2 text-[0.9rem]">
+    <a href={`mailto:${brand.email}`} className="hover:text-aqua">
+      {brand.email}
+    </a>
+  </li>
+  <li className="mb-2 text-[0.9rem] leading-relaxed">{brand.address}</li>
+</ul>
         </Reveal>
       </div>
 
