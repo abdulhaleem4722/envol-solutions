@@ -7,7 +7,7 @@ import {
   SiPhp, SiLaravel, SiPython, SiDjango, SiOpenjdk, SiDotnet, SiGo, SiRuby, SiMysql, SiMongodb, SiFirebase,
 } from "react-icons/si";
 import { projects, servicePages, servicesStats, servicesTestimonials } from "../data";
-import { container, card, btn, gradBg, gradText, sectionPad } from "../ui";
+import { container, card, btn, gradBg, gradText, sectionPad, cardFx, iconFx, iconPop } from "../ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
 import { SectionHead } from "./Sections";
@@ -110,11 +110,11 @@ export function ServicesOverview() {
         <div className="grid gap-6 md:grid-cols-2">
           {servicePages.map((s, i) => (
             <Reveal key={s.slug} delay={(i % 2) * 120} className="h-full">
-              <article className={card}>
-                <div className="mb-[18px] grid size-[52px] place-items-center rounded-[14px] bg-sky-soft text-brand">
+              <article className={`${card} ${cardFx}`}>
+                <div className={`mb-[18px] grid size-[52px] place-items-center rounded-[14px] bg-sky-soft text-brand ${iconFx} ${iconPop}`}>
                   <Icon name={s.icon} />
                 </div>
-                <h3 className="mb-2 text-[1.15rem] font-bold text-navy">{s.title}</h3>
+                <h3 className="mb-2 text-[1.15rem] font-bold text-navy transition-colors duration-300 group-hover:text-brand">{s.title}</h3>
                 <p className="text-[0.95rem] text-muted">{s.text}</p>
                 <ul className="my-[18px] flex flex-wrap gap-2">
                   {s.tags.map((t) => (
@@ -216,11 +216,11 @@ export function Offerings({ service }) {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {service.offerings.map((o, i) => (
             <Reveal key={o.title} delay={(i % 3) * 110} className="h-full">
-              <article className={card}>
-                <div className="mb-[18px] grid size-12 place-items-center rounded-[14px] bg-sky-soft text-brand">
+              <article className={`${card} ${cardFx}`}>
+                <div className={`mb-[18px] grid size-12 place-items-center rounded-[14px] bg-sky-soft text-brand ${iconFx} ${iconPop}`}>
                   <Icon name={o.icon} size={22} />
                 </div>
-                <h3 className="mb-2 text-[1.12rem] font-bold text-navy">{o.title}</h3>
+                <h3 className="mb-2 text-[1.12rem] font-bold text-navy transition-colors duration-300 group-hover:text-brand">{o.title}</h3>
                 <p className="text-[0.93rem] text-muted">{o.text}</p>
               </article>
             </Reveal>
@@ -344,7 +344,8 @@ function CaseStudies({ service }) {
 function ProjectCard({ p, i }) {
   return (
     <Reveal from="zoom" delay={(i % 3) * 110} className="h-full">
-      <article className="h-full overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]">
+      <article className={`${cardFx} h-full overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]`}>
+        <h3 className="mb-1.5 text-[1.05rem] font-bold text-navy transition-colors duration-300 group-hover:text-brand">{p.title}</h3>
         <div
           aria-hidden="true"
           className="relative grid h-[190px] place-items-center bg-linear-to-br from-[#d6effa] via-[#8fd3ee] to-[#3aa7da]"
@@ -539,7 +540,8 @@ function ChatIcon() {
 function PackageCard({ p }) {
   const off = money(p.was) > money(p.price) ? Math.round((1 - money(p.price) / money(p.was)) * 100) : 0;
   return (
-    <article className="flex h-full w-full flex-col rounded-[16px] border border-line bg-white p-5 shadow-[0_10px_30px_rgba(7,48,90,0.09)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.15)]">
+    <article className={`${cardFx} flex h-full w-full flex-col rounded-[16px] border border-line bg-white p-5 shadow-[0_10px_30px_rgba(7,48,90,0.09)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.15)]`}>
+  <h3 className="text-[1.05rem] font-bold text-navy transition-colors duration-300 group-hover:text-brand">{p.name}</h3>
       <h3 className="text-[1.05rem] font-bold text-navy">{p.name}</h3>
 
       <div className="mt-2 flex items-center justify-between gap-2 border-b border-line pb-3.5">
@@ -573,7 +575,7 @@ function PackageCard({ p }) {
       <div className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-4">
         <Link
           to="/contact"
-          className="rounded-full border-2 border-brand px-4 py-1.5 text-[0.76rem] font-bold uppercase tracking-wide text-brand transition hover:bg-brand hover:text-white"
+          className="rounded-full border-2 border-brand px-4 py-1.5 text-[0.76rem] font-bold uppercase tracking-wide text-brand transition hover:bg-brand hover:text-white group-hover:bg-brand group-hover:text-white"
         >
           Order Now
         </Link>
@@ -589,22 +591,22 @@ function PackageCard({ p }) {
 /* ---------- inner page: "Custom Quote" block (replaces pricing when a service has no fixed packages) ---------- */
 function CustomQuote({ service, bare = false }) {
   const block = (
-        <Reveal>
-          <div className={`${gradBg} mx-auto max-w-[860px] rounded-[24px] px-6 py-12 text-center text-white shadow-[0_18px_45px_rgba(7,48,90,0.18)] sm:px-12`}>
-            <p className="mb-3 text-[0.8rem] font-bold uppercase tracking-[0.14em] text-white/80">Pricing</p>
-            <h2 className="text-[length:clamp(1.7rem,3.4vw,2.5rem)] font-extrabold leading-tight">
-              Every {service.short} Project Is Different
-            </h2>
-            <p className="mx-auto mt-4 max-w-[560px] text-white/85">
-              Tell us what you want to build and we will send a clear, fixed quote made for your idea, scope and timeline. No obligation.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3.5">
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-bold text-navy transition hover:-translate-y-0.5 hover:shadow-lg">
-                Get a Custom Quote <Icon name="arrow" size={16} />
-              </Link>
-            </div>
-          </div>
-        </Reveal>
+    <Reveal>
+      <div className={`${gradBg} mx-auto max-w-[860px] rounded-[24px] px-6 py-12 text-center text-white shadow-[0_18px_45px_rgba(7,48,90,0.18)] sm:px-12`}>
+        <p className="mb-3 text-[0.8rem] font-bold uppercase tracking-[0.14em] text-white/80">Pricing</p>
+        <h2 className="text-[length:clamp(1.7rem,3.4vw,2.5rem)] font-extrabold leading-tight">
+          Every {service.short} Project Is Different
+        </h2>
+        <p className="mx-auto mt-4 max-w-[560px] text-white/85">
+          Tell us what you want to build and we will send a clear, fixed quote made for your idea, scope and timeline. No obligation.
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3.5">
+          <Link to="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-bold text-navy transition hover:-translate-y-0.5 hover:shadow-lg">
+            Get a Custom Quote <Icon name="arrow" size={16} />
+          </Link>
+        </div>
+      </div>
+    </Reveal>
   );
   if (bare) return block;
   return (

@@ -213,13 +213,14 @@ export const aboutStats = [
 ];
 
 export const timeline = [
-  { year: "2018", text: "Founded in Clarksville, TN with a vision to make premium digital services accessible." },
-  { year: "2019", text: "Expanded to 10+ team members and launched our first enterprise project." },
-  { year: "2020", text: "Opened our Pakistan office in Karachi, scaling our development capacity." },
-  { year: "2021", text: "Reached 100+ projects milestone and launched our marketing division." },
+  { year: "2013", text: "Founded in Clarksville, TN with a vision to make premium digital services accessible." },
+  { year: "2014", text: "Expanded to 10+ team members and launched our first enterprise project." },
+  { year: "2017", text: "Opened our Pakistan office in Karachi, scaling our development capacity." },
+  { year: "2019", text: "Reached the 100+ projects milestone with clients around the world." },
   { year: "2022", text: "Surpassed 200+ projects with clients in 25+ countries worldwide." },
   { year: "2023", text: "Launched our marketing division and expanded service offerings." },
-  { year: "2024", text: "Grew to 50+ team members across 2 continents." },
+  { year: "2025", text: "Grew to 50+ team members across 2 continents." },
+  { year: "2026", text: "Added AI Automation and Hosting Services to help clients grow even further." },
 ];
 
 export const values = [
