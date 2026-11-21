@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { projectFilters, projects, testimonials } from "../data";
 import { container, card, gradBg, sectionPad } from "../ui";
 import Icon from "./Icon";
@@ -17,12 +18,12 @@ export function Projects() {
       <div className={container}>
         <div className="relative">
           <SectionHead eyebrow="Our Work" title="Featured" accent="Projects" />
-          <a
-            href="#contact"
-            className="-mt-6 mb-6 flex items-center justify-center gap-1.5 text-sm font-bold text-brand hover:text-navy md:absolute md:right-0 md:top-2 md:m-0"
-          >
-            View All Projects <Icon name="arrow" size={16} />
-          </a>
+       <Link
+  to="/portfolio"
+  className="-mt-6 mb-6 flex items-center justify-center gap-1.5 text-sm font-bold text-brand hover:text-navy md:absolute md:right-0 md:top-2 md:m-0"
+>
+  View All Projects <Icon name="arrow" size={16} />
+</Link>
         </div>
 
         <Reveal
