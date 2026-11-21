@@ -4,12 +4,14 @@ import Orbit from "./Orbit";
 
 /* How long the banner stays pinned while the visitor scrolls (in screen heights).
    Bigger number = slower, longer animation. */
-const PIN_VH = 90;
+const PIN_VH = 10;
 
 const clamp = (n, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, n));
 
 const lead = ["We", "Build", "Digital", "Products", "That"];
 const accent = "Drive Revenue";
+// first letter number of each word, so the letters animate one after another across the whole heading
+const charOffset = [...lead, accent].map((_, i, all) => all.slice(0, i).reduce((n, w) => n + w.length + 1, 0));
 
 export default function Hero() {
   // pin = the whole banner fits on screen, so it can stay pinned while the animation plays.
@@ -29,7 +31,7 @@ export default function Hero() {
     const decide = () => {
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const need = grid.current ? grid.current.offsetHeight + 160 : Infinity;
-      const next = !reduce && need <= window.innerHeight;
+     const next = false; // no pinning: next section scrolls in right away
       pinRef.current = next;
       setPin(next);
     };
@@ -67,7 +69,7 @@ export default function Hero() {
         const total = r.height - window.innerHeight;
         p = total > 0 ? clamp(-r.top / total) : 0;
       } else {
-        p = clamp(window.scrollY / (window.innerHeight * 0.9));
+        p = clamp(window.scrollY / (window.innerHeight * 0.2));
       }
 
       // heading: words shoot up and out of the banner one after another, getting blurry
@@ -76,8 +78,11 @@ export default function Hero() {
         if (!el) return;
         const line = lines.current[i] ?? 0;
         const t = clamp((p * 1.3 - 0.15 - line * 0.14) / 0.6);
-        const x = line === 1 ? t * 28 : 0; // the second line drifts a little sideways
-        el.style.transform = `translate3d(${x.toFixed(1)}px, ${(-t * rise).toFixed(1)}px, 0)`;
+        const e = t * t * (3 - 2 * t); // eased, so it starts gently and speeds up
+        const dir = line % 2 === 0 ? -1 : 1; // lines slide away in opposite directions
+        const x = dir * e * window.innerWidth * 0.14;
+        const y = -e * rise * 0.5;
+        el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) scale(${(1 - e * 0.14).toFixed(3)})`;
         el.style.filter = t > 0.02 ? `blur(${(t * 9).toFixed(1)}px)` : "";
         el.style.opacity = (1 - clamp((t - 0.55) / 0.45)).toFixed(3);
       });
@@ -97,8 +102,8 @@ export default function Hero() {
 
       // orbit drifts up, shrinks a little and softens
       if (art.current && pinned) {
-        art.current.style.transform = `translate3d(0, ${(-p * 90).toFixed(1)}px, 0) scale(${(1 - 0.1 * p).toFixed(3)})`;
-        art.current.style.opacity = (1 - 0.25 * p).toFixed(3);
+        art.current.style.transform = `translate3d(0, ${(-p * 60).toFixed(1)}px, 0) scale(${(1 + 0.22 * p).toFixed(3)}) rotate(${(p * 14).toFixed(1)}deg)`;
+        art.current.style.opacity = (1 - 0.6 * p).toFixed(3);
       }
     };
 
@@ -154,19 +159,47 @@ export default function Hero() {
                 Global Digital Agency
               </span>
             </div>
-            <h1 className="animate-fade-up text-[length:clamp(2.6rem,5.2vw,5.2rem)] font-extrabold leading-[1.1] tracking-tight text-navy [animation-delay:120ms]">
+            <style>{`
+              @keyframes hero-char { from { opacity: 0; transform: translateY(0.55em) rotateX(-80deg) scale(0.9); filter: blur(10px); } to { opacity: 1; transform: none; filter: blur(0); } }
+              @keyframes hero-wave { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.45) saturate(1.2); } }
+              .hero-char { display: inline-block; transform-origin: 50% 100%; animation: hero-char 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+              .hero-wave { animation: hero-char 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both, hero-wave 3.6s ease-in-out infinite; }
+              @media (prefers-reduced-motion: reduce) { .hero-char, .hero-wave { animation: none; } }
+            `}</style>
+            <h1 className="text-[length:clamp(2.6rem,5.2vw,5.2rem)] font-extrabold leading-[1.1] tracking-tight text-navy [perspective:700px]">
               {lead.map((w, i) => (
                 <span key={w}>
+                  {/* outer span = scroll animation; letters inside fly in one by one on page load */}
                   <span ref={(el) => (words.current[i] = el)} className="inline-block will-change-transform">
-                    {w}
+                    {w.split("").map((ch, j) => (
+                      <span key={j} className="hero-char" style={{ animationDelay: `${150 + (charOffset[i] + j) * 38}ms` }}>
+                        {ch}
+                      </span>
+                    ))}
                   </span>{" "}
                 </span>
               ))}
               <span
                 ref={(el) => (words.current[lead.length] = el)}
-                className={`${gradText} inline-block will-change-transform`}
+                className="inline-block will-change-transform"
+                aria-label={accent}
               >
-                {accent}
+                {accent.split("").map((ch, j) => {
+                  const t = j / (accent.length - 1);
+                  // colour runs from deep blue to bright cyan across the letters
+                  const c = (a, b) => Math.round(a + (b - a) * t);
+                  const d = 150 + (charOffset[lead.length] + j) * 38;
+                  return (
+                    <span
+                      key={j}
+                      aria-hidden="true"
+                      className="hero-char hero-wave"
+                      style={{ color: `rgb(${c(10, 0)}, ${c(74, 180)}, ${c(130, 224)})`, animationDelay: `${d}ms, ${2200 + j * 140}ms` }}
+                    >
+                      {ch === " " ? "\u00A0" : ch}
+                    </span>
+                  );
+                })}
               </span>
             </h1>
 
@@ -197,4 +230,4 @@ export default function Hero() {
       </div>
     </section>
   );
-} 
+}

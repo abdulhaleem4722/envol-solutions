@@ -1,3 +1,4 @@
+
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { pitch } from "../data";
 import Icon from "./Icon";
@@ -19,6 +20,32 @@ function Words({ text, refs }) {
       {i < all.length - 1 && " "}
     </span>
   ));
+}
+
+
+// Big question: every letter flies in one after another (blur -> sharp), the last word in blue.
+function Letters({ text, accentFrom }) {
+  const words = text.split(" ");
+  let n = 0;
+  return words.map((w, wi) => {
+    const accent = wi >= accentFrom;
+    return (
+      <span key={wi}>
+        <span className="inline-block whitespace-nowrap">
+          {w.split("").map((ch, ci) => {
+            const t = ci / Math.max(1, w.length - 1);
+            const color = accent ? `rgb(${Math.round(10 - 10 * t)}, ${Math.round(111 + 69 * t)}, ${Math.round(174 + 50 * t)})` : undefined;
+            return (
+              <span key={ci} className="pitch-char" style={{ animationDelay: `${(n++) * 32}ms`, color }}>
+                {ch}
+              </span>
+            );
+          })}
+        </span>
+        {wi < words.length - 1 && " "}
+      </span>
+    );
+  });
 }
 
 /* tiny icons used inside the cards */
@@ -146,6 +173,25 @@ export default function Pitch() {
   const paras = useRef([]);
   const fit = useRef(null);
   const stage = useRef(null);
+  const question = useRef(null);
+  const [shown, setShown] = useState(false);
+
+  // start the heading animation as soon as it is on screen
+  useEffect(() => {
+    const el = question.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [simple]);
 
   useLayoutEffect(() => {
     let width = window.innerWidth;
@@ -198,19 +244,17 @@ export default function Pitch() {
       const r = wrap.current.getBoundingClientRect();
       const total = r.height - window.innerHeight;
       const p = total > 0 ? clamp(-r.top / total) : 0;
-
-      // 1) the big question appears word by word
-      const nA = hA.current.length;
-      hA.current.forEach((el, i) => {
-        if (!el) return;
-        const a = 0.02 + (i / nA) * 0.16;
-        const t = seg(p, a, a + 0.05);
-        el.style.opacity = (0.12 + 0.88 * t).toFixed(3);
-        el.style.transform = `translate3d(0, ${((1 - t) * 10).toFixed(1)}px, 0)`;
-      });
+      
+  
+      // while the banner scrolls away, lift the question + cards up a little so there is less empty white.
+      // The lift is 0 when the section is still below the screen and 0 again once it is pinned.
+      if (fit.current) {
+        const enterP = clamp(1 - r.top / window.innerHeight);
+        fit.current.style.top = `${(-Math.sin(Math.PI * enterP) * window.innerHeight * 0.17).toFixed(1)}px`;
+      }
 
       // 2) bubbles, card and note pop in one by one
-      [0.2, 0.29, 0.38, 0.47].forEach((start, i) => {
+      [0.05, 0.12, 0.19, 0.26].forEach((start, i) => {
         const el = cards.current[i];
         if (!el) return;
         const t = ease(seg(p, start, start + 0.07));
@@ -309,9 +353,15 @@ export default function Pitch() {
           ref={whiteLayer}
           className="absolute inset-0 flex items-center justify-center px-6 pb-6 pt-20 will-change-transform"
         >
-          <div ref={fit} className="flex w-full flex-col items-center gap-8 sm:gap-12">
-            <h2 className={headingCls}>
-              <Words text={pitch.heading} refs={hA} />
+<div ref={fit} className="relative flex w-full flex-col items-center gap-8 sm:gap-12">
+            <style>{`
+              @keyframes pitch-char { from { opacity: 0; transform: translateY(0.6em) rotateX(-75deg) scale(0.92); filter: blur(10px); } to { opacity: 1; transform: none; filter: blur(0); } }
+              .pitch-char { display: inline-block; opacity: 0; transform-origin: 50% 100%; }
+              .pitch-on .pitch-char { animation: pitch-char 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+              @media (prefers-reduced-motion: reduce) { .pitch-char { opacity: 1; } .pitch-on .pitch-char { animation: none; } }
+            `}</style>
+            <h2 ref={question} className={`${headingCls} [perspective:700px] ${shown ? "pitch-on" : ""}`} aria-label={pitch.heading}>
+              <Letters text={pitch.heading} accentFrom={pitch.heading.split(" ").length - 2} />
             </h2>
             <Cards refs={cards} />
           </div>
