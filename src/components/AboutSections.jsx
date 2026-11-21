@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { aboutStats, timeline, values, principles } from "../data";
-import { container, card, gradText, sectionPad } from "../ui";
+import { container, card, cardFx, iconFx, gradText, sectionPad } from "../ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
 import { SectionHead } from "./Sections";
@@ -65,6 +65,9 @@ export function Story() {
         <Reveal className="grid items-center gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
           {/* big year */}
           <div className="text-center lg:text-left">
+            <p className="mb-2 text-[0.8rem] font-bold uppercase tracking-[0.16em] text-brand">
+              Our Achievements
+            </p>
             <div
               key={timeline[active].year}
               className={`${gradText} animate-fade-up text-[length:clamp(4.5rem,11vw,9.5rem)] font-extrabold leading-none tracking-tight`}
@@ -119,14 +122,14 @@ export function Values() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {values.map((v, i) => (
             <Reveal key={v.title} delay={i * 110} className="h-full">
-              <article className={card}>
+              <article className={`${card} ${cardFx}`}>
                 <div
-                  className="mb-[18px] grid size-12 animate-float place-items-center rounded-[14px] bg-sky-soft text-brand"
+                  className={`mb-[18px] grid size-12 animate-float place-items-center rounded-[14px] bg-sky-soft text-brand ${iconFx}`}
                   style={{ animationDelay: `${i * -1.3}s` }}
                 >
                   <Icon name={v.icon} size={22} />
                 </div>
-                <h3 className="mb-2 text-[1.12rem] font-bold text-navy">{v.title}</h3>
+                <h3 className="mb-2 text-[1.12rem] font-bold text-navy transition-colors duration-300 group-hover:text-brand">{v.title}</h3>
                 <p className="text-[0.93rem] text-muted">{v.text}</p>
               </article>
             </Reveal>

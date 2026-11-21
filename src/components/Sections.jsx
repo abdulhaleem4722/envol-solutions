@@ -1,5 +1,5 @@
 import { services, stats, reasons, steps } from "../data";
-import { container, card, gradBg, gradText, sectionPad } from "../ui";
+import { container, card, cardFx, iconFx, iconPop, gradBg, gradText, sectionPad } from "../ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
 
@@ -30,11 +30,11 @@ export function Services() {
         <div className="grid gap-6 md:grid-cols-2">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={(i % 2) * 120} className="h-full">
-              <article className={card}>
-                <div className="mb-[18px] grid size-[52px] place-items-center rounded-[14px] bg-sky-soft text-brand">
+              <article className={`${card} ${cardFx}`}>
+                <div className={`mb-[18px] grid size-[52px] place-items-center rounded-[14px] bg-sky-soft text-brand ${iconFx} ${iconPop}`}>
                   <Icon name={s.icon} />
                 </div>
-                <h3 className="mb-2 text-[1.15rem] font-bold text-navy">{s.title}</h3>
+                <h3 className="mb-2 text-[1.15rem] font-bold text-navy transition-colors duration-300 group-hover:text-brand">{s.title}</h3>
                 <p className="text-[0.95rem] text-muted">{s.text}</p>
                 <ul className="my-[18px] flex flex-wrap gap-2">
                   {s.tags.map((t) => (
@@ -93,11 +93,11 @@ export function WhyUs() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {reasons.map((r, i) => (
             <Reveal key={r.title} delay={(i % 3) * 120} className="h-full">
-              <article className={card}>
-                <div className="mb-[18px] grid size-11 place-items-center rounded-xl bg-sky-soft text-brand">
+              <article className={`${card} ${cardFx}`}>
+                <div className={`mb-[18px] grid size-11 place-items-center rounded-xl bg-sky-soft text-brand ${iconFx} ${iconPop}`}>
                   <Icon name={r.icon} size={20} />
                 </div>
-                <h3 className="mb-2 text-[1.15rem] font-bold text-navy">{r.title}</h3>
+                <h3 className="mb-2 text-[1.15rem] font-bold text-navy transition-colors duration-300 group-hover:text-brand">{r.title}</h3>
                 <p className="text-[0.95rem] text-muted">{r.text}</p>
               </article>
             </Reveal>

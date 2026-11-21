@@ -1,24 +1,32 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { brand, servicePages } from "../data";
+import Icon from "./Icon";
 
-// The round black "3 lines" button + a slide-in menu with every page of the website.
+// The round "3 lines" button + a slide-in menu with every page of the website.
 // Put <TopMenu /> next to the "Book a Free Call" button in the top bar of Navbar.jsx.
 
 const pages = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "Services", to: "/services", sub: true },
+  { label: "Pricing", to: "/pricing" },
   { label: "Portfolio", to: "/portfolio" },
   { label: "Contact", to: "/contact" },
 ];
 
 export default function TopMenu({ className = "" }) {
   const [open, setOpen] = useState(false);
+  const [subOpen, setSubOpen] = useState(false); // services drop-down inside the menu
   const { pathname } = useLocation();
 
   // close when the page changes
   useEffect(() => setOpen(false), [pathname]);
+
+  // the services drop-down is always closed again when the menu closes
+  useEffect(() => {
+    if (!open) setSubOpen(false);
+  }, [open]);
 
   // Esc closes it, and the page behind does not scroll while it is open
   useEffect(() => {
@@ -87,29 +95,53 @@ export default function TopMenu({ className = "" }) {
             <ul className="grid gap-1">
               {pages.map((p) => (
                 <li key={p.to}>
-                  <Link
-                    to={p.to}
-                    className={`block rounded-xl px-3 py-3 text-[1.5rem] font-bold transition hover:bg-sky-faint hover:text-brand ${
-                      isActive(p.to) ? "text-brand" : "text-navy"
-                    }`}
-                  >
-                    {p.label}
-                  </Link>
+                  <div className="flex items-center">
+                    <Link
+                      to={p.to}
+                      className={`block flex-1 rounded-xl px-3 py-3 text-[1.5rem] font-bold transition hover:bg-sky-faint hover:text-brand ${
+                        isActive(p.to) ? "text-brand" : "text-navy"
+                      }`}
+                    >
+                      {p.label}
+                    </Link>
+                    {p.sub && (
+                      <button
+                        type="button"
+                        aria-label="Show service pages"
+                        aria-expanded={subOpen}
+                        onClick={() => setSubOpen((o) => !o)}
+                        className="grid size-11 shrink-0 place-items-center rounded-full text-navy transition hover:bg-sky-faint hover:text-brand"
+                      >
+                        <span className={`transition duration-300 ${subOpen ? "rotate-180" : ""}`}>
+                          <Icon name="chevron" size={22} />
+                        </span>
+                      </button>
+                    )}
+                  </div>
+
+                  {/* services drop-down */}
                   {p.sub && (
-                    <ul className="mb-2 ml-3 grid gap-0.5 border-l-2 border-line pl-4">
-                      {servicePages.map((s) => (
-                        <li key={s.slug}>
-                          <Link
-                            to={`/services/${s.slug}`}
-                            className={`block rounded-lg px-3 py-1.5 text-[0.98rem] font-medium transition hover:text-brand ${
-                              pathname === `/services/${s.slug}` ? "text-brand" : "text-muted"
-                            }`}
-                          >
-                            {s.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
+                    <div
+                      inert={!subOpen}
+                      className={`grid transition-[grid-template-rows] duration-300 ${
+                        subOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <ul className="ml-3 grid gap-0.5 overflow-hidden border-l-2 border-line pl-4">
+                        {servicePages.map((s) => (
+                          <li key={s.slug}>
+                            <Link
+                              to={`/services/${s.slug}`}
+                              className={`block rounded-lg px-3 py-1.5 text-[0.98rem] font-medium transition hover:text-brand ${
+                                pathname === `/services/${s.slug}` ? "text-brand" : "text-muted"
+                              }`}
+                            >
+                              {s.title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   )}
                 </li>
               ))}
