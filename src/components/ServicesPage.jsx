@@ -7,7 +7,7 @@ import {
   SiPhp, SiLaravel, SiPython, SiDjango, SiOpenjdk, SiDotnet, SiGo, SiRuby, SiMysql, SiMongodb, SiFirebase,
 } from "react-icons/si";
 import { projects, servicePages, servicesStats, servicesTestimonials } from "../data";
-import { container, card, btn, gradBg, gradText, sectionPad, cardFx, iconFx, iconPop } from "../ui";
+import { container, card, btn, gradBg, gradText, sectionPad } from "../ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
 import FeaturedCard, { featured } from "./FeaturedCard";
@@ -98,6 +98,33 @@ export function ServicesHero() {
 }
 
 /* ---------- main services page: the four services, two per row ---------- */
+// Services overview: one wide card per service, picture side alternates left / right.
+// To use your own picture, save it in /public/services/ and write its path here (e.g. "/services/web.png").
+// Without a picture a clean placeholder is shown.
+const overviewExtras = {
+  web: { cta: "Explore Web Solutions", image: "/services/web.jpg" },
+  app: { cta: "Explore Mobile Solutions", image: "/services/app.jpg" },
+  marketing: { cta: "Grow Your Online Presence", image: "/services/marketing.jpg" },
+  branding: { cta: "Build Your Brand", image: "/services/branding.jpg" },
+  ai: { cta: "Automate Your Business", image: "/services/ai.jpg" },
+ hosting: { cta: "Explore Hosting Plans", image: "/services/hosting.jpg" },
+};
+
+function OverviewArt({ s, image }) {
+  if (image) {
+    return <img src={image} alt={s.title} loading="lazy" className="size-full object-contain mix-blend-multiply" />;
+  }
+  return (
+    <div aria-hidden="true" className="relative grid size-full min-h-[190px] place-items-center overflow-hidden rounded-[18px] bg-linear-to-br from-[#e3f4fc] via-[#bfe6f7] to-[#8fd3ee]">
+      <span className="absolute -left-8 -top-10 size-40 rounded-full bg-white/40" />
+      <span className="absolute -bottom-12 right-6 size-44 rounded-full bg-white/30" />
+      <span className="relative grid size-24 place-items-center rounded-[26px] bg-white text-brand shadow-[0_14px_34px_rgba(10,111,174,0.25)] [&_svg]:size-11">
+        <Icon name={s.icon} />
+      </span>
+    </div>
+  );
+}
+
 export function ServicesOverview() {
   return (
     <section id="services" className={sectionPad}>
@@ -108,31 +135,48 @@ export function ServicesOverview() {
           accent="Grow Online"
           text="End-to-end digital solutions for businesses that are ready to scale."
         />
-        <div className="grid gap-6 md:grid-cols-2">
-          {servicePages.map((s, i) => (
-            <Reveal key={s.slug} delay={(i % 2) * 120} className="h-full">
-              <article className={`${card} ${cardFx}`}>
-                <div className={`mb-[18px] grid size-[52px] place-items-center rounded-[14px] bg-sky-soft text-brand ${iconFx} ${iconPop}`}>
-                  <Icon name={s.icon} />
-                </div>
-                <h3 className="mb-2 text-[1.15rem] font-bold text-navy transition-colors duration-300 group-hover:text-brand">{s.title}</h3>
-                <p className="text-[0.95rem] text-muted">{s.text}</p>
-                <ul className="my-[18px] flex flex-wrap gap-2">
-                  {s.tags.map((t) => (
-                    <li key={t} className="rounded-full bg-sky-soft px-3 py-1 text-[0.78rem] font-semibold text-navy">
-                      {t}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to={`/services/${s.slug}`}
-                  className="inline-flex items-center gap-1.5 text-sm font-bold text-brand hover:text-navy"
+        <div className="flex flex-col gap-6">
+          {servicePages.map((s, i) => {
+            const x = overviewExtras[s.slug] || {};
+            return (
+              <Reveal key={s.slug} delay={80}>
+                <article
+                  className={`group flex flex-col gap-6 overflow-hidden rounded-[22px] border border-line bg-linear-to-br from-white to-sky-faint p-5 shadow-[0_8px_26px_rgba(7,48,90,0.06)] transition duration-300 hover:border-brand hover:shadow-[0_18px_44px_rgba(7,48,90,0.14)] sm:p-7 md:items-center md:gap-10 ${
+                    i % 2 ? "md:flex-row-reverse" : "md:flex-row"
+                  }`}
                 >
-                  Learn More <Icon name="arrow" size={16} />
-                </Link>
-              </article>
-            </Reveal>
-          ))}
+                  <div className="flex flex-1 gap-4 sm:gap-5">
+                    <span className="grid size-14 shrink-0 place-items-center rounded-[16px] bg-sky-soft text-brand transition group-hover:bg-brand group-hover:text-white sm:size-16">
+                      <Icon name={s.icon} />
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="text-[1.3rem] font-extrabold text-navy sm:text-[1.5rem]">{s.title}</h3>
+                      <p className="mt-2 max-w-[46ch] text-[0.95rem] text-muted">{s.text}</p>
+                      <ul className="my-5 flex flex-wrap gap-x-5 gap-y-2">
+                        {s.tags.map((t) => (
+                          <li key={t} className="inline-flex items-center gap-1.5 text-[0.82rem] font-semibold text-navy">
+                            <span className="text-brand">
+                              <Icon name="check" size={14} />
+                            </span>
+                            {t}
+                          </li>
+                        ))}
+                      </ul>
+                      <Link
+                        to={`/services/${s.slug}`}
+                        className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-navy to-aqua px-6 py-3 text-[0.9rem] font-bold text-white shadow-[0_8px_20px_rgba(10,111,174,0.3)] transition hover:-translate-y-0.5"
+                      >
+                        {x.cta || "Learn More"} <Icon name="arrow" size={16} />
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="h-[200px] w-full md:h-[230px] md:w-[44%] md:shrink-0">
+                    <OverviewArt s={s} image={x.image} />
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -217,11 +261,11 @@ export function Offerings({ service }) {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {service.offerings.map((o, i) => (
             <Reveal key={o.title} delay={(i % 3) * 110} className="h-full">
-              <article className={`${card} ${cardFx}`}>
-                <div className={`mb-[18px] grid size-12 place-items-center rounded-[14px] bg-sky-soft text-brand ${iconFx} ${iconPop}`}>
+              <article className={card}>
+                <div className="mb-[18px] grid size-12 place-items-center rounded-[14px] bg-sky-soft text-brand">
                   <Icon name={o.icon} size={22} />
                 </div>
-                <h3 className="mb-2 text-[1.12rem] font-bold text-navy transition-colors duration-300 group-hover:text-brand">{o.title}</h3>
+                <h3 className="mb-2 text-[1.12rem] font-bold text-navy">{o.title}</h3>
                 <p className="text-[0.93rem] text-muted">{o.text}</p>
               </article>
             </Reveal>
@@ -345,8 +389,7 @@ function CaseStudies({ service }) {
 function ProjectCard({ p, i }) {
   return (
     <Reveal from="zoom" delay={(i % 3) * 110} className="h-full">
-      <article className={`${cardFx} h-full overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]`}>
-        <h3 className="mb-1.5 text-[1.05rem] font-bold text-navy transition-colors duration-300 group-hover:text-brand">{p.title}</h3>
+      <article className="h-full overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]">
         <div
           aria-hidden="true"
           className="relative grid h-[190px] place-items-center bg-linear-to-br from-[#d6effa] via-[#8fd3ee] to-[#3aa7da]"
@@ -382,9 +425,9 @@ export function PortfolioPreview() {
           text="A small selection of the websites, apps and campaigns we have delivered."
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-         {featured(1).map((p, i) => (
-  <FeaturedCard key={`${p.cat}-${p.title}`} p={p} i={i} />
-))}
+          {featured(1).map((p, i) => (
+            <FeaturedCard key={`${p.cat}-${p.title}`} p={p} i={i} />
+          ))}
         </div>
         <div className="mt-10 text-center">
           <Link to={PORTFOLIO_LINK} className={btn("primary", true)}>
@@ -541,8 +584,7 @@ function ChatIcon() {
 function PackageCard({ p }) {
   const off = money(p.was) > money(p.price) ? Math.round((1 - money(p.price) / money(p.was)) * 100) : 0;
   return (
-    <article className={`${cardFx} flex h-full w-full flex-col rounded-[16px] border border-line bg-white p-5 shadow-[0_10px_30px_rgba(7,48,90,0.09)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.15)]`}>
-  <h3 className="text-[1.05rem] font-bold text-navy transition-colors duration-300 group-hover:text-brand">{p.name}</h3>
+    <article className="flex h-full w-full flex-col rounded-[16px] border border-line bg-white p-5 shadow-[0_10px_30px_rgba(7,48,90,0.09)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.15)]">
       <h3 className="text-[1.05rem] font-bold text-navy">{p.name}</h3>
 
       <div className="mt-2 flex items-center justify-between gap-2 border-b border-line pb-3.5">
@@ -576,7 +618,7 @@ function PackageCard({ p }) {
       <div className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-4">
         <Link
           to="/contact"
-          className="rounded-full border-2 border-brand px-4 py-1.5 text-[0.76rem] font-bold uppercase tracking-wide text-brand transition hover:bg-brand hover:text-white group-hover:bg-brand group-hover:text-white"
+          className="rounded-full border-2 border-brand px-4 py-1.5 text-[0.76rem] font-bold uppercase tracking-wide text-brand transition hover:bg-brand hover:text-white"
         >
           Order Now
         </Link>
@@ -592,22 +634,22 @@ function PackageCard({ p }) {
 /* ---------- inner page: "Custom Quote" block (replaces pricing when a service has no fixed packages) ---------- */
 function CustomQuote({ service, bare = false }) {
   const block = (
-    <Reveal>
-      <div className={`${gradBg} mx-auto max-w-[860px] rounded-[24px] px-6 py-12 text-center text-white shadow-[0_18px_45px_rgba(7,48,90,0.18)] sm:px-12`}>
-        <p className="mb-3 text-[0.8rem] font-bold uppercase tracking-[0.14em] text-white/80">Pricing</p>
-        <h2 className="text-[length:clamp(1.7rem,3.4vw,2.5rem)] font-extrabold leading-tight">
-          Every {service.short} Project Is Different
-        </h2>
-        <p className="mx-auto mt-4 max-w-[560px] text-white/85">
-          Tell us what you want to build and we will send a clear, fixed quote made for your idea, scope and timeline. No obligation.
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3.5">
-          <Link to="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-bold text-navy transition hover:-translate-y-0.5 hover:shadow-lg">
-            Get a Custom Quote <Icon name="arrow" size={16} />
-          </Link>
-        </div>
-      </div>
-    </Reveal>
+        <Reveal>
+          <div className={`${gradBg} mx-auto max-w-[860px] rounded-[24px] px-6 py-12 text-center text-white shadow-[0_18px_45px_rgba(7,48,90,0.18)] sm:px-12`}>
+            <p className="mb-3 text-[0.8rem] font-bold uppercase tracking-[0.14em] text-white/80">Pricing</p>
+            <h2 className="text-[length:clamp(1.7rem,3.4vw,2.5rem)] font-extrabold leading-tight">
+              Every {service.short} Project Is Different
+            </h2>
+            <p className="mx-auto mt-4 max-w-[560px] text-white/85">
+              Tell us what you want to build and we will send a clear, fixed quote made for your idea, scope and timeline. No obligation.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3.5">
+              <Link to="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-bold text-navy transition hover:-translate-y-0.5 hover:shadow-lg">
+                Get a Custom Quote <Icon name="arrow" size={16} />
+              </Link>
+            </div>
+          </div>
+        </Reveal>
   );
   if (bare) return block;
   return (
