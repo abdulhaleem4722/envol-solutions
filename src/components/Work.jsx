@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import FeaturedCard, { featured } from "./FeaturedCard";
 import { Link } from "react-router-dom";
 import { projectFilters, projects, testimonials } from "../data";
 import { container, card, gradBg, sectionPad } from "../ui";
@@ -9,29 +10,27 @@ import { SectionHead } from "./Sections";
 // How long each testimonial stays on screen before the next one slides in (milliseconds).
 const SLIDE_MS = 2000;
 
+const FILTERS = ["All", "Web", "App", "Logo"];
+
 export function Projects() {
   const [active, setActive] = useState("All");
-  const visible = projects.filter((p) => active === "All" || p.category === active);
+  const visible = featured(2).filter((p) => active === "All" || p.label === active);
 
   return (
     <section id="projects" className={`${sectionPad} bg-sky-faint`}>
       <div className={container}>
         <div className="relative">
           <SectionHead eyebrow="Our Work" title="Featured" accent="Projects" />
-       <Link
-  to="/portfolio"
-  className="-mt-6 mb-6 flex items-center justify-center gap-1.5 text-sm font-bold text-brand hover:text-navy md:absolute md:right-0 md:top-2 md:m-0"
->
-  View All Projects <Icon name="arrow" size={16} />
-</Link>
+          <Link
+            to="/portfolio"
+            className="-mt-6 mb-6 flex items-center justify-center gap-1.5 text-sm font-bold text-brand hover:text-navy md:absolute md:right-0 md:top-2 md:m-0"
+          >
+            View All Projects <Icon name="arrow" size={16} />
+          </Link>
         </div>
 
-        <Reveal
-          className="mb-8 flex flex-wrap justify-center gap-2.5"
-          role="tablist"
-          aria-label="Project categories"
-        >
-          {projectFilters.map((f) => (
+        <Reveal className="mb-8 flex flex-wrap justify-center gap-2.5" role="tablist" aria-label="Project categories">
+          {FILTERS.map((f) => (
             <button
               key={f}
               role="tab"
@@ -50,30 +49,13 @@ export function Projects() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((p, i) => (
-            <Reveal key={p.title} from="zoom" delay={(i % 3) * 110} className="h-full">
-              <article className="h-full overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]">
-                <div
-                  aria-hidden="true"
-                  className="relative grid h-[190px] place-items-center bg-linear-to-br from-[#d6effa] via-[#8fd3ee] to-[#3aa7da]"
-                >
-                  <img src="/logo.png" alt="" className="w-[70px] animate-float opacity-90" />
-                  <span className="absolute left-3.5 top-3.5 rounded-full bg-white px-3 py-[3px] text-[0.72rem] font-bold text-brand">
-                    {p.category}
-                  </span>
-                </div>
-                <div className="px-[22px] pb-6 pt-5">
-                  <h3 className="mb-1.5 text-[1.05rem] font-bold text-navy">{p.title}</h3>
-                  <p className="text-[0.9rem] text-muted">{p.text}</p>
-                </div>
-              </article>
-            </Reveal>
+            <FeaturedCard key={`${p.cat}-${p.title}`} p={p} i={i} />
           ))}
         </div>
       </div>
     </section>
   );
 }
-
 /* ---------- testimonials: one review at a time, changes by itself every SLIDE_MS ---------- */
 // Pauses while the mouse is over it (or a dot has keyboard focus). The dots below let people jump to a review.
 export function Testimonials() {

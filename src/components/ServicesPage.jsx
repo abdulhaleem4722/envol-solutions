@@ -10,6 +10,7 @@ import { projects, servicePages, servicesStats, servicesTestimonials } from "../
 import { container, card, btn, gradBg, gradText, sectionPad, cardFx, iconFx, iconPop } from "../ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
+import FeaturedCard, { featured } from "./FeaturedCard";
 import { SectionHead } from "./Sections";
 
 /* =====================================================================
@@ -381,9 +382,9 @@ export function PortfolioPreview() {
           text="A small selection of the websites, apps and campaigns we have delivered."
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.slice(0, PREVIEW_COUNT).map((p, i) => (
-            <ProjectCard key={p.title} p={p} i={i} />
-          ))}
+         {featured(1).map((p, i) => (
+  <FeaturedCard key={`${p.cat}-${p.title}`} p={p} i={i} />
+))}
         </div>
         <div className="mt-10 text-center">
           <Link to={PORTFOLIO_LINK} className={btn("primary", true)}>
