@@ -9,7 +9,8 @@ import ServiceDetail from "./pages/ServiceDetail";
 import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";  
 import Pricing from "./pages/Pricing";
-import CursorSpotlight from "./components/CursorSpotlight";
+import CursorSpotlight from "./components/CustomCursor";
+import CustomCursor from "./components/CustomCursor";
 // Scrolls to the top on a new page, or to the section when the link has a #hash.
 function ScrollManager() {
   const { pathname, hash } = useLocation();
@@ -29,7 +30,7 @@ function ScrollManager() {
 export default function App() {
   return (
     <>
-    <CursorSpotlight />
+    <CustomCursor />
       <Navbar />
       <ScrollManager />
       <main>

@@ -58,10 +58,22 @@ body {
   @apply bg-white font-sans leading-relaxed text-ink antialiased;
 }
 
-/* People who turn off animations in their system settings get a calm page */
-@media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation: none !important;
-    transition-duration: 0.01ms !important;
-  }
+/* click / focus / select par bhi site ke blue theme ke rang */
+:root {
+  -webkit-tap-highlight-color: rgba(10, 134, 200, 0.15);
+}
+
+::selection {
+  background: rgba(10, 134, 200, 0.25);
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid #0a86c8;
+  outline-offset: 3px;
+}
+
+/* mouse click par focus ring nahi, sirf keyboard (Tab) par */
+:focus:not(:focus-visible) {
+  outline: none;
 }

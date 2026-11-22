@@ -182,3 +182,8 @@
     border-right-color: var(--border);
   }
 }
+/* custom cursor chalne par asli arrow chhup jata hai */
+html.custom-cursor,
+html.custom-cursor * {
+  cursor: none !important;
+}
