@@ -8,7 +8,7 @@ import Reveal from "../components/Reveal";
 /* ---------- picture or branded placeholder ---------- */
 function Thumb({ item, className = "" }) {
   return item.image ? (
-    <img src={item.image} alt={item.title} loading="lazy" className={`size-full object-cover ${className}`} />
+    <img src={item.image} alt={item.title} loading="lazy" className={`size-full object-cover object-top ${className}`} />
   ) : (
     <div
       aria-hidden="true"
@@ -41,7 +41,7 @@ function Lightbox({ item, onClose }) {
       className="fixed inset-0 z-[100] grid place-items-center bg-navy-deep/80 p-4 backdrop-blur-sm"
     >
       <div onClick={(e) => e.stopPropagation()} className="w-full max-w-[860px] overflow-hidden rounded-[18px] bg-white shadow-2xl">
-        <div className="aspect-[4/3] max-h-[70vh] w-full">
+        <div className={`${item.url ? "aspect-video" : "aspect-[4/3]"} max-h-[70vh] w-full`}>
           <Thumb item={item} />
         </div>
         <div className="flex items-center justify-between gap-4 px-5 py-4">
@@ -145,7 +145,7 @@ function PortfolioTabs({ onOpen }) {
                   type="button"
                   onClick={() => onOpen(item)}
                   aria-label={`View ${item.title}`}
-                  className="group relative block aspect-[4/3] w-full overflow-hidden rounded-[8px]"
+                  className={`group relative block w-full overflow-hidden rounded-[8px] ${item.url ? "aspect-video" : "aspect-[4/3]"}`}
                 >
                   <Thumb item={item} className="transition duration-500 group-hover:scale-105" />
                   {!item.url && (
