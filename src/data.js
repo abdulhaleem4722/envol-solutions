@@ -42,103 +42,109 @@ export const techStack = [
 
 export const services = [
   {
+    slug: "web",
     icon: "globe",
     title: "Web Design & Development",
-    text: "Fast, responsive websites, online stores and landing pages designed to turn visitors into paying customers.",
-    tags: ["Custom Websites", "E-Commerce", "Landing Pages", "CMS Integration"],
+    text: "Custom websites, online stores and landing pages designed to build trust, attract visitors and turn them into paying customers.",
+    tags: ["Custom Websites", "E-Commerce", "Landing Pages"],
   },
   {
+    slug: "app",
     icon: "phone",
     title: "Mobile App Development",
-    text: "iOS and Android apps that feel smooth, scale with your users and are built around how people actually use them.",
-    tags: ["iOS Apps", "Android Apps", "Cross Platform", "UI/UX Design"],
+    text: "iOS and Android applications designed to deliver smooth experiences and help your business connect with customers.",
+    tags: ["iOS Apps", "Android Apps", "Cross-Platform"],
   },
   {
+    slug: "marketing",
     icon: "chart",
     title: "Digital Marketing & SEO",
-    text: "Search, paid and social campaigns driven by data, so your traffic and leads grow in a way you can measure.",
-    tags: ["SEO", "PPC Campaigns", "Social Media", "Content Strategy"],
+    text: "Data-driven marketing strategies that improve your online visibility, reach the right audience and generate quality leads.",
+    tags: ["SEO", "PPC Campaigns", "Social Media"],
   },
   {
+    slug: "branding",
     icon: "brush",
     title: "Branding & Graphic Design",
-    text: "Brand identities with a clear story and a consistent look across your website, packaging and print.",
-    tags: ["Logo Design", "Brand Identity", "Print Design", "Style Guides"],
+    text: "Build a distinctive brand identity that communicates your values, creates recognition and makes your business stand out.",
+    tags: ["Logo Design", "Brand Identity", "Print Design"],
   },
   {
+    slug: "ai",
     icon: "bolt",
     title: "AI Automation",
-    text: "AI chatbots, workflows and smart integrations that take repetitive work off your team and run around the clock.",
-    tags: ["AI Chatbots", "Workflow Automation", "Integrations", "Data Processing"],
+    text: "Automate repetitive tasks, streamline business workflows and connect intelligent tools to make your operations more efficient.",
+    tags: ["AI Chatbots", "Workflow Automation", "Integrations"],
   },
   {
+    slug: "hosting",
     icon: "shield",
-    title: "Hosting Services",
-    text: "Fast, secure and reliable hosting with daily backups and expert support, so your website is always online.",
-    tags: ["Web Hosting", "Cloud Servers", "SSL & Security", "24/7 Support"],
+    title: "Web Hosting",
+    text: "Fast, secure and reliable hosting solutions that keep your website online, accessible and running smoothly.",
+    tags: ["Web Hosting", "Cloud Servers", "SSL & Security"],
   },
 ];
 
 export const stats = [
-  { value: "XX+", label: "Projects Delivered" }, // PLACEHOLDER
-  { value: "XX+", label: "Happy Clients" }, // PLACEHOLDER
-  { value: "XX+", label: "Countries Served" }, // PLACEHOLDER
-  { value: "XX+", label: "Team Members" }, // PLACEHOLDER
+  { value: "1200+", label: "Projects Delivered" },
+  { value: "700+", label: "Businesses Supported" },
+  { value: "15+", label: "Industries Served" },
+  { value: "13+", label: "Years of Experience" },
 ];
 
 export const reasons = [
   {
+    icon: "search",
+    title: "Strategy Before Execution",
+    text: "We take time to understand your business, audience, and objectives before recommending the right digital approach.",
+  },
+  {
     icon: "globe",
-    title: "Global Team, Local Touch",
-    text: "Teams across time zones mean someone is always available to answer your questions.",
+    title: "Everything Under One Roof",
+    text: "From your first brand concept to a fully developed digital presence, access the expertise you need in one place.",
   },
   {
-    icon: "tag",
-    title: "Transparent Pricing",
-    text: "Clear packages and upfront quotes. You know what you are paying for before we start.",
-  },
-  {
-    icon: "bolt",
-    title: "Fast Delivery",
-    text: "A distributed team and a tight process let us ship in weeks, not months.",
-  },
-  {
-    icon: "shield",
-    title: "Quality Guaranteed",
-    text: "We keep refining until you are happy with the result. Your satisfaction is part of the deal.",
+    icon: "rocket",
+    title: "Solutions That Scale",
+    text: "We build with your future in mind, creating digital solutions that can adapt as your business expands and evolves.",
   },
   {
     icon: "users",
-    title: "Dedicated Team",
-    text: "One project manager and one team from kickoff to launch, not a rotating list of freelancers.",
+    title: "People Behind Every Project",
+    text: "Your project gets the attention of designers, developers, marketers, and specialists who bring different skills to the table.",
   },
   {
     icon: "headset",
-    title: "Ongoing Support",
-    text: "After launch we stay around with maintenance, updates and support plans.",
+    title: "Clear Project Communication",
+    text: "Stay informed throughout the journey with regular updates, direct communication, and a clear understanding of what's happening next.",
+  },
+  {
+    icon: "chart",
+    title: "Focused on Business Value",
+    text: "We look beyond attractive designs and technical features to create solutions that serve a real purpose for your business.",
   },
 ];
 
 export const steps = [
   {
-    icon: "search",
-    title: "Discovery",
-    text: "We learn your business, goals, audience and competitors, then agree on a clear plan.",
+    icon: "headset",
+    title: "Let's Talk",
+    text: "Share your goals, requirements, and ideas so we understand your vision.",
   },
   {
     icon: "pen",
-    title: "Design",
-    text: "Our designers turn the plan into mockups and prototypes you can review and refine.",
+    title: "Shape the Strategy",
+    text: "We plan the project, define priorities, and establish the right direction.",
   },
   {
     icon: "code",
-    title: "Develop",
-    text: "Engineers build the product with clean code and test it thoroughly before release.",
+    title: "Bring It to Life",
+    text: "Our team develops your solution with attention to design, functionality, and quality.",
   },
   {
     icon: "rocket",
-    title: "Launch",
-    text: "We go live, monitor performance and keep improving so the results last.",
+    title: "Go Live & Grow",
+    text: "We launch your project and help you move forward with continued support.",
   },
 ];
 
@@ -284,23 +290,22 @@ export const budgetOptions = [
 
 // ---------- Home page story section (PLACEHOLDER copy: replace with the client's own wording) ----------
 export const pitch = {
-  heading: "Why is getting a good website so complicated?",
-  bubble: "Your cousin says he knows a guy who builds sites cheap.",
+  heading: "Why Does Getting the Right Digital Support Feel So Complicated?",
+  bubble: "Your cousin says he knows someone who can do it for half the price.",
   bubbleTime: "8:21",
-  userMessage: "Your friend says why not just do it yourself with a template?",
-  reply: "Goood luck with that",
+  userMessage: "Your friend says, why not just use a template and do it yourself?",
+  reply: "Good luck managing all of that while running your business.",
   replyTime: "Just now",
   slideTitle: "Agency proposal",
   slide: [
-    "The last time you hired an agency, you got a 40-page proposal and three different contacts.",
-    "Suddenly you're managing a project on top of running your business.",
+    "The last agency sent you a 40-page proposal, three different contacts, and no clear idea of what you'd actually get.",
   ],
-  note: ["And the worst part is, you never know what you're getting until the very end."],
+  note: ["And the worst part? You're still not sure whether any of it will actually help your business grow."],
   solutionHeading: "That's where we come in.",
   paragraphs: [
-    "We design and develop websites that look great, load fast and make your brand feel alive the second someone lands on it.",
-    "We handle it all in one place: strategy, design, development, launch and ongoing support, so you can focus on running your business.",
-    "Your website will feel clear, be built right and stay easy to maintain once it is live.",
+    "You get one team for all your digital needs, from websites and mobile apps to branding, marketing, and AI automation.",
+    "No juggling multiple providers or managing complicated projects. We bring strategy, creativity, and technology together under one roof.",
+    "From the first conversation to the final delivery, we keep things clear, work around your business goals, and focus on solutions that move your business forward.",
   ],
 };
 

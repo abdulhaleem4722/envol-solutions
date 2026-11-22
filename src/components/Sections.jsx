@@ -3,6 +3,7 @@ import { services, stats, reasons, steps } from "../data";
 import { container, card, cardFx, iconFx, iconPop, gradBg, gradText, sectionPad } from "../ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
+import { Link } from "react-router-dom";
 
 export function SectionHead({ eyebrow, title, accent, text }) {
   return (
@@ -47,12 +48,12 @@ export function Services() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href="#contact"
+                <Link
+                  to={`/services/${s.slug}`}
                   className="inline-flex items-center gap-1.5 text-sm font-bold text-brand hover:text-navy"
                 >
                   Learn More <Icon name="arrow" size={16} />
-                </a>
+                </Link>
               </article>
             </Reveal>
           ))}
@@ -86,10 +87,10 @@ export function WhyUs() {
     <section id="why" className={`${sectionPad} bg-sky-faint`}>
       <div className={container}>
         <SectionHead
-          eyebrow="Why Choose Us"
-          title="Why"
-          accent="Envol Solutions?"
-          text="We are not just another agency. Here is what sets us apart."
+          eyebrow="What Makes Us Different"
+          title="Built Around Your Business."
+          accent="Driven by Results."
+          text="Great digital experiences start with the right people, the right strategy, and a clear understanding of where your business wants to go."
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {reasons.map((r, i) => (
@@ -138,10 +139,10 @@ export function Process() {
     <section className={sectionPad}>
       <div className={container}>
         <SectionHead
-          eyebrow="Our Process"
-          title="How It"
-          accent="Works"
-          text="A simple 4-step process that turns your idea into a product that earns."
+          eyebrow="From Idea to Impact"
+          title="Your Vision,"
+          accent="Our Execution."
+          text="Every successful project starts with an idea. Here's how we turn yours into something real."
         />
         <div ref={ref} className="relative">
           {/* line: left se right bharti hai */}
@@ -150,9 +151,8 @@ export function Process() {
             className="absolute left-[12.5%] right-[12.5%] top-9 hidden h-0.5 overflow-hidden rounded bg-line lg:block"
           >
             <div
-              className={`h-full origin-left bg-linear-to-r from-navy via-brand to-aqua transition-transform duration-[2400ms] ease-out ${
-                on ? "scale-x-100" : "scale-x-0"
-              }`}
+              className={`h-full origin-left bg-linear-to-r from-navy via-brand to-aqua transition-transform duration-[2400ms] ease-out ${on ? "scale-x-100" : "scale-x-0"
+                }`}
             />
           </div>
 
@@ -161,9 +161,8 @@ export function Process() {
               <Reveal as="li" key={s.title} delay={i * 140} className="text-center">
                 {/* icon: line jab pohanchti hai tab roshan hota hai, hilta nahi */}
                 <div
-                  className={`relative z-10 mx-auto mb-[18px] grid size-[72px] place-items-center rounded-full border-2 bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition-colors duration-500 ${
-                    on ? "border-aqua text-brand" : "border-line text-muted"
-                  }`}
+                  className={`relative z-10 mx-auto mb-[18px] grid size-[72px] place-items-center rounded-full border-2 bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition-colors duration-500 ${on ? "border-aqua text-brand" : "border-line text-muted"
+                    }`}
                   style={{ transitionDelay: on ? `${i * 800}ms` : "0ms" }}
                 >
                   <Icon name={s.icon} size={26} />

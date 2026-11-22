@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { btn, gradText } from "../ui";
 import Orbit from "./Orbit";
+import { Link } from "react-router-dom";
 
 /* How long the banner stays pinned while the visitor scrolls (in screen heights).
    Bigger number = slower, longer animation. */
@@ -8,8 +9,8 @@ const PIN_VH = 10;
 
 const clamp = (n, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, n));
 
-const lead = ["We", "Build", "Digital", "Products", "That"];
-const accent = "Drive Revenue";
+const lead = ["Digital", "Solutions", "That", "Turn", "Visitors"];
+const accent = "Into Customers";
 // first letter number of each word, so the letters animate one after another across the whole heading
 const charOffset = [...lead, accent].map((_, i, all) => all.slice(0, i).reduce((n, w) => n + w.length + 1, 0));
 
@@ -31,7 +32,7 @@ export default function Hero() {
     const decide = () => {
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const need = grid.current ? grid.current.offsetHeight + 160 : Infinity;
-     const next = false; // no pinning: next section scrolls in right away
+      const next = false; // no pinning: next section scrolls in right away
       pinRef.current = next;
       setPin(next);
     };
@@ -133,9 +134,8 @@ export default function Hero() {
       style={{ "--pin": `${PIN_VH}vh` }}
     >
       <div
-        className={`relative flex flex-col justify-center overflow-hidden bg-[linear-gradient(to_bottom,#bfe8f8_0%,#d3effb_80%,#ffffff_100%)] pb-[60px] pt-[90px] sm:pt-[98px] ${
-          pin ? "sticky top-0 min-h-screen" : ""
-        }`}
+        className={`relative flex flex-col justify-center overflow-hidden bg-[linear-gradient(to_bottom,#bfe8f8_0%,#d3effb_80%,#ffffff_100%)] pb-[60px] pt-[90px] sm:pt-[98px] ${pin ? "sticky top-0 min-h-screen" : ""
+          }`}
       >
         <div
           aria-hidden="true"
@@ -156,7 +156,7 @@ export default function Hero() {
           <div className="text-center lg:text-left">
             <div ref={pill} className="will-change-transform">
               <span className="mb-5 inline-block animate-fade-up rounded-full border border-line bg-white px-4 py-1.5 text-[0.82rem] font-semibold text-brand">
-                Global Digital Agency
+                Your Partner in Digital Growth
               </span>
             </div>
             <style>{`
@@ -205,17 +205,17 @@ export default function Hero() {
 
             <div ref={sub} className="will-change-transform">
               <p className="mx-auto mt-[22px] max-w-[620px] animate-fade-up text-[1.12rem] text-muted [animation-delay:240ms] lg:mx-0">
-                From websites and mobile apps to data-driven marketing, we help
-                businesses grow with digital solutions that turn visitors into
-                customers.
+                From high-performing websites and mobile apps to branding,
+                digital marketing, and AI automation, we help businesses attract
+                the right audience, generate more leads, and work smarter.
               </p>
               <div className="mt-8 flex animate-fade-up flex-wrap justify-center gap-3.5 [animation-delay:360ms] lg:justify-start">
-                <a href="#contact" className={btn("primary", true)}>
-                  Book a Free Strategy Call
-                </a>
-                <a href="#projects" className={btn("ghost", true)}>
+                <Link to="/services" className={btn("primary", true)}>
+                  Explore Our Services
+                </Link>
+                <Link to="/portfolio" className={btn("ghost", true)}>
                   See Our Work
-                </a>
+                </Link>
               </div>
             </div>
           </div>
