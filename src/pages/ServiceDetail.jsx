@@ -3,6 +3,8 @@ import { Navigate, useParams } from "react-router-dom";
 import { servicePages } from "../data";
 import { ServiceHero, Offerings, ServicePortfolio, Packages } from "../components/ServicesPage";
 import { Cta } from "../components/Contact";
+import { Faq } from "../components/Faq";
+import { serviceFaqs } from "../faqData";
 
 export default function ServiceDetail() {
   const { slug } = useParams();
@@ -12,6 +14,7 @@ export default function ServiceDetail() {
 
   const hideCta = ["app", "ai"].includes(slug); // in pages par pricing ke neeche CTA nahi
   const hidePortfolio = slug === "hosting";     // hosting par Our Work nahi
+  const faq = serviceFaqs[slug];
 
   return (
     <Fragment key={slug}>
@@ -19,7 +22,8 @@ export default function ServiceDetail() {
       <Offerings service={service} />
       {!hidePortfolio && <ServicePortfolio service={service} />}
       <Packages service={service} />
-             {!hideCta &&
+      {faq && <Faq {...faq} tone="faint" />}
+      {!hideCta &&
         (slug === "web" ? (
           <Cta
             eyebrow="Ready to build your online presence?"

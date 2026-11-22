@@ -5,6 +5,8 @@ import {
   PortfolioPreview,
   TestimonialsGrid,
 } from "../components/ServicesPage";
+import { Faq } from "../components/Faq";
+import { servicesFaq } from "../faqData";
 import { Cta } from "../components/Contact";
 
 export default function Services() {
@@ -15,6 +17,7 @@ export default function Services() {
       <TechStack />
       <PortfolioPreview />
       <TestimonialsGrid />
+      <Faq {...servicesFaq} tone="white" />
       <Cta />
     </>
   );
