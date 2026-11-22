@@ -891,7 +891,12 @@ export const portfolioCategories = [
 { sub: "E-Commerce", title: "Casp Baby", url: "https://www.caspbaby.com/", image: "/portfolio/web-casp-baby.png" },
 { sub: "E-Commerce", title: "Gather Goods Co", url: "https://shop.gathergoodsco.com/", image: "/portfolio/web-gather-goods-co.png" },
 { sub: "E-Commerce", title: "Glowing Ghouls", url: "https://glowingghouls.com/", image: "/portfolio/web-glowing-ghouls.png" },
-      ...ph("Web Portal", 3, SITE),
+    { sub: "Web Portal", title: "Delkap", url: "https://www.delkap.com/", image: "/portfolio/web-delkap.png" },
+{ sub: "Web Portal", title: "Duckett Law LLC", url: "https://www.duckettlawllc.com/", image: "/portfolio/web-duckett-law.png" },
+{ sub: "Web Portal", title: "SBLR", url: "https://sblr.ca/", image: "/portfolio/web-sblr.png" },
+{ sub: "Web Portal", title: "Paley Prehn", url: "https://paleyprehn.com/", image: "/portfolio/web-paley-prehn.png" },
+{ sub: "Web Portal", title: "2Inova", url: "https://2inova.com/", image: "/portfolio/web-2inova.png" },
+{ sub: "Web Portal", title: "Fauna Accounting", url: "https://faunaaccounting.com/", image: "/portfolio/web-fauna-accounting.png" },
     ],
   },
   {
