@@ -100,7 +100,7 @@ export default function CustomCursor() {
         ref={dot}
         aria-hidden="true"
         className="pointer-events-none fixed left-0 top-0 z-[200] rounded-full opacity-0 transition-opacity duration-300 will-change-transform"
-        style={{ width: DOT, height: DOT, background: COLOR }}
+        style={{ width: DOT, height: DOT, background: "#07305a" }}
       />
     </>
   );
