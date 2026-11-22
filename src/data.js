@@ -333,7 +333,7 @@ export const servicePages = [
     hero: { title: "Websites That", accent: "Turn Visitors Into Customers" },
     text: "Custom websites, online stores and landing pages designed to look sharp, load fast and convert visitors into paying customers.",
     intro:
-      "Your website is your hardest-working salesperson. We design and build fast, mobile-first websites that explain what you do in seconds and make it easy for people to contact or buy from you.",
+      "Your website is your hardest-working salesperson. We design and develop fast, responsive and conversion-focused websites that showcase your business, build trust and make it easy for customers to take action. ",
     tags: ["Custom Websites", "E-Commerce", "Landing Pages", "CMS Integration"],
     highlights: [
       "Mobile-first, responsive layouts",
@@ -342,17 +342,17 @@ export const servicePages = [
       "Easy-to-edit CMS, no developer needed",
     ],
     offerings: [
-      { icon: "code", title: "Custom Websites", text: "Hand-built websites made around your brand and goals, not a recycled template." },
-      { icon: "tag", title: "E-Commerce Stores", text: "Shopify and custom stores with product pages, secure payments and order tracking." },
-      { icon: "rocket", title: "Landing Pages", text: "Focused single pages built to turn ad and email traffic into leads and sales." },
-      { icon: "pen", title: "CMS Integration", text: "WordPress and headless CMS setups so your team can update content on its own." },
-      { icon: "bolt", title: "Speed & Performance", text: "Optimised images, lean code and caching so pages open quickly on any device." },
-      { icon: "phone", title: "Responsive Design", text: "Every page looks and works well on phones, tablets and desktops." },
+      { icon: "code", title: "Custom Websites", text: "Unique websites designed around your brand, business goals and target audience, built to make a lasting impression." },
+      { icon: "tag", title: "E-Commerce Stores", text: "Powerful online stores with product management, secure payment integration and a seamless shopping experience. " },
+      { icon: "rocket", title: "Landing Pages", text: "High-converting landing pages designed to capture leads, promote your offers and turn advertising traffic into customers." },
+      { icon: "pen", title: "CMS Integration", text: "Easy-to-manage WordPress and headless CMS solutions that let you update website content without technical expertise. " },
+      { icon: "bolt", title: "Speed & Performance", text: "Optimized images, clean code and performance enhancements that deliver faster loading times and smoother browsing." },
+      { icon: "phone", title: "Responsive Design", text: "Seamless experiences across smartphones, tablets and desktops, ensuring your website looks great on every screen." },
     ],
     portfolio: [
-      { category: "Web", title: "Bassett Electrical", text: "Business website design and development.", image: "/portfolio/web-bassett-electrical.png", url: "https://bassett-electrical.com/" },
-      { category: "Web", title: "Prestige Roofing", text: "Business website design and development.", image: "/portfolio/web-prestige-roofing.png", url: "https://prestigeroofingllc.com/" },
-      { category: "Web", title: "AF Architect", text: "Business website design and development.", image: "/portfolio/web-af-architect.png", url: "https://af-architect.com/" },
+      { category: "Web", title: "Bassett Electrical", text: "Professional business website designed to showcase electrical services, establish credibility and generate customer inquiries. ", image: "/portfolio/web-bassett-electrical.png", url: "https://bassett-electrical.com/" },
+      { category: "Web", title: "Prestige Roofing", text: "A modern roofing business website focused on presenting services, building customer trust and generating qualified leads. ", image: "/portfolio/web-prestige-roofing.png", url: "https://prestigeroofingllc.com/" },
+      { category: "Web", title: "AF Architect", text: "A refined architecture website showcasing projects, design expertise and professional services through a clean visual experience. ", image: "/portfolio/web-af-architect.png", url: "https://af-architect.com/" },
     ],
     packageGroups: [
       {

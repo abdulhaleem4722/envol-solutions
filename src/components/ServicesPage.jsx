@@ -251,12 +251,12 @@ export function Offerings({ service }) {
   return (
     <section className={sectionPad}>
       <div className={container}>
-        <SectionHead
-          eyebrow="What You Get"
-          title={`What's Included in Our ${service.short}`}
-          accent="Service"
-          text={service.text}
-        />
+   <SectionHead
+  eyebrow="What You Get"
+  title="Everything Your Business Needs to Succeed"
+  accent="Online"
+  text={service.text}
+/>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {service.offerings.map((o, i) => (
             <Reveal key={o.title} delay={(i % 3) * 110} className="h-full">
@@ -281,7 +281,11 @@ export function ServicePortfolio({ service }) {
   return (
     <section className={`${sectionPad} bg-sky-faint`}>
       <div className={container}>
-        <SectionHead eyebrow="Our Work" title={`Recent ${service.short}`} accent="Projects" />
+       <SectionHead
+  eyebrow="Our Work"
+  title={service.slug === "web" ? "Websites We've Built for Growing" : `Recent ${service.short}`}
+  accent={service.slug === "web" ? "Businesses" : "Projects"}
+/>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {service.portfolio.map((p, i) => (
             <ProjectCard key={p.title} p={p} i={i} />
@@ -726,12 +730,12 @@ export function Packages({ service }) {
   return (
     <section id="packages" className={sectionPad}>
       <div className={container}>
-        <SectionHead
-          eyebrow="Pricing"
-          title="Affordable Packages For"
-          accent="Every Business"
-          text={`Clear ${service.short.toLowerCase()} packages with upfront pricing, so you know what you are paying for before we start.`}
-        />
+      <SectionHead
+  eyebrow="Pricing"
+  title="Affordable Packages For"
+  accent="Every Business"
+  text="Choose a website package that fits your goals and budget. Transparent pricing, clearly defined features and professional delivery, with no unnecessary surprises."
+/>
         <PackageGrid service={service} />
       </div>
     </section>
