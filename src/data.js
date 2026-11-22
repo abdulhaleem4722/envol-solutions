@@ -875,7 +875,17 @@ export const portfolioCategories = [
       { sub: "Business", title: "Wellnest London", url: "https://wellnest.london/", image: "/portfolio/web-wellnest-london.png" },
       { sub: "Business", title: "Clinique L'Arrivée", url: "https://cliniquelarrivee.com/", image: "/portfolio/web-clinique-larrivee.png" },
       { sub: "Business", title: "Colorado Electric Corp", url: "https://coloradoelectriccorp.com/", image: "/portfolio/web-colorado-electric-corp.png" },
-      ...ph("E-Commerce", 3, SITE),
+      
+
+      { sub: "E-Commerce", title: "Cocoroo Body", url: "https://cocoroobody.com/", image: "/portfolio/web-cocoroo-body.png" },
+{ sub: "E-Commerce", title: "Hot Time Sauces", url: "https://hottimesauces.com/", image: "/portfolio/web-hot-time-sauces.png" },
+{ sub: "E-Commerce", title: "That's My Style Boutique", url: "https://thatsmystyleboutique.com/", image: "/portfolio/web-thats-my-style-boutique.png" },
+{ sub: "E-Commerce", title: "Aussie Shop Online", url: "https://www.aussieshoponline.com.au/", image: "/portfolio/web-aussie-shop-online.png" },
+{ sub: "E-Commerce", title: "Elms Store", url: "https://elmsstore.com.au/", image: "/portfolio/web-elms-store.png" },
+{ sub: "E-Commerce", title: "Birkenstock", url: "https://www.birkenstock.com/", image: "/portfolio/web-birkenstock.png" },
+{ sub: "E-Commerce", title: "Casp Baby", url: "https://www.caspbaby.com/", image: "/portfolio/web-casp-baby.png" },
+{ sub: "E-Commerce", title: "Gather Goods Co", url: "https://shop.gathergoodsco.com/", image: "/portfolio/web-gather-goods-co.png" },
+{ sub: "E-Commerce", title: "Glowing Ghouls", url: "https://glowingghouls.com/", image: "/portfolio/web-glowing-ghouls.png" },
       ...ph("Web Portal", 3, SITE),
     ],
   },
