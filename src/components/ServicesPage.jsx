@@ -248,15 +248,23 @@ export function ServiceHero({ service }) {
 
 /* ---------- inner page: what is included ---------- */
 export function Offerings({ service }) {
+  // Heading of the "What You Get" section for each service: [title, blue word]
+   const offeringHeads = {
+    app: ["Everything You Need to Build a Powerful", "Mobile App"],
+    marketing: ["Everything You Need to Grow Your Business", "Online"],
+    branding: ["Everything You Need to Build a Memorable", "Brand"],
+  };
+  const [offerTitle, offerAccent] = offeringHeads[service.slug] || ["Everything Your Business Needs to Succeed", "Online"];
+
   return (
     <section className={sectionPad}>
       <div className={container}>
-   <SectionHead
-  eyebrow="What You Get"
-  title="Everything Your Business Needs to Succeed"
-  accent="Online"
-  text={service.text}
-/>
+        <SectionHead
+          eyebrow="What You Get"
+          title={offerTitle}
+          accent={offerAccent}
+          text={service.text}
+        />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {service.offerings.map((o, i) => (
             <Reveal key={o.title} delay={(i % 3) * 110} className="h-full">
@@ -281,10 +289,16 @@ export function ServicePortfolio({ service }) {
   return (
     <section className={`${sectionPad} bg-sky-faint`}>
       <div className={container}>
-       <SectionHead
+  <SectionHead
   eyebrow="Our Work"
-  title={service.slug === "web" ? "Websites We've Built for Growing" : `Recent ${service.short}`}
-  accent={service.slug === "web" ? "Businesses" : "Projects"}
+  title={
+    service.slug === "web"
+      ? "Websites We've Built for Growing"
+      : service.slug === "app"
+        ? "Mobile Apps Built Around"
+        : `Recent ${service.short}`
+  }
+  accent={service.slug === "web" ? "Businesses" : service.slug === "app" ? "Real-World Needs" : "Projects"}
 />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {service.portfolio.map((p, i) => (
