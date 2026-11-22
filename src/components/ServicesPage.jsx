@@ -505,15 +505,7 @@ function TechPill({ name, Logo }) {
 
 export function TechStack() {
   return (
-    <section className={`${gradBg} py-14`}>
-      <div className="mb-8 px-6 text-center">
-        <span className="mb-2.5 inline-block text-xs font-bold uppercase tracking-[0.16em] text-white/80">
-          We specialize in
-        </span>
-        <h2 className="text-[length:clamp(1.5rem,3vw,2.1rem)] font-bold leading-tight tracking-tight text-white">
-          Websites, Mobile Apps and Every Major Language
-        </h2>
-      </div>
+        <section className={`${gradBg} py-8`}>
       <div className="grid gap-4">
         <Marquee duration={50} repeat={2} gap="gap-4">
           {platforms.map(([name, Logo]) => (

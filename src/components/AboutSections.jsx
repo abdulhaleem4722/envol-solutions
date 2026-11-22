@@ -62,21 +62,20 @@ export function Story() {
 
         <hr className="my-12 border-line" />
 
-        <Reveal className="grid items-center gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
-          {/* big year + uski story */}
+        <Reveal className="grid items-start gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
+          {/* heading sits level with the first year (2013); only the story text changes */}
           <div className="text-center lg:text-left">
-            <p className="mb-2 text-[0.8rem] font-bold uppercase tracking-[0.16em] text-brand">
-              Our Achievements
+            <h3 className="text-[length:clamp(1.9rem,4vw,2.9rem)] font-extrabold leading-[1.05] tracking-tight">
+              <span className={gradText}>Our Achievements</span>
+            </h3>
+            <div className="mx-auto mt-4 h-1 w-24 rounded bg-linear-to-r from-brand to-aqua lg:mx-0" />
+            <p
+              key={timeline[active].year}
+              aria-live="polite"
+              className="animate-fade-up mx-auto mt-6 min-h-[5.5rem] max-w-[480px] text-[1.1rem] leading-relaxed text-ink lg:mx-0"
+            >
+              {timeline[active].text}
             </p>
-            <div key={timeline[active].year} aria-live="polite" className="animate-fade-up">
-              <div className={`${gradText} text-[length:clamp(4.5rem,11vw,9.5rem)] font-extrabold leading-none tracking-tight`}>
-                {timeline[active].year}
-              </div>
-              <div className="mx-auto mt-4 h-1 w-24 rounded bg-linear-to-r from-brand to-aqua lg:mx-0" />
-              <p className="mx-auto mt-6 min-h-[5.5rem] max-w-[480px] text-[1.1rem] leading-relaxed text-ink lg:mx-0">
-                {timeline[active].text}
-              </p>
-            </div>
           </div>
 
           {/* year list */}
