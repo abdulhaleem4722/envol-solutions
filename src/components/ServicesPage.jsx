@@ -7,7 +7,7 @@ import {
   SiPhp, SiLaravel, SiPython, SiDjango, SiOpenjdk, SiDotnet, SiGo, SiRuby, SiMysql, SiMongodb, SiFirebase,
 } from "react-icons/si";
 import { projects, servicePages, servicesStats, servicesTestimonials } from "../data";
-import { container, card, btn, gradBg, gradText, sectionPad } from "../ui";
+import { container, card, cardFx, iconFx, iconPop, btn, gradBg, gradText, sectionPad } from "../ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
 import FeaturedCard, { featured } from "./FeaturedCard";
@@ -107,7 +107,7 @@ const overviewExtras = {
   marketing: { cta: "Grow Your Online Presence", image: "/services/marketing.jpg" },
   branding: { cta: "Build Your Brand", image: "/services/branding.jpg" },
   ai: { cta: "Automate Your Business", image: "/services/ai.jpg" },
- hosting: { cta: "Explore Hosting Plans", image: "/services/hosting.jpg" },
+  hosting: { cta: "Explore Hosting Plans", image: "/services/hosting.jpg" },
 };
 
 function OverviewArt({ s, image }) {
@@ -141,12 +141,11 @@ export function ServicesOverview() {
             return (
               <Reveal key={s.slug} delay={80}>
                 <article
-                  className={`group flex flex-col gap-6 overflow-hidden rounded-[22px] border border-line bg-linear-to-br from-white to-sky-faint p-5 shadow-[0_8px_26px_rgba(7,48,90,0.06)] transition duration-300 hover:border-brand hover:shadow-[0_18px_44px_rgba(7,48,90,0.14)] sm:p-7 md:items-center md:gap-10 ${
-                    i % 2 ? "md:flex-row-reverse" : "md:flex-row"
-                  }`}
+                  className={`group flex flex-col gap-6 overflow-hidden rounded-[22px] border border-line bg-linear-to-br from-white to-sky-faint p-5 shadow-[0_8px_26px_rgba(7,48,90,0.06)] transition duration-300 hover:border-brand hover:shadow-[0_18px_44px_rgba(7,48,90,0.14)] sm:p-7 md:items-center md:gap-10 ${i % 2 ? "md:flex-row-reverse" : "md:flex-row"
+                    }`}
                 >
                   <div className="flex flex-1 gap-4 sm:gap-5">
-                    <span className="grid size-14 shrink-0 place-items-center rounded-[16px] bg-sky-soft text-brand transition group-hover:bg-brand group-hover:text-white sm:size-16">
+                    <span className="grid size-14 shrink-0 place-items-center rounded-[16px] bg-sky-soft text-brand transition group-hover:animate-float group-hover:bg-brand group-hover:text-white sm:size-16">
                       <Icon name={s.icon} />
                     </span>
                     <div className="min-w-0">
@@ -261,8 +260,8 @@ export function Offerings({ service }) {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {service.offerings.map((o, i) => (
             <Reveal key={o.title} delay={(i % 3) * 110} className="h-full">
-              <article className={card}>
-                <div className="mb-[18px] grid size-12 place-items-center rounded-[14px] bg-sky-soft text-brand">
+              <article className={`${card} ${cardFx}`}>
+                <div className={`mb-[18px] grid size-12 place-items-center rounded-[14px] bg-sky-soft text-brand ${iconFx} ${iconPop}`}>
                   <Icon name={o.icon} size={22} />
                 </div>
                 <h3 className="mb-2 text-[1.12rem] font-bold text-navy">{o.title}</h3>
@@ -390,11 +389,14 @@ function ProjectCard({ p, i }) {
   return (
     <Reveal from="zoom" delay={(i % 3) * 110} className="h-full">
       <article className="h-full overflow-hidden rounded-[18px] border border-line bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.14)]">
-        <div
-          aria-hidden="true"
-          className="relative grid h-[190px] place-items-center bg-linear-to-br from-[#d6effa] via-[#8fd3ee] to-[#3aa7da]"
-        >
-          <img src="/logo.png" alt="" className="w-[70px] animate-float opacity-90" />
+        <div className="relative h-[190px] overflow-hidden bg-linear-to-br from-[#d6effa] via-[#8fd3ee] to-[#3aa7da]">
+          {p.image ? (
+            <img src={p.image} alt={p.title} loading="lazy" className="size-full object-cover object-top" />
+          ) : (
+            <div aria-hidden="true" className="grid size-full place-items-center">
+              <img src="/logo.png" alt="" className="w-[70px] opacity-90" />
+            </div>
+          )}
           <span className="absolute left-3.5 top-3.5 rounded-full bg-white px-3 py-[3px] text-[0.72rem] font-bold text-brand">
             {p.category}
           </span>
@@ -402,6 +404,16 @@ function ProjectCard({ p, i }) {
         <div className="px-[22px] pb-6 pt-5">
           <h3 className="mb-1.5 text-[1.05rem] font-bold text-navy">{p.title}</h3>
           <p className="text-[0.9rem] text-muted">{p.text}</p>
+          {p.url && (
+            <a
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand hover:text-navy"
+            >
+              Visit Website <Icon name="arrow" size={14} />
+            </a>
+          )}
         </div>
       </article>
     </Reveal>
@@ -484,8 +496,8 @@ const languages = [
 
 function TechPill({ name, Logo }) {
   return (
-    <div className="flex shrink-0 items-center gap-3 rounded-2xl border border-line bg-sky-faint px-5 py-3.5 text-navy transition-colors duration-300 hover:border-brand hover:bg-white">
-      <Logo className="size-6 text-brand" aria-hidden="true" />
+    <div className="flex shrink-0 items-center gap-3 rounded-2xl border border-white/25 bg-white/10 px-5 py-3.5 text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/20">
+      <Logo className="size-6 text-white" aria-hidden="true" />
       <span className="text-[0.92rem] font-semibold">{name}</span>
     </div>
   );
@@ -493,13 +505,13 @@ function TechPill({ name, Logo }) {
 
 export function TechStack() {
   return (
-    <section className="border-y border-line bg-white py-12">
+    <section className={`${gradBg} py-14`}>
       <div className="mb-8 px-6 text-center">
-        <span className="mb-2.5 inline-block text-xs font-bold uppercase tracking-[0.16em] text-brand">
+        <span className="mb-2.5 inline-block text-xs font-bold uppercase tracking-[0.16em] text-white/80">
           We specialize in
         </span>
-        <h2 className="text-[length:clamp(1.5rem,3vw,2.1rem)] font-bold leading-tight tracking-tight text-navy">
-          Websites, Mobile Apps and <span className={gradText}>Every Major Language</span>
+        <h2 className="text-[length:clamp(1.5rem,3vw,2.1rem)] font-bold leading-tight tracking-tight text-white">
+          Websites, Mobile Apps and Every Major Language
         </h2>
       </div>
       <div className="grid gap-4">
@@ -568,7 +580,7 @@ export function TestimonialsGrid() {
 
 /* ---------- inner page: pricing packages (compact cards, all visible; long feature lists scroll inside the card) ---------- */
 // Services without fixed packages (Mobile App) show a "Custom Quote" block instead of pricing.
-const isQuote = (service) => service.customQuote || service.slug === "app" || !service.packages?.length;
+const isQuote = (service) => service.customQuote || service.slug === "app" || !(service.packageGroups?.length || service.packages?.length);
 const money = (v) => parseFloat(String(v ?? "").replace(/[^0-9.]/g, "")) || 0;
 
 function ChatIcon() {
@@ -634,22 +646,22 @@ function PackageCard({ p }) {
 /* ---------- inner page: "Custom Quote" block (replaces pricing when a service has no fixed packages) ---------- */
 function CustomQuote({ service, bare = false }) {
   const block = (
-        <Reveal>
-          <div className={`${gradBg} mx-auto max-w-[860px] rounded-[24px] px-6 py-12 text-center text-white shadow-[0_18px_45px_rgba(7,48,90,0.18)] sm:px-12`}>
-            <p className="mb-3 text-[0.8rem] font-bold uppercase tracking-[0.14em] text-white/80">Pricing</p>
-            <h2 className="text-[length:clamp(1.7rem,3.4vw,2.5rem)] font-extrabold leading-tight">
-              Every {service.short} Project Is Different
-            </h2>
-            <p className="mx-auto mt-4 max-w-[560px] text-white/85">
-              Tell us what you want to build and we will send a clear, fixed quote made for your idea, scope and timeline. No obligation.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3.5">
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-bold text-navy transition hover:-translate-y-0.5 hover:shadow-lg">
-                Get a Custom Quote <Icon name="arrow" size={16} />
-              </Link>
-            </div>
-          </div>
-        </Reveal>
+    <Reveal>
+      <div className={`${gradBg} mx-auto max-w-[860px] rounded-[24px] px-6 py-12 text-center text-white shadow-[0_18px_45px_rgba(7,48,90,0.18)] sm:px-12`}>
+        <p className="mb-3 text-[0.8rem] font-bold uppercase tracking-[0.14em] text-white/80">Pricing</p>
+        <h2 className="text-[length:clamp(1.7rem,3.4vw,2.5rem)] font-extrabold leading-tight">
+          Every {service.short} Project Is Different
+        </h2>
+        <p className="mx-auto mt-4 max-w-[560px] text-white/85">
+          Tell us what you want to build and we will send a clear, fixed quote made for your idea, scope and timeline. No obligation.
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3.5">
+          <Link to="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-bold text-navy transition hover:-translate-y-0.5 hover:shadow-lg">
+            Get a Custom Quote <Icon name="arrow" size={16} />
+          </Link>
+        </div>
+      </div>
+    </Reveal>
   );
   if (bare) return block;
   return (
@@ -660,15 +672,13 @@ function CustomQuote({ service, bare = false }) {
 }
 
 // The package cards only (no heading). Used by the service pages and by the Pricing page.
-export function PackageGrid({ service }) {
-  if (isQuote(service)) return <CustomQuote service={service} bare />;
-  // Cards per row on a laptop, chosen so every row has the same number of cards:
-  // 8 -> 4+4, 6 -> 3+3, 4 -> 4, 3 -> 3 (5 or 7 -> 3 per row, last row centred).
-  const count = service.packages.length;
+// Ek list ke cards (pehle wala grid code, ab list bahar se aati hai)
+function PackageRows({ list }) {
+  const count = list.length;
   const perRow = count === 4 || count % 4 === 0 ? 4 : 3;
   return (
     <div className="flex flex-wrap justify-center gap-6">
-      {service.packages.map((p, i) => (
+      {list.map((p, i) => (
         <Reveal
           key={p.name}
           delay={(i % perRow) * 90}
@@ -678,6 +688,44 @@ export function PackageGrid({ service }) {
         </Reveal>
       ))}
     </div>
+  );
+}
+
+// Agar service mein packageGroups hain to Web Design / E-Commerce ke alag tabs dikhte hain.
+export function PackageGrid({ service }) {
+  const [tab, setTab] = useState(0);
+  if (isQuote(service)) return <CustomQuote service={service} bare />;
+
+  const groups = service.packageGroups ?? [{ label: "", packages: service.packages }];
+  const group = groups[Math.min(tab, groups.length - 1)];
+
+  return (
+    <>
+      {groups.length > 1 && (
+        <div role="tablist" aria-label="Package type" className="mb-8 flex justify-center gap-2.5">
+          {groups.map((g, i) => {
+            const on = i === tab;
+            return (
+              <button
+                key={g.label}
+                type="button"
+                role="tab"
+                aria-selected={on}
+                onClick={() => setTab(i)}
+                className={`rounded-full border px-6 py-2.5 text-[0.9rem] font-bold transition ${
+                  on
+                    ? `${gradBg} border-transparent text-white shadow-[0_8px_20px_rgba(10,111,174,0.28)]`
+                    : "border-line bg-white text-navy hover:border-brand hover:text-brand"
+                }`}
+              >
+                {g.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+      <PackageRows key={group.label} list={group.packages} />
+    </>
   );
 }
 

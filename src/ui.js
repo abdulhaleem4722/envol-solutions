@@ -35,4 +35,4 @@ export const cardFx = `group relative overflow-hidden hover:border-brand ${barFx
 
 export const iconFx = "transition duration-300 group-hover:bg-brand group-hover:text-white";
 
-export const iconPop = "group-hover:scale-110 group-hover:-rotate-6";
+export const iconPop = "group-hover:animate-float";

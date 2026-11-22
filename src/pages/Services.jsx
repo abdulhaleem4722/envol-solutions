@@ -1,12 +1,10 @@
 import {
   ServicesHero,
   ServicesOverview,
-  ServicesStats,
   TechStack,
   PortfolioPreview,
   TestimonialsGrid,
 } from "../components/ServicesPage";
-import { WhyUs, Process } from "../components/Sections";
 import { Cta } from "../components/Contact";
 
 export default function Services() {
@@ -14,10 +12,7 @@ export default function Services() {
     <>
       <ServicesHero />
       <ServicesOverview />
-      <ServicesStats />
-      <WhyUs />
       <TechStack />
-      <Process />
       <PortfolioPreview />
       <TestimonialsGrid />
       <Cta />

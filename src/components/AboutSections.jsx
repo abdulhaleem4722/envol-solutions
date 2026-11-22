@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { aboutStats, timeline, values, principles } from "../data";
-import { container, card, cardFx, iconFx, gradText, sectionPad } from "../ui";
+import { container, card, cardFx, iconFx, iconPop, gradText, sectionPad } from "../ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
 import { SectionHead } from "./Sections";
@@ -63,19 +63,20 @@ export function Story() {
         <hr className="my-12 border-line" />
 
         <Reveal className="grid items-center gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
-          {/* big year */}
+          {/* big year + uski story */}
           <div className="text-center lg:text-left">
             <p className="mb-2 text-[0.8rem] font-bold uppercase tracking-[0.16em] text-brand">
               Our Achievements
             </p>
-            <div
-              key={timeline[active].year}
-              className={`${gradText} animate-fade-up text-[length:clamp(4.5rem,11vw,9.5rem)] font-extrabold leading-none tracking-tight`}
-              aria-live="polite"
-            >
-              {timeline[active].year}
+            <div key={timeline[active].year} aria-live="polite" className="animate-fade-up">
+              <div className={`${gradText} text-[length:clamp(4.5rem,11vw,9.5rem)] font-extrabold leading-none tracking-tight`}>
+                {timeline[active].year}
+              </div>
+              <div className="mx-auto mt-4 h-1 w-24 rounded bg-linear-to-r from-brand to-aqua lg:mx-0" />
+              <p className="mx-auto mt-6 min-h-[5.5rem] max-w-[480px] text-[1.1rem] leading-relaxed text-ink lg:mx-0">
+                {timeline[active].text}
+              </p>
             </div>
-            <div className="mx-auto mt-4 h-1 w-24 rounded bg-linear-to-r from-brand to-aqua lg:mx-0" />
           </div>
 
           {/* year list */}
@@ -88,18 +89,12 @@ export function Story() {
                     type="button"
                     onClick={() => setActive(i)}
                     aria-current={on}
-                    className={`block w-full border-l-[3px] px-6 py-3.5 text-left transition-colors duration-300 ${
-                      on
+                    className={`block w-full border-l-[3px] px-6 py-3.5 text-left transition-colors duration-300 ${on
                         ? "border-brand bg-sky-soft"
                         : "border-line text-muted hover:border-aqua hover:text-navy"
-                    }`}
+                      }`}
                   >
-                    <span className={`block font-bold ${on ? "text-brand" : ""}`}>{t.year}</span>
-                    {on && (
-                      <span className="mt-1 block animate-fade-up text-[1.02rem] text-ink">
-                        {t.text}
-                      </span>
-                    )}
+                    <span className={`block text-[1.15rem] font-bold ${on ? "text-brand" : ""}`}>{t.year}</span>
                   </button>
                 </li>
               );
@@ -124,8 +119,7 @@ export function Values() {
             <Reveal key={v.title} delay={i * 110} className="h-full">
               <article className={`${card} ${cardFx}`}>
                 <div
-                  className={`mb-[18px] grid size-12 animate-float place-items-center rounded-[14px] bg-sky-soft text-brand ${iconFx}`}
-                  style={{ animationDelay: `${i * -1.3}s` }}
+                  className={`mb-[18px] grid size-12 place-items-center rounded-[14px] bg-sky-soft text-brand ${iconFx} ${iconPop}`}
                 >
                   <Icon name={v.icon} size={22} />
                 </div>

@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { services, stats, reasons, steps } from "../data";
 import { container, card, cardFx, iconFx, iconPop, gradBg, gradText, sectionPad } from "../ui";
 import Icon from "./Icon";
@@ -109,6 +110,30 @@ export function WhyUs() {
 }
 
 export function Process() {
+  const ref = useRef(null);
+  const [on, setOn] = useState(false);
+
+  // jab section screen par aaye tab line chalna shuru kare
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setOn(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setOn(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section className={sectionPad}>
       <div className={container}>
@@ -118,22 +143,30 @@ export function Process() {
           accent="Works"
           text="A simple 4-step process that turns your idea into a product that earns."
         />
-        <div className="relative">
+        <div ref={ref} className="relative">
+          {/* line: left se right bharti hai */}
           <div
             aria-hidden="true"
-            className="absolute left-[12.5%] right-[12.5%] top-9 hidden h-0.5 bg-linear-to-r from-line via-aqua to-line lg:block"
-          />
+            className="absolute left-[12.5%] right-[12.5%] top-9 hidden h-0.5 overflow-hidden rounded bg-line lg:block"
+          >
+            <div
+              className={`h-full origin-left bg-linear-to-r from-navy via-brand to-aqua transition-transform duration-[2400ms] ease-out ${
+                on ? "scale-x-100" : "scale-x-0"
+              }`}
+            />
+          </div>
+
           <ol className="relative grid gap-9 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
             {steps.map((s, i) => (
               <Reveal as="li" key={s.title} delay={i * 140} className="text-center">
+                {/* icon: line jab pohanchti hai tab roshan hota hai, hilta nahi */}
                 <div
-                  className="relative z-10 mx-auto mb-[18px] grid size-[72px] animate-float place-items-center rounded-full border-2 border-aqua bg-white text-brand shadow-[0_10px_30px_rgba(7,48,90,0.08)]"
-                  style={{ animationDelay: `${i * -1.4}s` }}
+                  className={`relative z-10 mx-auto mb-[18px] grid size-[72px] place-items-center rounded-full border-2 bg-white shadow-[0_10px_30px_rgba(7,48,90,0.08)] transition-colors duration-500 ${
+                    on ? "border-aqua text-brand" : "border-line text-muted"
+                  }`}
+                  style={{ transitionDelay: on ? `${i * 800}ms` : "0ms" }}
                 >
                   <Icon name={s.icon} size={26} />
-                  <span className="absolute -right-1.5 -top-1.5 grid size-[26px] place-items-center rounded-full bg-navy text-[0.7rem] font-bold text-white">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
                 </div>
                 <h3 className="mb-1.5 text-[1.15rem] font-bold text-navy">{s.title}</h3>
                 <p className="text-[0.92rem] text-muted">{s.text}</p>

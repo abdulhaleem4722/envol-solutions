@@ -10,14 +10,16 @@ export default function ServiceDetail() {
 
   if (!service) return <Navigate to="/services" replace />;
 
-  // key = slug, so switching between service pages restarts the scroll animations
+  const hideCta = ["app", "ai"].includes(slug); // in pages par pricing ke neeche CTA nahi
+  const hidePortfolio = slug === "hosting";     // hosting par Our Work nahi
+
   return (
     <Fragment key={slug}>
       <ServiceHero service={service} />
       <Offerings service={service} />
-      <ServicePortfolio service={service} />
+      {!hidePortfolio && <ServicePortfolio service={service} />}
       <Packages service={service} />
-      <Cta />
+      {!hideCta && <Cta />}
     </Fragment>
   );
 }

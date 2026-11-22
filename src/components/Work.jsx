@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import FeaturedCard, { featured } from "./FeaturedCard";
 import { Link } from "react-router-dom";
 import { projectFilters, projects, testimonials } from "../data";
-import { container, card, gradBg, sectionPad } from "../ui";
+import { container, card, btn, gradBg, sectionPad } from "../ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
 import { SectionHead } from "./Sections";
@@ -19,16 +19,7 @@ export function Projects() {
   return (
     <section id="projects" className={`${sectionPad} bg-sky-faint`}>
       <div className={container}>
-        <div className="relative">
-          <SectionHead eyebrow="Our Work" title="Featured" accent="Projects" />
-          <Link
-            to="/portfolio"
-            className="-mt-6 mb-6 flex items-center justify-center gap-1.5 text-sm font-bold text-brand hover:text-navy md:absolute md:right-0 md:top-2 md:m-0"
-          >
-            View All Projects <Icon name="arrow" size={16} />
-          </Link>
-        </div>
-
+        <SectionHead eyebrow="Our Work" title="Featured" accent="Projects" />
         <Reveal className="mb-8 flex flex-wrap justify-center gap-2.5" role="tablist" aria-label="Project categories">
           {FILTERS.map((f) => (
             <button
@@ -36,11 +27,10 @@ export function Projects() {
               role="tab"
               aria-selected={active === f}
               onClick={() => setActive(f)}
-              className={`rounded-full border px-5 py-2 text-[0.88rem] font-semibold transition ${
-                active === f
+              className={`rounded-full border px-5 py-2 text-[0.88rem] font-semibold transition ${active === f
                   ? `${gradBg} border-transparent text-white`
                   : "border-line bg-white text-muted hover:border-brand hover:text-brand"
-              }`}
+                }`}
             >
               {f}
             </button>
@@ -51,6 +41,11 @@ export function Projects() {
           {visible.map((p, i) => (
             <FeaturedCard key={`${p.cat}-${p.title}`} p={p} i={i} />
           ))}
+        </div>
+                <div className="mt-10 text-center">
+          <Link to="/portfolio" className={btn("primary", true)}>
+            View All Projects <Icon name="arrow" size={16} />
+          </Link>
         </div>
       </div>
     </section>
@@ -127,9 +122,8 @@ export function Testimonials() {
                     onClick={() => setIndex(i)}
                     aria-label={`Show testimonial ${i + 1}`}
                     aria-current={i === index}
-                    className={`h-3 rounded-full transition-all duration-300 ${
-                      i === index ? "w-7 bg-brand" : "w-3 bg-line hover:bg-brand/50"
-                    }`}
+                    className={`h-3 rounded-full transition-all duration-300 ${i === index ? "w-7 bg-brand" : "w-3 bg-line hover:bg-brand/50"
+                      }`}
                   />
                 ))}
               </div>

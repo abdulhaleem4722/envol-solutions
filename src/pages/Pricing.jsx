@@ -3,9 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { servicePages } from "../data";
 import { container, btn, gradBg, gradText, sectionPad } from "../ui";
 import Icon from "../components/Icon";
-import { PackageGrid, TestimonialsGrid } from "../components/ServicesPage";
-import { Cta } from "../components/Contact";
-
+import { PackageGrid } from "../components/ServicesPage";
 // One tab per service. /pricing#web, /pricing#marketing ... open that tab directly.
 export default function Pricing() {
   const { hash } = useLocation();
@@ -79,8 +77,6 @@ export default function Pricing() {
         </div>
       </section>
 
-      <TestimonialsGrid />
-      <Cta />
     </>
   );
 }
