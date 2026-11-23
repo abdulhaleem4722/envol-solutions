@@ -726,8 +726,8 @@ function ChatIcon() {
 function PackageCard({ p }) {
   const off = money(p.was) > money(p.price) ? Math.round((1 - money(p.price) / money(p.was)) * 100) : 0;
   return (
-    <article className="flex h-full w-full flex-col rounded-[16px] border border-line bg-white p-5 shadow-[0_10px_30px_rgba(7,48,90,0.09)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.15)]">
-      <h3 className="text-[1.05rem] font-bold text-navy">{p.name}</h3>
+        <article className={`${cardFx} flex h-full w-full flex-col rounded-[16px] border border-line bg-white p-5 shadow-[0_10px_30px_rgba(7,48,90,0.09)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.15)]`}>
+      <h3 className="text-[1.05rem] font-bold text-navy transition-colors duration-300 group-hover:text-brand">{p.name}</h3>
 
            <div className="mt-2 flex items-center justify-between gap-2 border-b border-line pb-3.5">
         <p className="flex items-baseline gap-1 leading-none">
