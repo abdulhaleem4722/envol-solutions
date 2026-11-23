@@ -6,7 +6,7 @@ import {
   SiHtml5, SiCss, SiJavascript, SiTypescript, SiNextdotjs, SiVuedotjs, SiAngular, SiNodedotjs,
   SiPhp, SiLaravel, SiPython, SiDjango, SiOpenjdk, SiDotnet, SiGo, SiRuby, SiMysql, SiMongodb, SiFirebase,
 } from "react-icons/si";
-import { projects, servicePages, servicesStats, servicesTestimonials } from "../data";
+import { projects, servicePages, servicesStats, servicesTestimonials, portfolioCategories } from "../data";
 import { container, card, cardFx, iconFx, iconPop, btn, gradBg, gradText, sectionPad } from "../ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
@@ -341,6 +341,16 @@ function Solutions({ data }) {
   );
 }
 
+// Branding page: its 3 projects are taken straight from the Portfolio page (Branding & Graphic Design).
+// To show other ones, change the three names in BRANDING_PICKS (they must match a `sub` in data.js -> portfolioCategories "design").
+const BRANDING_PICKS = ["Iconic Logo", "Typographic Logo", "Mascot Logo"];
+function brandingProjects() {
+  const design = portfolioCategories.find((c) => c.id === "design")?.items ?? [];
+  return BRANDING_PICKS.map((sub) => design.find((it) => it.sub === sub))
+    .filter(Boolean)
+    .map((it) => ({ ...it, cat: "design", label: "Logo" }));
+}
+
 /* ---------- inner page: small portfolio for this service ---------- */
 export function ServicePortfolio({ service }) {
   if (service.caseStudies) return <CaseStudies service={service} />;
@@ -359,9 +369,9 @@ export function ServicePortfolio({ service }) {
   accent={service.slug === "web" ? "Businesses" : service.slug === "app" ? "Real-World Needs" : "Projects"}
 />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {service.portfolio.map((p, i) => (
-            <ProjectCard key={p.title} p={p} i={i} />
-          ))}
+                    {service.slug === "branding"
+            ? brandingProjects().map((p, i) => <FeaturedCard key={`${p.sub}-${p.title}`} p={p} i={i} />)
+            : service.portfolio.map((p, i) => <ProjectCard key={p.title} p={p} i={i} />)}
         </div>
         <div className="mt-10 text-center">
           <Link to={PORTFOLIO_LINK} className={btn("ghost")}>
