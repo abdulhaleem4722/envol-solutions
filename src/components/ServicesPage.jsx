@@ -729,10 +729,16 @@ function PackageCard({ p }) {
     <article className="flex h-full w-full flex-col rounded-[16px] border border-line bg-white p-5 shadow-[0_10px_30px_rgba(7,48,90,0.09)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(7,48,90,0.15)]">
       <h3 className="text-[1.05rem] font-bold text-navy">{p.name}</h3>
 
-      <div className="mt-2 flex items-center justify-between gap-2 border-b border-line pb-3.5">
+           <div className="mt-2 flex items-center justify-between gap-2 border-b border-line pb-3.5">
         <p className="flex items-baseline gap-1 leading-none">
-          <strong className={`${gradText} text-[2rem] font-extrabold`}>{p.price}</strong>
-          {p.period && <span className="text-[0.8rem] font-semibold text-muted">{p.period}</span>}
+          {p.priceLabel ? (
+            <strong className={`${gradText} text-[1.35rem] font-extrabold`}>{p.priceLabel}</strong>
+          ) : (
+            <>
+              <strong className={`${gradText} text-[2rem] font-extrabold`}>{p.price}</strong>
+              {p.period && <span className="text-[0.8rem] font-semibold text-muted">{p.period}</span>}
+            </>
+          )}
         </p>
         {off > 0 && (
           <div className="shrink-0 rounded-md bg-navy px-2.5 py-1.5 text-center leading-tight text-white">
@@ -747,14 +753,21 @@ function PackageCard({ p }) {
         aria-label={`${p.name} features`}
         className="my-3 h-[250px] overflow-y-auto pr-2 [scrollbar-color:#07305a_#dff1fa] [scrollbar-width:thin]"
       >
-        {p.features.map((f) => (
-          <li key={f} className="flex items-start gap-2 py-[7px] text-[0.86rem] leading-snug text-ink">
-            <span className="mt-[3px] shrink-0 text-brand">
-              <Icon name="check" size={13} />
-            </span>
-            {f}
-          </li>
-        ))}
+               {p.features.map((f, i) =>
+          f.startsWith("#") ? (
+            // a feature starting with "#" is a small heading (e.g. "#More Features")
+            <li key={`${i}-${f}`} className="pb-1 pt-4 text-[0.7rem] font-bold uppercase tracking-[0.12em] text-brand">
+              {f.slice(1)}
+            </li>
+          ) : (
+            <li key={`${i}-${f}`} className="flex items-start gap-2 py-[7px] text-[0.86rem] leading-snug text-ink">
+              <span className="mt-[3px] shrink-0 text-brand">
+                <Icon name="check" size={13} />
+              </span>
+              {f}
+            </li>
+          )
+        )}
       </ul>
 
       <div className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-4">
@@ -862,7 +875,12 @@ export function PackageGrid({ service }) {
           })}
         </div>
       )}
-      <PackageRows key={group.label} list={group.packages} />
+            {group.quote ? (
+        // a group with `quote: true` (Web Portal) shows the Custom Quote block instead of prices
+        <CustomQuote key={group.label} service={{ ...service, short: group.label }} bare />
+      ) : (
+        <PackageRows key={group.label} list={group.packages} />
+      )}
     </>
   );
 }

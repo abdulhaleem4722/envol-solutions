@@ -3,7 +3,7 @@
 //  Everything marked "PLACEHOLDER" must be replaced with real
 //  client data before the site goes live.
 // ============================================================
-
+import { brandingPackages, webPackageGroups, marketingPackageGroups, hostingPackages } from "./packagesData";
 export const brand = {
   name: "Envol Solutions",
   logo: "/logo.png",
@@ -978,3 +978,16 @@ export const portfolioCategories = [
 ];
 
 export { testimonials, servicesTestimonials, contactTestimonials } from "./testimonialsData";
+
+
+// ---------- Pricing packages: the real prices and features live in packagesData.js ----------
+// This replaces the older package lists written above (edit packagesData.js from now on).
+for (const s of servicePages) {
+  if (s.slug === "branding") s.packages = brandingPackages;
+  if (s.slug === "web") s.packageGroups = webPackageGroups;
+  if (s.slug === "marketing") {
+    s.packageGroups = marketingPackageGroups;
+    delete s.packages;
+  }
+  if (s.slug === "hosting") s.packages = hostingPackages;
+}
