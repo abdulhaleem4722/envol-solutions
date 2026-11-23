@@ -758,10 +758,10 @@ export const servicePages = [
     title: "AI Automation",
     short: "AI Automation",
     text: "Placeholder: Automate repetitive work with AI chatbots, workflows and smart integrations so your team can focus on growth.",
-    intro: "Placeholder: We design and build AI-powered automation that saves time, cuts costs and helps your business run smarter around the clock.",
-    hero: { title: "Automate Your Business With", accent: "AI Automation" },
+    intro: "We design and implement intelligent automation solutions that eliminate repetitive tasks, streamline business operations and help your team focus on what matters most. From AI-powered assistants to connected workflows, we make your business work smarter.",
+    hero: { title: "Automate Your Business.", accent: "Work Smarter With AI." },
     highlights: ["Placeholder highlight one", "Placeholder highlight two", "Placeholder highlight three", "Placeholder highlight four"],
-    tags: ["AI Chatbots", "Workflow Automation", "Integrations", "Data Processing"],
+    tags: ["AI Chatbots", "Workflow Automation", "Custom AI Integrations", "Data Processing"],
     offerings: [
       { icon: "headset", title: "AI Chatbots", text: "Placeholder: Smart chatbots that answer customers 24/7." },
       { icon: "bolt", title: "Workflow Automation", text: "Placeholder: Connect your tools and automate repetitive tasks." },
