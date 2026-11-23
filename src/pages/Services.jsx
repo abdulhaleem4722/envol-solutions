@@ -22,7 +22,7 @@ export default function Services() {
         eyebrow="Your next move starts here"
         title="Found the Right Solutions?"
         text="Let's turn your requirement into reality."
-        primary={{ label: "Book a Free Strategy Call", to: "/#contact" }}
+        primary={{ label: "Schedule Your Free Consultation", to: "/contact" }}
       />
     </>
   );

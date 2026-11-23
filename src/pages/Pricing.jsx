@@ -92,7 +92,7 @@ export default function Pricing() {
         title="Ready to Invest in Your Growth?"
         text="Choose your package or request something custom"
         primary={{ label: "Request a Custom Quote", to: "/contact" }}
-        secondary={{ label: "Book a Free Strategy Call", to: "/#contact" }}
+       secondary={{ label: "Schedule Your Free Consultation", to: "/contact" }}
       />
     </>
   );

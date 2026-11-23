@@ -18,8 +18,8 @@ export function ContactForm() {
 export function Cta({
   eyebrow,
   title = "Ready to Grow Your Business?",
-  text = "Let us talk about how we can help you build digital products that deliver real results. Book a free strategy call today.",
-  primary = { label: "Book a Free Strategy Call", to: "/#contact" },
+  text = "Let us talk about how we can help you build digital products that deliver real results. Schedule a free consultation today.",
+  primary = { label: "Schedule Your Free Consultation", to: "/contact" },
   secondary,
 }) {
   return (

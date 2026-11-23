@@ -383,22 +383,13 @@ export const servicePages = [
       { icon: "bolt", title: " Backend & API Integration ", text: "Secure databases, scalable server architecture and third-party API integrations that power your application's functionality." },
       { icon: "headset", title: "Maintenance & Support", text: "Ongoing technical support, bug fixes, performance improvements and updates to keep your application running smoothly. " },
     ],
-    portfolio: [
-      {
-        category: "App",
-        title: "FitTrack",
-        text: "Fitness app with workout plans, progress charts and daily reminders.",
-      },
-      {
-        category: "App",
-        title: "QuickBite",
-        text: "Food ordering app for iOS and Android with live order tracking.",
-      },
-      {
-        category: "App",
-        title: "PayWise",
-        text: "Mobile wallet app with secure payments and instant transfers.",
-      },
+       portfolio: [
+      { category: "App", title: "GoFit", text: "Fitness app with workout plans, progress tracking and daily goals.", image: "/portfolio/app-gofit.jpg" },
+      { category: "App", title: "NutriZen", text: "Nutrition and meal planning app that helps users eat healthier.", image: "/portfolio/app-nutrizen.jpg" },
+      { category: "App", title: "FreshCart", text: "Grocery shopping app with easy ordering and doorstep delivery.", image: "/portfolio/app-freshcart.jpg" },
+      { category: "App", title: "Pharmacy Store", text: "Pharmacy app to order medicines and healthcare products online.", image: "/portfolio/app-pharmacy-store.jpg" },
+      { category: "App", title: "School Online Classes App", text: "E-learning app for live classes, lessons and student progress.", image: "/portfolio/app-school-online-classes.jpg" },
+      { category: "App", title: "Online Class", text: "Online learning app that connects students and teachers anywhere.", image: "/portfolio/app-online-class.jpg" },
     ],
     packages: [],
   },
@@ -887,7 +878,14 @@ export const portfolioCategories = [
     id: "app",
     label: "App Development",
     subs: ["Apps"],
-    items: ph("Apps", 6),
+    items: [
+      { sub: "Apps", title: "GoFit", image: "/portfolio/app-gofit.jpg" },
+      { sub: "Apps", title: "NutriZen", image: "/portfolio/app-nutrizen.jpg" },
+      { sub: "Apps", title: "FreshCart", image: "/portfolio/app-freshcart.jpg" },
+      { sub: "Apps", title: "Pharmacy Store", image: "/portfolio/app-pharmacy-store.jpg" },
+      { sub: "Apps", title: "School Online Classes App", image: "/portfolio/app-school-online-classes.jpg" },
+      { sub: "Apps", title: "Online Class", image: "/portfolio/app-online-class.jpg" },
+    ],
   },
   {
     id: "design",

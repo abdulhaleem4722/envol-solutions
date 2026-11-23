@@ -102,7 +102,7 @@ export function ServicesHero() {
 const overviewExtras = {
   web: {
     cta: "Explore Web Solutions",
-    image: "/services/web.jpg",
+   image: "/services/web.png",
     text: "We build professional, responsive websites that strengthen your online presence, showcase your business, and turn visitors into potential customers.",
     offers: ["Custom Website Development", "E-Commerce Solutions", "Landing Page Design", "CMS Integration"],
   },

@@ -12,7 +12,7 @@ export default function About() {
         eyebrow="Let's build something meaningful"
         title="Like What We Stand For?"
         text="Let's create something great together."
-        primary={{ label: "Book a Free Strategy Call", to: "/#contact" }}
+        primary={{ label: "Schedule Your Free Consultation", to: "/contact" }}
       />
     </>
   );

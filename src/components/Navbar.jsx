@@ -70,9 +70,9 @@ export default function Navbar() {
         <div className="mx-auto flex h-[78px] w-full max-w-[1760px] items-center justify-between gap-4 px-6 sm:px-10 lg:px-16">
           {logo(38, "text-lg")}
           <div className="flex items-center gap-3">
-            <Link to="/#contact" className={`${btn("primary")} max-md:hidden`}>
-              Book a Free Call
-            </Link>
+          <Link to="/contact" className={`${btn("primary")} max-md:hidden`}>
+  Book a Call
+</Link>
             <TopMenu className="max-md:hidden" />
             <Burger open={open} onClick={() => setOpen((o) => !o)} />
           </div>

@@ -153,7 +153,7 @@ export default function TopMenu({ className = "" }) {
               to="/contact"
               className="flex w-full items-center justify-center rounded-full bg-linear-to-r from-navy to-aqua px-6 py-3.5 font-bold text-white transition hover:-translate-y-0.5 hover:shadow-lg"
             >
-              Book a Free Call
+              Book a Call
             </Link>
             <a href={`mailto:${brand.email}`} className="mt-4 block text-center text-[0.9rem] text-muted hover:text-brand">
               {brand.email}
