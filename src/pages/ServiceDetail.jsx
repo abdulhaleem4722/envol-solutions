@@ -46,6 +46,12 @@ export default function ServiceDetail() {
             text="Whether you're starting from scratch or refreshing your identity, we'll help bring your brand's personality and vision to life."
             primary={{ label: "Book a Free Strategy Call", to: "/#contact" }}
           />
+        ) : slug === "hosting" ? (
+          <Cta
+            title="Your Website Deserves Hosting It Can Depend On."
+            text="Choose a hosting solution that supports your website's performance, security and future growth. Let us help you find the right infrastructure for your needs."
+            primary={{ label: "Book a Free Strategy Call", to: "/#contact" }}
+          />
         ) : (
           <Cta />
         ))}

@@ -84,13 +84,11 @@ export function ServicesHero() {
           Our Services
         </span>
         <h1 className="animate-fade-up text-[length:clamp(2.4rem,5vw,4.4rem)] font-extrabold leading-[1.1] tracking-tight text-navy [animation-delay:120ms]">
-          Services That <br className="hidden sm:block" />
-          <span className={gradText}>Drive Growth</span>
+          Digital Solutions Built Around <br className="hidden sm:block" />
+          <span className={gradText}>Your Business Goals.</span>
         </h1>
         <p className="mx-auto mt-5 max-w-[680px] animate-fade-up text-[1.1rem] text-muted [animation-delay:240ms]">
-          End-to-end digital solutions for businesses that are ready to scale.
-          Pick a service to see what is included, the work we have done and the
-          packages we offer.
+          From websites and mobile applications to digital marketing, branding, and AI automation, we bring the right expertise together to help your business attract customers, operate smarter, and grow.
         </p>
       </div>
     </section>
@@ -102,12 +100,42 @@ export function ServicesHero() {
 // To use your own picture, save it in /public/services/ and write its path here (e.g. "/services/web.png").
 // Without a picture a clean placeholder is shown.
 const overviewExtras = {
-  web: { cta: "Explore Web Solutions", image: "/services/web.jpg" },
-  app: { cta: "Explore Mobile Solutions", image: "/services/app.jpg" },
-  marketing: { cta: "Grow Your Online Presence", image: "/services/marketing.jpg" },
-  branding: { cta: "Build Your Brand", image: "/services/branding.jpg" },
-  ai: { cta: "Automate Your Business", image: "/services/ai.jpg" },
-  hosting: { cta: "Explore Hosting Plans", image: "/services/hosting.jpg" },
+  web: {
+    cta: "Explore Web Solutions",
+    image: "/services/web.jpg",
+    text: "We build professional, responsive websites that strengthen your online presence, showcase your business, and turn visitors into potential customers.",
+    offers: ["Custom Website Development", "E-Commerce Solutions", "Landing Page Design", "CMS Integration"],
+  },
+  app: {
+    cta: "Explore Mobile Solutions",
+    image: "/services/app.jpg",
+    text: "We develop intuitive mobile applications that make it easier for customers to interact with your business, access your services, and stay connected on the go.",
+    offers: ["iOS App Development", "Android App Development", "Cross-Platform Apps", "UI/UX Design"],
+  },
+  marketing: {
+    cta: "Grow Your Online Presence",
+    image: "/services/marketing.jpg",
+    text: "We help your business reach the right audience through strategic marketing, search optimization, and targeted campaigns that increase visibility and generate qualified leads.",
+    offers: ["Search Engine Optimization", "PPC Advertising", "Social Media Marketing", "Content Strategy"],
+  },
+  branding: {
+    cta: "Build Your Brand",
+    image: "/services/branding.jpg",
+    text: "We create distinctive brand identities and compelling visuals that communicate your business values, build recognition, and help you stand out in a competitive market.",
+    offers: ["Logo Design", "Brand Identity Development", "Marketing & Print Design", "Brand Style Guides"],
+  },
+  ai: {
+    cta: "Automate Your Business",
+    image: "/services/ai.jpg",
+    text: "We help businesses work smarter by automating repetitive tasks, connecting intelligent tools, and streamlining workflows so your team can focus on what matters most.",
+    offers: ["AI Chatbots & Assistants", "Workflow Automation", "AI-Powered Integrations", "Business Process Automation"],
+  },
+  hosting: {
+    cta: "Explore Hosting Plans",
+    image: "/services/hosting.jpg",
+    text: "Keep your website accessible and performing reliably with secure hosting solutions, dependable infrastructure, and technical support when you need it.",
+    offers: ["Managed Web Hosting", "Cloud Server Solutions", "SSL Certificates & Security", "Technical Support"],
+  },
 };
 
 function OverviewArt({ s, image }) {
@@ -131,9 +159,9 @@ export function ServicesOverview() {
       <div className={container}>
         <SectionHead
           eyebrow="What We Do"
-          title="Everything You Need To"
-          accent="Grow Online"
-          text="End-to-end digital solutions for businesses that are ready to scale."
+          title="The Right Expertise."
+          accent="All Under One Roof."
+          text="Explore our services to discover how we can help you build your digital presence, connect with customers, and create better business opportunities."
         />
         <div className="flex flex-col gap-6">
           {servicePages.map((s, i) => {
@@ -150,9 +178,10 @@ export function ServicesOverview() {
                     </span>
                     <div className="min-w-0">
                       <h3 className="text-[1.3rem] font-extrabold text-navy sm:text-[1.5rem]">{s.title}</h3>
-                      <p className="mt-2 max-w-[46ch] text-[0.95rem] text-muted">{s.text}</p>
-                      <ul className="my-5 flex flex-wrap gap-x-5 gap-y-2">
-                        {s.tags.map((t) => (
+                      <p className="mt-2 max-w-[46ch] text-[0.95rem] text-muted">{x.text || s.text}</p>
+                      <p className="mt-5 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-brand">What We Offer</p>
+                      <ul className="mb-5 mt-2 flex flex-wrap gap-x-5 gap-y-2">
+                        {(x.offers || s.tags).map((t) => (
                           <li key={t} className="inline-flex items-center gap-1.5 text-[0.82rem] font-semibold text-navy">
                             <span className="text-brand">
                               <Icon name="check" size={14} />
@@ -238,7 +267,7 @@ export function ServiceHero({ service }) {
             Get a Free Quote
           </Link>
           <a href="#packages" className={btn("ghost", true)}>
-            {isQuote(service) ? "Custom Quote" : "View Packages"}
+            {service.slug === "hosting" ? "View Hosting Plans" : isQuote(service) ? "Explore Solutions" : "View Packages"}
           </a>
         </div>
       </div>
@@ -249,14 +278,17 @@ export function ServiceHero({ service }) {
 /* ---------- inner page: what is included ---------- */
 export function Offerings({ service }) {
   // Heading of the "What You Get" section for each service: [title, blue word]
-   const offeringHeads = {
+  const offeringHeads = {
     app: ["Everything You Need to Build a Powerful", "Mobile App"],
     marketing: ["Everything You Need to Grow Your Business", "Online"],
     branding: ["Everything You Need to Build a Memorable", "Brand"],
+    ai: ["Intelligent Automation for a More Efficient", "Business"],
+    hosting: ["Everything Your Website Needs to", "Stay Online"],
   };
   const [offerTitle, offerAccent] = offeringHeads[service.slug] || ["Everything Your Business Needs to Succeed", "Online"];
 
   return (
+    <>
     <section className={sectionPad}>
       <div className={container}>
         <SectionHead
@@ -268,6 +300,32 @@ export function Offerings({ service }) {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {service.offerings.map((o, i) => (
             <Reveal key={o.title} delay={(i % 3) * 110} className="h-full">
+              <article className={`${card} ${cardFx}`}>
+                <div className={`mb-[18px] grid size-12 place-items-center rounded-[14px] bg-sky-soft text-brand ${iconFx} ${iconPop}`}>
+                  <Icon name={o.icon} size={22} />
+                </div>
+                <h3 className="mb-2 text-[1.12rem] font-bold text-navy">{o.title}</h3>
+                <p className="text-[0.93rem] text-muted">{o.text}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+    {service.solutions && <Solutions data={service.solutions} />}
+    </>
+  );
+}
+
+/* ---------- inner page: "Our Solutions" (Hosting): 4 cards under What You Get. Content lives in data.js (`solutions`) ---------- */
+function Solutions({ data }) {
+  return (
+    <section className={`${sectionPad} bg-sky-faint`}>
+      <div className={container}>
+        <SectionHead eyebrow="Our Solutions" title={data.title} accent={data.accent} text={data.text} />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {data.items.map((o, i) => (
+            <Reveal key={o.title} delay={(i % 4) * 110} className="h-full">
               <article className={`${card} ${cardFx}`}>
                 <div className={`mb-[18px] grid size-12 place-items-center rounded-[14px] bg-sky-soft text-brand ${iconFx} ${iconPop}`}>
                   <Icon name={o.icon} size={22} />
@@ -661,15 +719,23 @@ function PackageCard({ p }) {
 
 /* ---------- inner page: "Custom Quote" block (replaces pricing when a service has no fixed packages) ---------- */
 function CustomQuote({ service, bare = false }) {
+
+    // Custom text for services that need their own wording (others use the default)
+  const quoteText = {
+    ai: {
+      title: "Stop Spending Time on Tasks You Could Automate.",
+      text: "Let's identify the repetitive processes slowing your business down and turn them into intelligent, connected workflows.",
+    },
+  }[service.slug];
   const block = (
     <Reveal>
       <div className={`${gradBg} mx-auto max-w-[860px] rounded-[24px] px-6 py-12 text-center text-white shadow-[0_18px_45px_rgba(7,48,90,0.18)] sm:px-12`}>
         <p className="mb-3 text-[0.8rem] font-bold uppercase tracking-[0.14em] text-white/80">Pricing</p>
-        <h2 className="text-[length:clamp(1.7rem,3.4vw,2.5rem)] font-extrabold leading-tight">
-          Every {service.short} Project Is Different
+               <h2 className="text-[length:clamp(1.7rem,3.4vw,2.5rem)] font-extrabold leading-tight">
+          {quoteText?.title || `Every ${service.short} Project Is Different`}
         </h2>
-        <p className="mx-auto mt-4 max-w-[560px] text-white/85">
-          Tell us what you want to build and we will send a clear, fixed quote made for your idea, scope and timeline. No obligation.
+                <p className="mx-auto mt-4 max-w-[560px] text-white/85">
+          {quoteText?.text || "Tell us what you want to build and we will send a clear, fixed quote made for your idea, scope and timeline. No obligation."}
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3.5">
           <Link to="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 font-bold text-navy transition hover:-translate-y-0.5 hover:shadow-lg">

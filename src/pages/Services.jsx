@@ -18,7 +18,12 @@ export default function Services() {
       <PortfolioPreview />
       <TestimonialsGrid />
       <Faq {...servicesFaq} tone="white" />
-      <Cta />
+            <Cta
+        eyebrow="Your next move starts here"
+        title="Found the Right Solutions?"
+        text="Let's turn your requirement into reality."
+        primary={{ label: "Book a Free Strategy Call", to: "/#contact" }}
+      />
     </>
   );
 }

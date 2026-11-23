@@ -67,6 +67,9 @@ function Lightbox({ item, onClose }) {
 
 const tabIcon = { web: "globe", app: "phone", design: "brush" };
 
+// Names shown on the filter buttons (the key is the `sub` name used in data.js). Others show as written.
+const subLabel = { Business: "Business Websites", "Web Portal": "Web Portals" };
+
 /* ---------- tabs + picture grid (one category shown at a time) ---------- */
 function PortfolioTabs({ onOpen }) {
   const [active, setActive] = useState(portfolioCategories[0].id);
@@ -85,11 +88,11 @@ function PortfolioTabs({ onOpen }) {
       <div className={container}>
         <div className="mx-auto max-w-[900px] text-center">
           <h2 className="text-[length:clamp(1.7rem,4vw,3rem)] font-extrabold uppercase leading-tight tracking-wide">
-            <span className={gradText}>Every Obstacle Sparks Innovation</span>
+            <span className={gradText}>Real Projects. Thoughtful Solutions. Lasting Impact.</span>
           </h2>
           <hr className="mx-auto mt-5 border-t border-line" />
           <p className="mt-6 text-[1.02rem] text-muted">
-            A glimpse into our world of innovative projects that bring ideas to life with excellence.
+            Explore our selected projects across web development, mobile applications, and branding. Every project reflects our commitment to understanding business needs and turning ideas into practical digital solutions.
           </p>
         </div>
 
@@ -131,7 +134,7 @@ function PortfolioTabs({ onOpen }) {
                     : "border-line bg-white text-muted hover:border-brand hover:text-brand"
                 }`}
               >
-                {s}
+                {subLabel[s] || s}
               </button>
             ))}
           </div>
@@ -188,7 +191,7 @@ export default function Portfolio() {
       <section className="bg-linear-to-b from-[#bfe8f8] via-[#d3effb] to-white pb-12 pt-[150px] text-center">
         <div className={container}>
           <h1 className="text-[length:clamp(2.6rem,8vw,5rem)] font-extrabold uppercase leading-none tracking-wide text-navy">
-            Portfolio
+            Our Portfolio
           </h1>
         </div>
       </section>
@@ -198,8 +201,9 @@ export default function Portfolio() {
       {/* call to action */}
       <section className={`${gradBg} py-[72px] text-center text-white`}>
         <Reveal className={container}>
-          <p className="mb-2 text-[0.8rem] font-bold uppercase tracking-[0.16em] text-white/80">Make Your First Move</p>
-          <h2 className="text-[length:clamp(1.8rem,3.6vw,2.6rem)] font-extrabold">Share Your Idea With Us</h2>
+          <p className="mb-2 text-[0.8rem] font-bold uppercase tracking-[0.16em] text-white/80">Your idea could be next</p>
+          <h2 className="text-[length:clamp(1.8rem,3.6vw,2.6rem)] font-extrabold">Inspired by What You've Seen?</h2>
+          <p className="mx-auto mt-3.5 max-w-[560px] text-[#cfe6f5]">Let's build something that moves your business forward</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3.5">
             <Link
               to="/pricing"

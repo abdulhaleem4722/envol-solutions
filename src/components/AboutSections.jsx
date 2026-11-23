@@ -23,15 +23,13 @@ export function AboutHero() {
       />
       <div className="relative mx-auto max-w-[880px] px-6">
         <span className="mb-6 inline-block animate-fade-up rounded-full border border-line bg-white px-4 py-1.5 text-[0.82rem] font-semibold text-brand">
-          About Us
+          About Envol Solutions
         </span>
         <h1 className="animate-fade-up text-[length:clamp(2.4rem,5vw,4.4rem)] font-extrabold leading-[1.1] tracking-tight text-navy [animation-delay:120ms]">
           The Story Behind <br className="hidden sm:block" /><span className={gradText}>Envol Solutions</span>
         </h1>
         <p className="mx-auto mt-5 max-w-[680px] animate-fade-up text-[1.1rem] text-muted [animation-delay:240ms]">
-          We are a global digital agency on a mission to help businesses grow
-          through technology, design and strategy. From day one, our focus has
-          been simple: deliver real results.
+          We bring creativity, technology and business strategy together to help companies build stronger digital experiences. From websites and mobile applications to marketing and intelligent automation, our focus is simple: creating practical solutions that help businesses move forward.
         </p>
       </div>
     </section>
@@ -69,13 +67,14 @@ export function Story() {
               <span className={gradText}>Our Achievements</span>
             </h3>
             <div className="mx-auto mt-4 h-1 w-24 rounded bg-linear-to-r from-brand to-aqua lg:mx-0" />
-            <p
+            <div
               key={timeline[active].year}
               aria-live="polite"
-              className="animate-fade-up mx-auto mt-6 min-h-[5.5rem] max-w-[480px] text-[1.1rem] leading-relaxed text-ink lg:mx-0"
+              className="animate-fade-up mx-auto mt-6 max-w-[500px] lg:mx-0"
             >
-              {timeline[active].text}
-            </p>
+              <h4 className="text-[1.2rem] font-bold text-navy">{timeline[active].title}</h4>
+              <p className="mt-2.5 text-[1.05rem] leading-relaxed text-ink">{timeline[active].text}</p>
+            </div>
           </div>
 
           {/* year list */}

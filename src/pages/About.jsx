@@ -8,7 +8,12 @@ export default function About() {
       <Story />
       <Values />
       <Principles />
-      <Cta />
+          <Cta
+        eyebrow="Let's build something meaningful"
+        title="Like What We Stand For?"
+        text="Let's create something great together."
+        primary={{ label: "Book a Free Strategy Call", to: "/#contact" }}
+      />
     </>
   );
 }

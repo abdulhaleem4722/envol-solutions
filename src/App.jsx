@@ -13,6 +13,7 @@ import CustomCursor from "./components/CustomCursor";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
+import Loader from "./components/Loader";
 // Scrolls to the top on a new page, or to the section when the link has a #hash.
 function ScrollManager() {
   const { pathname, hash } = useLocation();
@@ -32,6 +33,7 @@ function ScrollManager() {
 export default function App() {
   return (
     <>
+          <Loader />
       <CustomCursor />
       <Navbar />
       <ScrollManager />

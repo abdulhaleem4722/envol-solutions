@@ -206,28 +206,28 @@ export const faqs = [
 
 // ---------- About page (all PLACEHOLDER: replace with real company details) ----------
 export const aboutStats = [
-  { value: "200+", label: "Projects" },
-  { value: "25+", label: "Countries" },
-  { value: "50+", label: "Team members" },
-  { value: "2", label: "Continents" },
+  { value: "360°", label: "Digital Solutions" },
+  { value: "100%", label: "Custom-Built Approach" },
+  { value: "6+", label: "Core Service Areas" },
+  { value: "24/7", label: "Support Availability" },
 ];
 
 export const timeline = [
-  { year: "2013", text: "Founded in Clarksville, TN with a vision to make premium digital services accessible." },
-  { year: "2014", text: "Expanded to 10+ team members and launched our first enterprise project." },
-  { year: "2017", text: "Opened our Pakistan office in Karachi, scaling our development capacity." },
-  { year: "2019", text: "Reached the 100+ projects milestone with clients around the world." },
-  { year: "2022", text: "Surpassed 200+ projects with clients in 25+ countries worldwide." },
-  { year: "2023", text: "Launched our marketing division and expanded service offerings." },
-  { year: "2025", text: "Grew to 50+ team members across 2 continents." },
-  { year: "2026", text: "Added AI Automation and Hosting Services to help clients grow even further." },
+  { year: "2013", title: "The Beginning of Envol", text: "Envol Solutions was founded in Franklin, Wisconsin, with a vision to make professional digital services more accessible to businesses. From the beginning, our focus was on combining creativity and technology to help companies establish a stronger presence and compete in an increasingly digital world." },
+  { year: "2014", title: "Building Our Foundation", text: "We focused on establishing our business identity, strengthening our service foundations and developing an understanding of what businesses needed from their digital partners. Building relationships and delivering practical solutions became central to our approach." },
+  { year: "2017", title: "Expanding Our Digital Capabilities", text: "As technology and customer expectations evolved, so did our approach. We broadened our creative and technical capabilities, placing greater emphasis on professional web experiences, modern design and solutions tailored to different business requirements." },
+  { year: "2019", title: "Growing Beyond Websites", text: "We continued developing our approach to digital solutions, bringing design, technology and business requirements closer together. The focus shifted towards delivering more complete digital experiences rather than treating every project as an isolated service." },
+  { year: "2022", title: "Embracing the Digital Growth Era", text: "We strengthened our focus on helping businesses become more competitive online. Digital marketing, search visibility, customer engagement and stronger online experiences became increasingly important areas of our service capabilities." },
+  { year: "2023", title: "Creating More Connected Experiences", text: "Our service direction continued to evolve towards broader digital experiences, including mobile applications, branding and creative solutions. We focused on helping businesses maintain a more consistent identity across their digital and customer-facing platforms." },
+  { year: "2025", title: "Exploring the Power of Intelligent Technology", text: "With artificial intelligence and automation reshaping how businesses operate, we expanded our focus towards smarter digital workflows, AI-powered solutions and integrations designed to reduce repetitive work and improve efficiency." },
+  { year: "2026", title: "Building What's Next", text: "Today, Envol Solutions brings together web design and development, mobile app development, digital marketing and SEO, branding and graphic design, AI automation and hosting services." },
 ];
 
 export const values = [
-  { icon: "bolt", title: "Innovation", text: "We push boundaries and embrace emerging technologies to deliver cutting-edge solutions." },
-  { icon: "search", title: "Transparency", text: "No hidden fees, no surprises. Clear communication and honest timelines every step of the way." },
-  { icon: "shield", title: "Quality", text: "Every pixel, every line of code is crafted with precision and attention to detail." },
-  { icon: "globe", title: "Global Mindset", text: "We think globally and act locally, understanding diverse markets and cultures." },
+  { icon: "bolt", title: "Innovation", text: "We embrace new ideas and practical technologies to create smarter solutions that help businesses adapt, improve and grow." },
+  { icon: "search", title: "Transparency", text: "We believe in honest communication, clear expectations and straightforward pricing. Our clients should always know what to expect." },
+  { icon: "shield", title: "Quality", text: "We pay attention to every detail, from the first design concept to the final delivery, creating solutions built around performance and usability." },
+  { icon: "globe", title: "Global Mindset", text: "We value different perspectives, understand diverse business needs and create digital experiences for audiences across different markets." },
 ];
 
 export const principles = [
@@ -739,18 +739,18 @@ export const servicePages = [
     icon: "bolt",
     title: "AI Automation",
     short: "AI Automation",
-    text: "Placeholder: Automate repetitive work with AI chatbots, workflows and smart integrations so your team can focus on growth.",
+    text: "From customer interactions to everyday operations, we build AI-powered systems that connect your tools, automate processes and turn time-consuming tasks into efficient workflows.",
     intro: "We design and implement intelligent automation solutions that eliminate repetitive tasks, streamline business operations and help your team focus on what matters most. From AI-powered assistants to connected workflows, we make your business work smarter.",
     hero: { title: "Automate Your Business.", accent: "Work Smarter With AI." },
     highlights: ["Placeholder highlight one", "Placeholder highlight two", "Placeholder highlight three", "Placeholder highlight four"],
     tags: ["AI Chatbots", "Workflow Automation", "Custom AI Integrations", "Data Processing"],
     offerings: [
-      { icon: "headset", title: "AI Chatbots", text: "Placeholder: Smart chatbots that answer customers 24/7." },
-      { icon: "bolt", title: "Workflow Automation", text: "Placeholder: Connect your tools and automate repetitive tasks." },
-      { icon: "code", title: "Custom AI Integrations", text: "Placeholder: Add AI features to your website or app." },
-      { icon: "chart", title: "Data & Reporting", text: "Placeholder: Automatic reports and insights from your data." },
-      { icon: "search", title: "Document Processing", text: "Placeholder: Extract and organise information automatically." },
-      { icon: "shield", title: "Secure & Reliable", text: "Placeholder: Built with privacy and uptime in mind." },
+      { icon: "headset", title: "AI Chatbots", text: "Intelligent virtual assistants that answer customer questions, handle common requests and provide instant support around the clock." },
+      { icon: "bolt", title: "Workflow Automation", text: "Connect your business applications and automate repetitive tasks, approvals, notifications and everyday operations. " },
+      { icon: "code", title: "Custom AI Integrations", text: "Integrate AI capabilities into your existing websites, applications and business systems to create smarter digital experiences." },
+      { icon: "chart", title: "Data Processing & Analysis", text: "Automatically collect, organise and process business data to reduce manual work and make information easier to understand. " },
+      { icon: "search", title: "Document Processing", text: "Extract, classify and organise information from invoices, forms, contracts and other business documents with AI-powered tools. " },
+      { icon: "shield", title: "AI Monitoring & Maintenance", text: "Keep your automation systems running reliably with ongoing monitoring, workflow improvements, updates and technical support. " },
     ],
     portfolio: [
       { category: "AI Automation", title: "Placeholder Project One", text: "Placeholder description of the project." },
@@ -764,19 +764,31 @@ export const servicePages = [
     icon: "globe",
     title: "Hosting Services",
     short: "Hosting",
-    text: "Placeholder: Fast, secure and reliable hosting with expert support, so your website is always online.",
-    intro: "Placeholder: From shared hosting to dedicated servers, we keep your website fast, safe and online with 24/7 monitoring and support.",
-    hero: { title: "Fast & Reliable", accent: "Hosting Services" },
+    text: "Reliable hosting goes beyond server space. We provide the essential infrastructure, security and technical support to keep your website accessible, protected and performing at its best.",
+    intro: "Keep your website and applications running smoothly with dependable hosting solutions built for performance, security and scalability. From business websites to demanding applications, we provide the infrastructure and support you need to stay online.",
+    hero: { title: "Fast, Secure & Reliable", accent: "Hosting for Your Business" },
     highlights: ["Placeholder highlight one", "Placeholder highlight two", "Placeholder highlight three", "Placeholder highlight four"],
-    tags: ["Web Hosting", "Cloud Servers", "SSL & Security", "24/7 Support"],
+    tags: ["Web Hosting", "Cloud Hosting", "VPS & Dedicated Servers", "SSL & Security"],
     offerings: [
-      { icon: "rocket", title: "Fast Performance", text: "Placeholder: Quick load times on modern infrastructure." },
-      { icon: "shield", title: "SSL & Security", text: "Placeholder: Free SSL, firewall and malware protection." },
-      { icon: "clock", title: "99.9% Uptime", text: "Placeholder: Monitoring so your site stays online." },
-      { icon: "headset", title: "24/7 Support", text: "Placeholder: Help from real people whenever you need it." },
-      { icon: "globe", title: "Domains & Email", text: "Placeholder: Domain registration and business email." },
-      { icon: "check", title: "Daily Backups", text: "Placeholder: Automatic backups and easy restore." },
+      { icon: "rocket", title: "High-Speed Performance", text: "Optimised hosting infrastructure, caching and performance configurations for faster loading times and a smoother visitor experience." },
+      { icon: "shield", title: "SSL & Website Security", text: "SSL certificates, security configurations and protection measures to help safeguard your website and visitor information." },
+      { icon: "clock", title: "Reliable Server Uptime", text: "Dependable hosting infrastructure with uptime monitoring to help keep your website accessible around the clock." },
+      { icon: "headset", title: "Technical Support", text: "Get assistance with hosting configurations, website issues, server management and technical troubleshooting." },
+      { icon: "globe", title: "Domain & Business Email", text: "Domain registration assistance, DNS management and professional business email setup to establish your online presence." },
+      { icon: "check", title: "Automated Backups", text: "Regular backup configurations to help protect your website files and databases, with restoration support when needed." },
     ],
+    // "Our Solutions" section (shown under What You Get)
+    solutions: {
+      title: "Hosting Built Around",
+      accent: "Your Business Needs",
+      text: "Whether you're launching your first website or managing a growing digital platform, we help you choose the right hosting environment.",
+      items: [
+        { icon: "users", title: "Shared Web Hosting", text: "Affordable hosting for personal websites, blogs and small business websites." },
+        { icon: "globe", title: "Cloud Hosting", text: "Flexible hosting infrastructure designed to handle changing traffic demands and growing applications." },
+        { icon: "bolt", title: "VPS Hosting", text: "Dedicated virtual server resources with greater control, flexibility and custom configurations." },
+        { icon: "shield", title: "Dedicated Servers", text: "Powerful server environments for resource-intensive websites, applications and business systems." },
+      ],
+    },
     portfolio: [
       { category: "Hosting", title: "Placeholder Project One", text: "Placeholder description of the project." },
       { category: "Hosting", title: "Placeholder Project Two", text: "Placeholder description of the project." },
@@ -880,7 +892,7 @@ export const portfolioCategories = [
   {
     id: "design",
     label: "Branding & Graphic Design",
-    subs: ["Iconic Logo", "3D Animated Logo", "2D Logo", "Typographic Logo", "Mascot Logo", "Stationary Designs", "Other Graphic Design"],
+    subs: ["Iconic Logo", "3D Animated Logo", "2D Logo", "Typographic Logo", "Mascot Logo", "Stationary Designs", "Other Graphic Work"],
     items: [
 
       { sub: "Iconic Logo", title: "Brand Name 1", image: "/portfolio/iconic-1.png" },
@@ -947,14 +959,14 @@ export const portfolioCategories = [
 { sub: "Stationary Designs", title: "Auburn Chic", image: "/portfolio/stationery-8.png" },
 
     { sub: "Other Graphic Work", title: "Graphic Work 1", image: "/portfolio/graphic-1.png" },
-{ sub: "Other Graphic Design", title: "Graphic Work 2", image: "/portfolio/graphic-2.png" },
-{ sub: "Other Graphic Design", title: "Graphic Work 3", image: "/portfolio/graphic-3.png" },
-{ sub: "Other Graphic Design", title: "Graphic Work 4", image: "/portfolio/graphic-4.png" },
-{ sub: "Other Graphic Design", title: "Graphic Work 5", image: "/portfolio/graphic-5.png" },
-{ sub: "Other Graphic Design", title: "Graphic Work 6", image: "/portfolio/graphic-6.png" },
-{ sub: "Other Graphic Design", title: "Graphic Work 7", image: "/portfolio/graphic-7.png" },
-{ sub: "Other Graphic Design", title: "Graphic Work 8", image: "/portfolio/graphic-8.png" },
-{ sub: "Other Graphic Design", title: "Graphic Work 9", image: "/portfolio/graphic-9.png" },
+{ sub: "Other Graphic Work", title: "Graphic Work 2", image: "/portfolio/graphic-2.png" },
+{ sub: "Other Graphic Work", title: "Graphic Work 3", image: "/portfolio/graphic-3.png" },
+{ sub: "Other Graphic Work", title: "Graphic Work 4", image: "/portfolio/graphic-4.png" },
+{ sub: "Other Graphic Work", title: "Graphic Work 5", image: "/portfolio/graphic-5.png" },
+{ sub: "Other Graphic Work", title: "Graphic Work 6", image: "/portfolio/graphic-6.png" },
+{ sub: "Other Graphic Work", title: "Graphic Work 7", image: "/portfolio/graphic-7.png" },
+{ sub: "Other Graphic Work", title: "Graphic Work 8", image: "/portfolio/graphic-8.png" },
+{ sub: "Other Graphic Work", title: "Graphic Work 9", image: "/portfolio/graphic-9.png" },
     ],
   },
 ];
