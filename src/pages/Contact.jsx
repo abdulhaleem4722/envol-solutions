@@ -3,7 +3,7 @@ import { container, gradText, sectionPad } from "../ui";
 import ContactPanel from "../components/ContactPanel";
 import Reveal from "../components/Reveal";
 import { TestimonialCard } from "../components/ServicesPage";
-import { servicesTestimonials } from "../data";
+import { contactTestimonials } from "../data";
 
 // The place shown on the map.
 const MAP_QUERY = "6594 South 35th Street, Franklin, WI 53132, United States";
@@ -76,7 +76,7 @@ function TestimonialsSlider() {
             onScroll={update}
             className="-my-4 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            {servicesTestimonials.map((t, i) => (
+            {contactTestimonials.map((t, i) => (
               <div key={i} className="flex w-full shrink-0 snap-start md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)] [&>figure]:h-full [&>figure]:w-full">
                 <TestimonialCard t={t} />
               </div>

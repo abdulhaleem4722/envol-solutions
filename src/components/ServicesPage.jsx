@@ -545,20 +545,26 @@ const TESTIMONIAL_COUNT = 6;
 
 export function TestimonialCard({ t }) {
   return (
-    <figure className={card}>
-      <div className="mb-3.5 flex gap-[3px] text-[#f5b301] [&_svg]:fill-current" aria-hidden="true">
-        {[...Array(5)].map((_, k) => (
-          <Icon key={k} name="star" size={16} />
-        ))}
+    <figure className={`${card} flex flex-col`}>
+      <div className="mb-3.5 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+        <div className="flex gap-[3px] text-[#f5b301] [&_svg]:fill-current" aria-hidden="true">
+          {[...Array(5)].map((_, k) => (
+            <Icon key={k} name="star" size={16} />
+          ))}
+        </div>
+        {t.tag && (
+          <span className="rounded-full bg-sky-soft px-3 py-1 text-[0.72rem] font-semibold text-navy">{t.tag}</span>
+        )}
       </div>
       <blockquote className="mb-[22px] text-[0.98rem] text-ink">{t.quote}</blockquote>
-      <figcaption className="flex items-center gap-3">
-        <span className={`${gradBg} grid size-[42px] place-items-center rounded-full font-bold text-white`}>
+      <figcaption className="mt-auto flex items-center gap-3">
+        <span className={`${gradBg} grid size-[42px] shrink-0 place-items-center rounded-full font-bold text-white`}>
           {t.name.charAt(0)}
         </span>
         <span>
           <strong className="block text-[0.92rem] text-navy">{t.name}</strong>
-          <small className="text-[0.8rem] text-muted">{t.role}</small>
+          <small className="block text-[0.8rem] text-muted">{t.role}</small>
+          {t.meta && <small className="block text-[0.75rem] text-muted/80">{t.meta}</small>}
         </span>
       </figcaption>
     </figure>

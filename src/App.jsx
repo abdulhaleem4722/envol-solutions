@@ -7,10 +7,12 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
 import Contact from "./pages/Contact";
-import Portfolio from "./pages/Portfolio";  
+import Portfolio from "./pages/Portfolio";
 import Pricing from "./pages/Pricing";
-import CursorSpotlight from "./components/CustomCursor";
 import CustomCursor from "./components/CustomCursor";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
+import NotFound from "./pages/NotFound";
 // Scrolls to the top on a new page, or to the section when the link has a #hash.
 function ScrollManager() {
   const { pathname, hash } = useLocation();
@@ -30,7 +32,7 @@ function ScrollManager() {
 export default function App() {
   return (
     <>
-    <CustomCursor />
+      <CustomCursor />
       <Navbar />
       <ScrollManager />
       <main>
@@ -39,10 +41,12 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
-          <Route path="*" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-and-conditions" element={<Terms />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

@@ -160,24 +160,6 @@ export const projects = [
   { category: "Web", title: "Project Name Six", text: "Short description of the project and the result it achieved." },
 ];
 
-// PLACEHOLDER testimonials: replace with real, permissioned client quotes.
-export const testimonials = [
-  {
-    quote: "Placeholder: add a real client testimonial here once you have one.",
-    name: "Client Name",
-    role: "Role, Company",
-  },
-  {
-    quote: "Placeholder: add a real client testimonial here once you have one.",
-    name: "Client Name",
-    role: "Role, Company",
-  },
-  {
-    quote: "Placeholder: add a real client testimonial here once you have one.",
-    name: "Client Name",
-    role: "Role, Company",
-  },
-];
 
 // PLACEHOLDER offices
 export const offices = [
@@ -842,17 +824,7 @@ export const servicesOffices = [
   },
 ];
 
-// ---------- Services page: client testimonials (DUMMY: replace with real, permissioned quotes) ----------
-export const servicesTestimonials = [
-  { quote: "Our new website looks sharp and loads fast. Online orders went up 60% in the first two months.", name: "Sarah Johnson", role: "Owner, Northwind Furniture" },
-  { quote: "The team understood our idea quickly and delivered the app on time. Our users love how simple it is.", name: "David Miller", role: "Founder, FitTrack" },
-  { quote: "Organic traffic tripled in six months and we now rank on page one for our main keywords.", name: "Emma Williams", role: "Marketing Head, GreenLeaf Organics" },
-  { quote: "They gave us a logo and brand book we are proud of. Clear communication from start to finish.", name: "Michael Chen", role: "Director, Zenith Realty" },
-  { quote: "The booking system saved our front desk hours every day. Setup was smooth and support is quick.", name: "Dr. Ayesha Khan", role: "Founder, BrightSmile Dental" },
-  { quote: "Our Google Ads finally make money. The weekly reports are clear and show exactly where the budget goes.", name: "Lisa Thompson", role: "CEO, TechNova Solutions" },
-  { quote: "Fair pricing and no surprises. The quote matched the final invoice and the work was delivered early.", name: "James Okafor", role: "COO, Apex Logistics" },
-  { quote: "From the first sketch to the app store launch, they handled everything. Highly recommended.", name: "Priya Patel", role: "Product Lead, QuickBite" },
-];
+
 // ---------- Portfolio page ----------
 // Each picture: { sub, title, image, url }.
 //   image: optional. Put the file in /public/portfolio/ and write image: "/portfolio/site-1.png"
@@ -986,3 +958,5 @@ export const portfolioCategories = [
     ],
   },
 ];
+
+export { testimonials, servicesTestimonials, contactTestimonials } from "./testimonialsData";
