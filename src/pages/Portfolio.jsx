@@ -6,7 +6,19 @@ import Icon from "../components/Icon";
 import Reveal from "../components/Reveal";
 
 /* ---------- picture or branded placeholder ---------- */
+// Types whose pictures are shown whole (not cropped). The empty sides are filled with a soft blurred copy of the same picture.
+// Add more names from data.js if needed.
+const CONTAIN_SUBS = ["Other Graphic Work"];
+
 function Thumb({ item, className = "" }) {
+  if (item.image && CONTAIN_SUBS.includes(item.sub)) {
+    return (
+      <div className={`relative size-full overflow-hidden bg-sky-faint ${className}`}>
+        <img src={item.image} alt="" aria-hidden="true" loading="lazy" className="absolute inset-0 size-full scale-125 object-cover opacity-80 blur-2xl" />
+        <img src={item.image} alt={item.title} loading="lazy" className="relative size-full object-contain" />
+      </div>
+    );
+  }
   return item.image ? (
     <img src={item.image} alt={item.title} loading="lazy" className={`size-full object-cover object-top ${className}`} />
   ) : (

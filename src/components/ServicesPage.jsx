@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   SiWordpress, SiShopify, SiWix, SiWebflow, SiSquarespace, SiWoocommerce, SiBigcommerce, SiFigma,
@@ -640,7 +640,22 @@ export function TestimonialCard({ t }) {
 }
 
 /* ---------- "What our clients say": a simple grid of cards ---------- */
+const SERVICES_SLIDE_MS = 2000; // time each review stays (ms)
+
 export function TestimonialsGrid() {
+  const list = servicesTestimonials;
+  const count = list.length;
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused || count < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // runs again after every change, so clicking a dot also restarts the wait
+    const id = setTimeout(() => setIndex((i) => (i + 1) % count), SERVICES_SLIDE_MS);
+    return () => clearTimeout(id);
+  }, [index, paused, count]);
+
   return (
     <section className={`${sectionPad} bg-sky-faint`}>
       <div className={container}>
@@ -650,13 +665,44 @@ export function TestimonialsGrid() {
           accent="Say"
           text="Hear from the teams who turned their ideas into reality with us."
         />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {servicesTestimonials.slice(0, TESTIMONIAL_COUNT).map((t, i) => (
-            <Reveal key={i} delay={(i % 3) * 120} className="h-full">
-              <TestimonialCard t={t} />
-            </Reveal>
-          ))}
-        </div>
+
+        <Reveal>
+          <div
+            className="mx-auto max-w-[760px]"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocus={() => setPaused(true)}
+            onBlur={() => setPaused(false)}
+          >
+            <div className="overflow-hidden px-1 py-5">
+              <div
+                className="flex transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateX(-${index * 100}%)` }}
+              >
+                {list.map((t, i) => (
+                  <div key={i} className="w-full shrink-0 px-2" aria-hidden={i !== index}>
+                    <TestimonialCard t={t} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {count > 1 && (
+              <div className="mt-4 flex flex-wrap justify-center gap-2.5" role="group" aria-label="Choose testimonial">
+                {list.map((t, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setIndex(i)}
+                    aria-label={`Show testimonial ${i + 1}`}
+                    aria-current={i === index}
+                    className={`h-3 rounded-full transition-all duration-300 ${i === index ? "w-7 bg-brand" : "w-3 bg-line hover:bg-brand/50"}`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
