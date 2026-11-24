@@ -3,6 +3,7 @@
 //  Everything marked "PLACEHOLDER" must be replaced with real
 //  client data before the site goes live.
 // ============================================================
+import { aiProjects } from "./aiProjectsData";
 import { brandingPackages, webPackageGroups, marketingPackageGroups, hostingPackages } from "./packagesData";
 export const brand = {
   name: "Envol Solutions",
@@ -988,4 +989,5 @@ for (const s of servicePages) {
     delete s.packages;
   }
   if (s.slug === "hosting") s.packages = hostingPackages;
+  if (s.slug === "ai") s.aiProjects = aiProjects;
 }

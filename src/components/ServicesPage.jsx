@@ -12,6 +12,7 @@ import Icon from "./Icon";
 import Reveal from "./Reveal";
 import FeaturedCard, { featured } from "./FeaturedCard";
 import { SectionHead } from "./Sections";
+import AiProjects from "./AiProjects";
 
 /* =====================================================================
    ServicesPage.jsx: everything for the Services pages lives in this file.
@@ -353,6 +354,7 @@ function brandingProjects() {
 
 /* ---------- inner page: small portfolio for this service ---------- */
 export function ServicePortfolio({ service }) {
+   if (service.aiProjects) return <AiProjects service={service} />;
   if (service.caseStudies) return <CaseStudies service={service} />;
   return (
     <section className={`${sectionPad} bg-sky-faint`}>
