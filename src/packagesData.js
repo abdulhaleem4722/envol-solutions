@@ -636,8 +636,8 @@ export const hostingPackages = [
     name: "Dedicated Hosting",
     priceLabel: "Custom Quote",
     features: [
-      "32-Core AMD EPYC / Intel Xeon Processor",
-      "512 GB DDR5 ECC RAM",
+      "32-Core AMD EPYC 9354 Processor",
+      "512 GB DDR5 ECC Registered RAM",
       "4 × 3.84 TB Enterprise NVMe SSD (RAID 10)",
       "10 Gbps Dedicated Network Port",
       "50 TB Monthly Bandwidth",
