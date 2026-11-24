@@ -41,6 +41,18 @@ function Detail({ p, onClose }) {
           ×
         </button>
 
+        {p.image && (
+          <a
+            href={p.image}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Open full size"
+            className="mb-6 -mt-1 block overflow-hidden rounded-[12px] border border-line bg-[#161616]"
+          >
+            <img src={p.image} alt={`${p.title} workflow`} className="block w-full" />
+          </a>
+        )}
+
         <div className="mb-5 flex items-center gap-3.5 pr-10">
           <div className="grid size-[52px] shrink-0 place-items-center rounded-[14px] bg-sky-soft text-brand">
             <Icon name={p.icon} />
@@ -99,6 +111,16 @@ export default function AiProjects({ service }) {
                 onClick={() => setOpen(p)}
                 className={`${card} ${cardFx} flex h-full cursor-pointer flex-col`}
               >
+                {p.image && (
+                  <div className="-mx-1 mb-5 h-[170px] overflow-hidden rounded-[12px] bg-[#161616]">
+                    <img
+                      src={p.image}
+                      alt={`${p.title} workflow`}
+                      loading="lazy"
+                      className="size-full object-contain transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                )}
                 <div className="mb-4 flex items-center justify-between">
                   <div className={`grid size-[52px] place-items-center rounded-[14px] bg-sky-soft text-brand ${iconFx} ${iconPop}`}>
                     <Icon name={p.icon} />

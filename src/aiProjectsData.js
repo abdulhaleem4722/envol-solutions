@@ -1,11 +1,12 @@
 // AI Automation portfolio (from the client's AI_Automation_Portfolio.docx).
 // Shown in the "Our Work" section of the AI Automation page (/services/ai).
-// Fields: icon, tag, title, subtitle (tagline), overview, problems (list), solution, value.
+// Fields: icon, image (workflow screenshot in /public/portfolio), tag, title, subtitle (tagline), overview, problems (list), solution, value.
 export const aiProjects = [
   {
     icon: "users",
     tag: "AI Lead Management & Qualification",
     title: "LeadFlow AI",
+    image: "/portfolio/ai-leadflow.png",
     subtitle: "Turn incoming enquiries into organised sales opportunities.",
     overview:
       "LeadFlow AI is an intelligent lead-management solution designed to help businesses handle new enquiries more consistently. It gathers incoming lead information, reviews each enquiry against a business’s qualification criteria, and organises prospects so the sales team can focus on the opportunities that matter most. Instead of leaving enquiries scattered across inboxes and forms, LeadFlow AI gives teams a clearer, more structured way to manage the path from first contact to follow-up.",
@@ -22,6 +23,7 @@ export const aiProjects = [
     icon: "headset",
     tag: "AI Customer Support Assistant",
     title: "SupportPilot AI",
+    image: "/portfolio/ai-supportpilot.png",
     subtitle: "Give customers helpful answers without making them wait for every reply.",
     overview:
       "SupportPilot AI is a customer-support assistant designed to respond to common questions and guide customers through routine requests. It can help people find product information, understand service details, check the next steps for an order or request, and get help with common issues. When a question needs personal attention, the experience can direct the conversation to a member of the support team.",
@@ -38,6 +40,7 @@ export const aiProjects = [
     icon: "pen",
     tag: "Intelligent Invoice Processing",
     title: "InvoiceFlow AI",
+    image: "/portfolio/ai-invoiceflow.png",
     subtitle: "Turn invoice documents into organised, reviewable information.",
     overview:
       "InvoiceFlow AI is a document-processing solution designed to make invoice handling more organised. It reads information from submitted invoices and extracts important details such as invoice numbers, supplier names, dates, line items, tax and totals. The extracted information is arranged in a structured format so a team can review it, correct exceptions and prepare it for its normal record-keeping process.",
@@ -54,6 +57,7 @@ export const aiProjects = [
     icon: "tag",
     tag: "Intelligent Support Ticket Management",
     title: "HelpDesk AI",
+    image: "/portfolio/ai-helpdesk.png",
     subtitle: "Make incoming support requests easier to sort, prioritise and resolve.",
     overview:
       "HelpDesk AI is a support-ticket assistant designed to bring structure to incoming service requests. It reviews the message, identifies the general issue, assigns a category and suggests a priority. It can prepare a concise summary and a draft response so the support team can understand the request quickly and decide what should happen next.",
@@ -70,6 +74,7 @@ export const aiProjects = [
     icon: "chart",
     tag: "AI Social Media Automation",
     title: "SocialPilot AI",
+    image: "/portfolio/ai-socialpilot.png",
     subtitle: "Plan and prepare consistent social content with less manual effort.",
     overview:
       "SocialPilot AI is a social-media content assistant designed to help businesses plan and prepare posts for their online channels. It can support topic research, generate draft captions, suggest creative directions and adapt the wording for different platforms. Content can be organised into a publishing calendar so teams can review what is planned and maintain a more consistent posting routine.",
@@ -86,6 +91,7 @@ export const aiProjects = [
     icon: "mail",
     tag: "Smart Email Management",
     title: "InboxPilot AI",
+    image: "/portfolio/ai-inboxpilot.png",
     subtitle: "Make a busy inbox easier to understand and act on.",
     overview:
       "InboxPilot AI is an email-management assistant designed to help people keep track of incoming messages. It can summarise long email threads, identify the main subject, sort messages into useful categories and highlight items that may need attention. Rather than replacing the person managing the inbox, it helps make important information easier to scan and follow up.",
