@@ -99,9 +99,13 @@ export function Testimonials() {
                       </div>
                       <blockquote className="mb-[22px] text-[0.98rem] text-ink">{t.quote}</blockquote>
                       <figcaption className="mt-auto flex items-center gap-3">
-                        <span className={`${gradBg} grid size-[42px] place-items-center rounded-full font-bold text-white`}>
-                          {t.name.charAt(0)}
-                        </span>
+                       {t.photo ? (
+  <img src={t.photo} alt={t.name} loading="lazy" className="size-[42px] shrink-0 rounded-full object-cover" />
+) : (
+  <span className={`${gradBg} grid size-[42px] place-items-center rounded-full font-bold text-white`}>
+    {t.name.charAt(0)}
+  </span>
+)}
                         <span>
                           <strong className="block text-[0.92rem] text-navy">{t.name}</strong>
                           <small className="text-[0.8rem] text-muted">{t.role}</small>
