@@ -141,8 +141,8 @@ function Cards({ refs }) {
         </div>
       </div>
 
-      {/* 4. sticky note */}
-      <div ref={r(3)} className="will-change-transform max-lg:hidden">
+           {/* 4. sticky note */}
+      <div ref={r(3)} className="will-change-transform">
         <div className="rotate-[3deg] bg-[#fcf2a0] px-5 pb-8 pt-5 font-hand text-[1.3rem] leading-[1.25] text-[#38361f] shadow-[0_10px_20px_rgba(0,0,0,0.12)]">
           {pitch.note.map((t, i) => (
             <p key={i} className={i ? "mt-4" : ""}>
@@ -172,6 +172,7 @@ export default function Pitch() {
   const cards = useRef([]);
   const paras = useRef([]);
   const fit = useRef(null);
+    const fitScale = useRef(1);
   const stage = useRef(null);
   const question = useRef(null);
   const [shown, setShown] = useState(false);
@@ -223,7 +224,8 @@ export default function Pitch() {
       if (!el || !st) return;
       el.style.transform = "";
       const room = st.clientHeight - 120;
-      const s = clamp(room / el.offsetHeight, 0.7, 1);
+     const s = clamp(room / el.offsetHeight, window.innerWidth < 1024 ? 0.5 : 0.7, 1);
+      fitScale.current = s;
       el.style.transform = s < 1 ? `scale(${s.toFixed(3)})` : "";
     };
     apply();
@@ -249,8 +251,13 @@ export default function Pitch() {
       // while the banner scrolls away, lift the question + cards up a little so there is less empty white.
       // The lift is 0 when the section is still below the screen and 0 again once it is pinned.
       if (fit.current) {
-        const enterP = clamp(1 - r.top / window.innerHeight);
-        fit.current.style.top = `${(-Math.sin(Math.PI * enterP) * window.innerHeight * 0.17).toFixed(1)}px`;
+                const enterP = clamp(1 - r.top / window.innerHeight);
+        const el = fit.current;
+        const wanted = Math.sin(Math.PI * enterP) * window.innerHeight * 0.17;
+        // never lift the heading above the top edge of the section (it would be cut off)
+        const naturalTop = el.offsetTop - (parseFloat(el.style.top) || 0);
+        const visualTop = naturalTop + (el.offsetHeight * (1 - fitScale.current)) / 2;
+        el.style.top = `${(-Math.min(wanted, Math.max(0, visualTop - 12))).toFixed(1)}px`;
       }
 
       // 2) bubbles, card and note pop in one by one

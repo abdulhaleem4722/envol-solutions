@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { portfolioCategories } from "../data";
 import { container, btn, gradBg, gradText, sectionPad } from "../ui";
@@ -8,7 +8,7 @@ import Reveal from "../components/Reveal";
 /* ---------- picture or branded placeholder ---------- */
 // Types whose pictures are shown whole (not cropped). The empty sides are filled with a soft blurred copy of the same picture.
 // Add more names from data.js if needed.
-const CONTAIN_SUBS = ["Other Graphic Work"];
+const CONTAIN_SUBS = ["Other Graphic Work", "Apps"];
 
 function Thumb({ item, className = "" }) {
   if (item.image && CONTAIN_SUBS.includes(item.sub)) {
@@ -53,9 +53,16 @@ function Lightbox({ item, onClose }) {
       className="fixed inset-0 z-[100] grid place-items-center bg-navy-deep/80 p-4 backdrop-blur-sm"
     >
       <div onClick={(e) => e.stopPropagation()} className="w-full max-w-[860px] overflow-hidden rounded-[18px] bg-white shadow-2xl">
-        <div className={`${item.url ? "aspect-video" : "aspect-[4/3]"} max-h-[70vh] w-full`}>
-          <Thumb item={item} />
-        </div>
+        {item.sub === "Apps" ? (
+          // apps: the full (tall) picture opens here, scroll up/down to see all of it
+          <div className="max-h-[70vh] overflow-y-auto bg-sky-faint [scrollbar-color:#07305a_#dff1fa] [scrollbar-width:thin]">
+            <img src={item.image} alt={item.title} className="block h-auto w-full" />
+          </div>
+        ) : (
+          <div className={`${item.url ? "aspect-video" : "aspect-[4/3]"} max-h-[70vh] w-full`}>
+            <Thumb item={item} />
+          </div>
+        )}
         <div className="flex items-center justify-between gap-4 px-5 py-4">
           <div>
             <h3 className="font-bold text-navy">{item.title}</h3>
@@ -88,7 +95,10 @@ function PortfolioTabs({ onOpen }) {
   const [sub, setSub] = useState("All");
   const cat = portfolioCategories.find((c) => c.id === active);
   const subs = cat.subs.length > 1 ? ["All", ...cat.subs] : [];
-  const shown = sub === "All" ? cat.items : cat.items.filter((x) => x.sub === sub);
+  const shown =
+    sub === "All"
+      ? [...cat.items].sort((a, b) => cat.subs.indexOf(a.sub) - cat.subs.indexOf(b.sub))
+      : cat.items.filter((x) => x.sub === sub);
 
   const pick = (id) => {
     setActive(id);
@@ -156,6 +166,7 @@ function PortfolioTabs({ onOpen }) {
           {shown.map((item, i) => (
             <Reveal key={`${active}-${sub}-${i}`} delay={(i % 3) * 90} className="h-full">
               <article className="flex h-full flex-col overflow-hidden rounded-[14px] border border-line bg-white p-3 shadow-[0_10px_28px_rgba(7,48,90,0.09)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(7,48,90,0.16)] sm:p-4">
+
                 <button
                   type="button"
                   onClick={() => onOpen(item)}

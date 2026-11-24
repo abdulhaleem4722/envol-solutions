@@ -891,7 +891,7 @@ export const portfolioCategories = [
   {
     id: "design",
     label: "Branding & Graphic Design",
-    subs: ["Iconic Logo", "3D Animated Logo", "2D Logo", "Typographic Logo", "Mascot Logo", "Stationary Designs", "Other Graphic Work"],
+subs: ["3D Animated Logo", "Iconic Logo", "2D Logo", "Typographic Logo", "Mascot Logo", "Stationary Designs", "Other Graphic Work"],
     items: [
 
            { sub: "Iconic Logo", title: "TapNGo", image: "/portfolio/iconic-1.png" },
@@ -906,7 +906,7 @@ export const portfolioCategories = [
       { sub: "3D Animated Logo", title: "YA", image: "/portfolio/3d-1.gif" },
       { sub: "3D Animated Logo", title: "NAH", image: "/portfolio/3d-2.gif" },
       { sub: "3D Animated Logo", title: "Box", image: "/portfolio/3d-3.gif" },
-      { sub: "3D Animated Logo", title: "NAH", image: "/portfolio/3d-4.gif" },
+  
       { sub: "3D Animated Logo", title: "Lunari", image: "/portfolio/3d-5.gif" },
       { sub: "3D Animated Logo", title: "Neos", image: "/portfolio/3d-6.gif" },
       { sub: "3D Animated Logo", title: "Gotikket", image: "/portfolio/3d-7.gif" },
