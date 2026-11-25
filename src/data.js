@@ -991,3 +991,11 @@ for (const s of servicePages) {
   if (s.slug === "hosting") s.packages = hostingPackages;
   if (s.slug === "ai") s.aiProjects = aiProjects;
 }
+
+// ---------- Portfolio page: "AI Automation" tab (same 6 projects as the AI service page) ----------
+portfolioCategories.push({
+  id: "ai",
+  label: "AI Automation",
+  subs: ["AI Automation"],
+  items: aiProjects.map((p) => ({ sub: "AI Automation", title: p.title, image: p.image })),
+});

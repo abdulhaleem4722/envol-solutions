@@ -173,7 +173,7 @@ export function ServicesOverview() {
                   className={`group flex flex-col gap-6 overflow-hidden rounded-[22px] border border-line bg-linear-to-br from-white to-sky-faint p-5 shadow-[0_8px_26px_rgba(7,48,90,0.06)] transition duration-300 hover:border-brand hover:shadow-[0_18px_44px_rgba(7,48,90,0.14)] sm:p-7 md:items-center md:gap-10 ${i % 2 ? "md:flex-row-reverse" : "md:flex-row"
                     }`}
                 >
-                  <div className="flex flex-1 gap-4 sm:gap-5">
+                 <div className="flex flex-1 flex-col gap-4 sm:flex-row sm:gap-5">
                     <span className="grid size-14 shrink-0 place-items-center rounded-[16px] bg-sky-soft text-brand transition group-hover:animate-float group-hover:bg-brand group-hover:text-white sm:size-16">
                       <Icon name={s.icon} />
                     </span>

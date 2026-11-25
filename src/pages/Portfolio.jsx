@@ -11,6 +11,13 @@ import Reveal from "../components/Reveal";
 const CONTAIN_SUBS = ["Other Graphic Work", "Apps"];
 
 function Thumb({ item, className = "" }) {
+  if (item.image && item.sub === "AI Automation") {
+    return (
+      <div className={`grid size-full place-items-center bg-[#161616] ${className}`}>
+        <img src={item.image} alt={item.title} loading="lazy" className="size-full object-contain" />
+      </div>
+    );
+  }
   if (item.image && CONTAIN_SUBS.includes(item.sub)) {
     return (
       <div className={`relative size-full overflow-hidden bg-sky-faint ${className}`}>
@@ -44,7 +51,7 @@ function Lightbox({ item, onClose }) {
     };
   }, [onClose]);
 
-  return (
+    return (
     <div
       role="dialog"
       aria-modal="true"
@@ -52,9 +59,12 @@ function Lightbox({ item, onClose }) {
       onClick={onClose}
       className="fixed inset-0 z-[100] grid place-items-center bg-navy-deep/80 p-4 backdrop-blur-sm"
     >
-      <div onClick={(e) => e.stopPropagation()} className="w-full max-w-[860px] overflow-hidden rounded-[18px] bg-white shadow-2xl">
-        {item.sub === "Apps" ? (
-          // apps: the full (tall) picture opens here, scroll up/down to see all of it
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={`w-full overflow-hidden rounded-[18px] bg-white shadow-2xl ${item.sub === "AI Automation" ? "max-w-[1240px]" : "max-w-[860px]"}`}
+      >
+        {item.sub === "Apps" || item.sub === "AI Automation" ? (
+          // apps / AI: the full picture opens here, scroll up/down to see all of it
           <div className="max-h-[70vh] overflow-y-auto bg-sky-faint [scrollbar-color:#07305a_#dff1fa] [scrollbar-width:thin]">
             <img src={item.image} alt={item.title} className="block h-auto w-full" />
           </div>
@@ -84,7 +94,7 @@ function Lightbox({ item, onClose }) {
   );
 }
 
-const tabIcon = { web: "globe", app: "phone", design: "brush" };
+const tabIcon = { web: "globe", app: "phone", design: "brush", ai:"bolt" };
 
 // Names shown on the filter buttons (the key is the `sub` name used in data.js). Others show as written.
 const subLabel = { Business: "Business Websites", "Web Portal": "Web Portals" };
@@ -119,22 +129,23 @@ function PortfolioTabs({ onOpen }) {
         </div>
 
         {/* the three tabs */}
-        <div role="tablist" aria-label="Portfolio categories" className="mt-10 flex flex-wrap justify-center gap-3 sm:gap-5">
-          {portfolioCategories.map((c) => {
-            const on = c.id === active;
-            return (
-              <button
-                key={c.id}
-                type="button"
-                role="tab"
-                aria-selected={on}
-                onClick={() => pick(c.id)}
-                className={`inline-flex items-center gap-3 rounded-full px-6 py-3.5 text-[0.85rem] font-bold uppercase tracking-[0.08em] transition sm:px-8 sm:text-[0.95rem] ${
-                  on
-                    ? `${gradBg} text-white shadow-[0_10px_24px_rgba(10,111,174,0.3)]`
-                    : "bg-white text-navy shadow-[0_4px_14px_rgba(7,48,90,0.08)] hover:text-brand"
-                }`}
-              >
+      {/* the tabs */}
+<div role="tablist" aria-label="Portfolio categories" className="mt-10 flex flex-wrap justify-center gap-3 sm:gap-4">
+  {portfolioCategories.map((c) => {
+    const on = c.id === active;
+    return (
+      <button
+        key={c.id}
+        type="button"
+        role="tab"
+        aria-selected={on}
+        onClick={() => pick(c.id)}
+        className={`inline-flex items-center gap-2.5 rounded-full px-5 py-3.5 text-[0.85rem] font-bold uppercase tracking-[0.06em] transition sm:px-6 sm:text-[0.9rem] ${
+          on
+            ? `${gradBg} text-white shadow-[0_10px_24px_rgba(10,111,174,0.3)]`
+            : "bg-white text-navy shadow-[0_4px_14px_rgba(7,48,90,0.08)] hover:text-brand"
+        }`}
+      >
                 <Icon name={tabIcon[c.id] || "star"} size={22} />
                 {c.label}
               </button>
@@ -175,7 +186,7 @@ function PortfolioTabs({ onOpen }) {
                 >
                   <Thumb item={item} className="transition duration-500 group-hover:scale-105" />
                   {!item.url && (
-                    <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-navy-deep/85 to-transparent px-3.5 pb-3 pt-10 text-left text-[0.85rem] font-semibold text-white opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                    <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-navy-deep/85 to-transparent px-3.5 pb-3 pt-10 text-left text-[0.85rem] font-semibold text-white transition duration-300 max-lg:opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:group-focus-visible:opacity-100">
                       {item.title}
                     </span>
                   )}
